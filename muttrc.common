@@ -1,0 +1,52 @@
+# vi:ft=muttrc
+# Mutt settings common for all accounts and configurations.
+#
+# ------------------------------------------------------------------------------
+#  Personal info
+# ------------------------------------------------------------------------------
+
+set realname="Name"
+set from="user@host"
+my_hdr Bcc: user@host
+alternates "user2@host|user3@host"
+
+# ------------------------------------------------------------------------------
+#  General settings 
+# ------------------------------------------------------------------------------
+
+# set defaults
+set move=no		# dont ask to move to mbox (default=no)
+set use_from=yes 	# This makes mutt set the From: line to the original's To: line when replying
+set allow_8bit
+
+# things not default
+set print_command="muttprint"
+set mark_old=no		# when set to no we dont make distiction between new and old new
+unset markers		# unset plus markers for wrapped lines
+set mime_forward	# make forwards as mime attachments
+set sort=threads 	# default sort messages by thread
+set xterm_set_titles=yes
+set include
+
+# Headers to show / ignore
+unignore user-agent: x-agent: x-mailer: # show user agent / mailer
+unignore organization organisation x-mailer: x-newsreader:
+unignore X-Mailing-List:
+unignore posted-to:
+
+set assumed_charset="utf-8:iso-8859-1"
+set ignore_linear_white_space
+
+# Address book
+set alias_file= ~/.mutt/aliases
+set sort_alias= alias
+set reverse_alias=yes
+source $alias_file
+
+# Colors
+color index brightyellow default ~N         # New
+#color index brightyellow black ~N           # New
+#color normal default black
+color index green black ~P                  # To me (personal)
+#source ~/workspace/vombatidae-mutt/vombatidae.mutt
+

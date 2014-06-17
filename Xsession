@@ -1,0 +1,61 @@
+#!/bin/bash
+ 
+#### Load resources
+ 
+xrdb -merge .Xresources
+
+### Set up an icon tray
+
+trayer --edge top --align right --SetDockType true --SetPartialStrut true \
+ --expand true --width 10 --transparent true --tint 0x000000 --height 16 --alpha 0 &
+#trayer --edge top --align right --SetDockType true \
+ #--expand true --width 10 --transparent true --tint 0x000000 --height 12 --alpha 0 &
+
+### Cursor
+
+xsetroot -cursor_name left_ptr
+ 
+### Set the background
+ 
+if [ -f "$HOME/.wallpaper" ] ; then
+   . $HOME/.wallpaper
+fi
+ 
+### Fire up apps
+
+if [ -x /usr/bin/gnome-settings-daemon ] ; then
+    gnome-settings-daemon &
+fi
+
+if [ -x /usr/bin/gnome-screensaver ] ; then
+    gnome-screensaver &
+fi
+
+if [ -x /usr/bin/redshift ]; then
+    gtk-redshift &
+fi
+
+if [ -x /usr/bin/nm-applet ] ; then
+    nm-applet --sm-disable &
+fi
+
+eval $(gnome-keyring-daemon --start)
+export GNOME_KEYRING_CONTROL
+export SSH_AUTH_SOCK
+export GPG_AGENT_INFO
+export GNOME_KEYRING_PID
+
+#xscreensaver -no-splash &
+
+# compositing manager to make transparency
+# if [ -f /usr/bin/xcompmgr ] ; then
+#    xcompmgr &
+# fi
+
+# to fix matlab
+# don't think this is needed anymore
+#if [ -f /usr/bin/wmname ]; then
+#    wmname LG3D
+#fi
+ 
+exec xmonad
