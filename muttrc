@@ -1,9 +1,18 @@
 # vi:ft=muttrc
-# Mutt settings specific for the LUDD account
+# Mutt settings specific for account
 # 
 
 # Pull in the common settings
 source ~/.mutt/muttrc.common
+
+# ------------------------------------------------------------------------------
+#  Personal info
+# ------------------------------------------------------------------------------
+
+set realname="Name"
+set from="user@host"
+my_hdr Bcc: user@host
+alternates "user2@host|user3@host"
 
 # ------------------------------------------------------------------------------
 #  Setup account
@@ -38,6 +47,10 @@ save-hook '.*' imaps://imapserver/INBOX
 # ------------------------------------------------------------------------------
 
 set smtp_url="smtps://$USER@smtpserver/"
+
+# ------------------------------------------------------------------------------
+#  Hooks
+# ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
 #  General connection settings 

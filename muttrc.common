@@ -1,14 +1,5 @@
 # vi:ft=muttrc
 # Mutt settings common for all accounts and configurations.
-#
-# ------------------------------------------------------------------------------
-#  Personal info
-# ------------------------------------------------------------------------------
-
-set realname="Name"
-set from="user@host"
-my_hdr Bcc: user@host
-alternates "user2@host|user3@host"
 
 # ------------------------------------------------------------------------------
 #  General settings 
@@ -26,7 +17,7 @@ unset markers		# unset plus markers for wrapped lines
 set mime_forward	# make forwards as mime attachments
 set sort=threads 	# default sort messages by thread
 set xterm_set_titles=yes
-set include
+set include             # include original message in reply
 
 # Headers to show / ignore
 unignore user-agent: x-agent: x-mailer: # show user agent / mailer
@@ -42,11 +33,12 @@ set alias_file= ~/.mutt/aliases
 set sort_alias= alias
 set reverse_alias=yes
 source $alias_file
+set query_command = "abook --mutt-query '%s'"
+macro generic,index,pager \ca "<shell-escape>abook<return>" "launch abook"
+macro index,pager A "<pipe-message>abook --add-email<return>" "add the sender address to abook"
 
 # Colors
 color index brightyellow default ~N         # New
-#color index brightyellow black ~N           # New
-#color normal default black
 color index green black ~P                  # To me (personal)
 #source ~/workspace/vombatidae-mutt/vombatidae.mutt
 

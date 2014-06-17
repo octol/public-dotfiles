@@ -31,6 +31,7 @@ myManageHook = composeAll
     , className =? "Pidgin" --> doShift "im"
     , className =? "Firefox" --> doShift "web"
     , className =? "Dogecoin-qt" --> doFloat
+    , className =? "Display.im6" --> doCenterFloat
     ]
 
 main = do
