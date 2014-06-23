@@ -32,6 +32,11 @@ myManageHook = composeAll
     , className =? "Firefox" --> doShift "web"
     , className =? "Dogecoin-qt" --> doFloat
     , className =? "Display.im6" --> doCenterFloat
+    , className =? "Virt-manager" --> doFloat
+    , className =? "Virt-viewer" --> doFloat
+    , className =? "Vncviewer" --> doFloat
+    , className =? "VirtualBox" --> doFloat
+    , className =? "Octave" --> doFloat
     ]
 
 main = do
@@ -59,7 +64,7 @@ myMod = mod4Mask
 
 -- configure the layout
 myLayout = 
-        onWorkspace "im" (avoidStruts $ myChat) $
+        onWorkspace "im" ((avoidStruts $ myChat) ||| (smartBorders $ myTall)) $
         onWorkspace "web" (smartBorders $ (myTall ||| myMirrorTall ||| myTab ||| Full)) $
             (smartBorders (myTall ||| myMirrorTall ||| myTab ||| Full))
                 where
@@ -111,5 +116,6 @@ myTabConfig = defaultTheme { inactiveBorderColor        = "#464646"
                            }
 
 -- workspaces
-myWorkSpaces = ["1","2","3","4","5","6","im","mail","web"]
+{-myWorkSpaces = ["1","2","3","4","5","6","im","mail","web"]-}
+myWorkSpaces = ["1","2","3","4","5","6","7","im","web"]
 

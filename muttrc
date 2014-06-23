@@ -24,8 +24,8 @@ set imap_pass=$my_pw
 set smtp_pass=$my_pw
 
 # Connection
-set ssl_force_tls=yes
 set ssl_starttls=yes
+set ssl_force_tls=yes
 
 # ------------------------------------------------------------------------------
 #  Incoming
@@ -53,7 +53,7 @@ set smtp_url="smtps://$USER@smtpserver/"
 # ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
-#  General connection settings 
+#  General connection settings
 # ------------------------------------------------------------------------------
 
 # Things not default

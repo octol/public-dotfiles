@@ -76,6 +76,7 @@ set hidden                  " background buffers can be unsaved
 set autochdir
 set novisualbell
 set laststatus=2
+set wildmode=longest,list,full
 set wildmenu
 set wildignore=*.o,*~,*.pyc,*.pyo,*.so
 
@@ -100,9 +101,9 @@ endif
 if !exists("syntax_on")
     syntax on
 endif
-"if has('mouse')
-"    set mouse=a
-"endif
+if has('mouse')
+    set mouse=a
+endif
 set modeline            " so vim reads inline options in files
 
 " Jump to last position when opening a file
@@ -218,6 +219,12 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ' '
 "let g:airline_right_alt_sep = ''
 
+
+
+" ---------------------------------------------------------------------------
+" CtrlP
+" ---------------------------------------------------------------------------
+let g:ctrlp_root_markers = ['.ctrlp']
 
 " ---------------------------------------------------------------------------
 " clang-format

@@ -1,6 +1,6 @@
 ---
 Language:        Cpp
-# BasedOnStyle:  WebKit
+# BasedOnStyle:  Google
 AccessModifierOffset: -4
 AlignEscapedNewlinesLeft: true
 AlignTrailingComments: false
@@ -27,9 +27,9 @@ IndentCaseLabels: false
 IndentFunctionDeclarationAfterType: false
 IndentWidth:     4
 MaxEmptyLinesToKeep: 1
-NamespaceIndentation: Inner
-ObjCSpaceAfterProperty: true
-ObjCSpaceBeforeProtocolList: true
+NamespaceIndentation: None
+ObjCSpaceAfterProperty: false
+ObjCSpaceBeforeProtocolList: false
 PenaltyBreakBeforeFirstCallParameter: 19
 PenaltyBreakComment: 300
 PenaltyBreakFirstLessLess: 120
