@@ -33,6 +33,10 @@ if has("autocmd")
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'rking/ag.vim'
     "Plugin 'mileszs/ack.vim'
+    "Plugin 'tpope/vim-fugitive'
+    "Plugin 'ervandew/supertab'
+    "Plugin 'airblade/vim-gitgutter'
+    "Plugin 'Shougo/neocomplete.vim'
 
     " Language specific
     Plugin 'a.vim'
@@ -76,7 +80,7 @@ set ignorecase
 set hidden                  " background buffers can be unsaved
 set autochdir
 set novisualbell
-set laststatus=2
+set laststatus=0
 set wildmode=longest,list,full
 set wildmenu
 set wildignore=*.o,*~,*.pyc,*.pyo,*.so
@@ -164,7 +168,7 @@ if has("autocmd")
    
     " Don't ignore trailing whitespace 
     "highlight WhiteSpaceEOL ctermbg=white guibg=red
-    "au BufWinEnter *.{c,cpp,cxx,h,hpp} match WhiteSpaceEOL /\s\+$/
+    "au BufWinEnter *.{c,cpp,cxx,h,hpp,mk,patch} match WhiteSpaceEOL /\s\+$/
 endif
 
 " --------------------------------------------------------------------------
@@ -203,18 +207,8 @@ let g:Tex_ViewRule_pdf = 'evince'
 " ---------------------------------------------------------------------------
 " Airline
 " ---------------------------------------------------------------------------
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline_powerline_fonts = 1
-"if !exists('g:airline_symbols')
-"    let g:airline_symbols = {}
-"endif
-"let g:airline_left_sep = ''
-"let g:airline_left_alt_sep = ''
-"let g:airline_right_sep = ''
-"let g:airline_right_alt_sep = ''
-"let g:airline_symbols.branch = ''
-"let g:airline_symbols.readonly = ''
-"let g:airline_symbols.linenr = ''
+"let g:airline#extensions#tabline#enabled = 0
+"let g:airline#extensions#syntastic#enabled = 1
 
 let g:airline_left_sep = ''
 "let g:airline_left_alt_sep = ''
@@ -233,6 +227,14 @@ map <C-K> :pyf /usr/share/vim/addons/syntax/clang-format-3.5.py<CR>
 imap <C-K> <ESC>:pyf /usr/share/vim/addons/syntax/clang-format-3.5.py<CR>i
 
 " ---------------------------------------------------------------------------
+" NeoComplete
+" ---------------------------------------------------------------------------
+let g:acp_enableAtStartup = 0               " Disable AutoComplPop
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+"let g:neocomplete#sources#syntax#min_syntax_length = 3
+
+" ---------------------------------------------------------------------------
 " GUI specific settings
 " ---------------------------------------------------------------------------
 if has("gui_running")
@@ -240,6 +242,8 @@ if has("gui_running")
         silent! colorscheme jellybeans
         silent! set guifont=Droid\ Sans\ Mono\ 11
         set guioptions-=m   " remove menubar
+        set laststatus=2
+        let g:airline#extensions#tabline#enabled = 1
     elseif has("gui_win32")
         silent! colorscheme jellybeans
         silent! set guifont=Consolas:h11
