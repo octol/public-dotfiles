@@ -19,35 +19,36 @@ if has("autocmd")
     call vundle#rc()
 
     " General
-    Bundle 'gmarik/vundle'
-    Bundle 'vimoutliner/vimoutliner'
-    Bundle 'gnupg.vim'
-    Bundle 'scrooloose/nerdtree'
-    Bundle 'scrooloose/nerdcommenter'
-    "Bundle 'scrooloose/syntastic'
-    Bundle 'kien/ctrlp.vim'
-    Bundle 'bufexplorer.zip'
-    "Bundle 'nerdcommenter'
-    Bundle 'Tagbar'
-    Bundle 'bling/vim-airline'
-    "Bundle 'Valloric/YouCompleteMe'
-    Bundle 'rking/ag.vim'
-    "Bundle 'mileszs/ack.vim'
+    Plugin 'gmarik/vundle'
+    Plugin 'vimoutliner/vimoutliner'
+    Plugin 'gnupg.vim'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'scrooloose/nerdcommenter'
+    "Plugin 'scrooloose/syntastic'
+    Plugin 'kien/ctrlp.vim'
+    Plugin 'bufexplorer.zip'
+    "Plugin 'nerdcommenter'
+    Plugin 'Tagbar'
+    Plugin 'bling/vim-airline'
+    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'rking/ag.vim'
+    "Plugin 'mileszs/ack.vim'
 
     " Language specific
-    Bundle 'a.vim'
-    Bundle 'othree/html5-syntax.vim'
-    Bundle 'hdima/python-syntax'
-    Bundle 'pangloss/vim-javascript'
-    Bundle 'vim-jp/cpp-vim'
-    Bundle 'octol/vim-cpp-enhanced-highlight'
-    Bundle 'wting/rust.vim'
+    Plugin 'a.vim'
+    Plugin 'othree/html5-syntax.vim'
+    Plugin 'hdima/python-syntax'
+    Plugin 'pangloss/vim-javascript'
+    Plugin 'vim-jp/cpp-vim'
+    Plugin 'octol/vim-cpp-enhanced-highlight'
+    Plugin 'wting/rust.vim'
     
     " Themes
-    Bundle 'tomasr/molokai'
-    Bundle 'octol/vombatidae.vim'
-    Bundle 'chriskempson/base16-vim'
-    Bundle 'xoria256.vim'
+    Plugin 'tomasr/molokai'
+    Plugin 'octol/vombatidae.vim'
+    Plugin 'chriskempson/base16-vim'
+    Plugin 'xoria256.vim'
+    Plugin 'nanotech/jellybeans.vim'
 endif
 
 " ---------------------------------------------------------------------------
@@ -190,7 +191,8 @@ map <F3> :TagbarToggle<CR>
 " ---------------------------------------------------------------------------
 " YouCompleteMe
 " ---------------------------------------------------------------------------
-let g:ycm_extra_conf_globlist = ['~/devel/*','~/Documents/*']
+let g:ycm_extra_conf_globlist = ['~/devel/*','~/workspace/*']
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
 " ---------------------------------------------------------------------------
 " Latex-suite
@@ -235,11 +237,11 @@ imap <C-K> <ESC>:pyf /usr/share/vim/addons/syntax/clang-format-3.5.py<CR>i
 " ---------------------------------------------------------------------------
 if has("gui_running")
     if has("gui_gtk2")
-        silent! colorscheme molokai
+        silent! colorscheme jellybeans
         silent! set guifont=Droid\ Sans\ Mono\ 11
         set guioptions-=m   " remove menubar
     elseif has("gui_win32")
-        silent! colorscheme molokai
+        silent! colorscheme jellybeans
         silent! set guifont=Consolas:h11
         set lines=40 columns=120
         set diffexpr=MyDiff()
@@ -249,7 +251,7 @@ if has("gui_running")
     set guioptions-=L   " remove left scrollbar
 elseif &t_Co == 256 
     " If we have 256 colors in the current terminal, set some nice theme
-    silent! colorscheme molokai
+    silent! colorscheme jellybeans
 end
 
 " --------------------------------------------------------------------------
@@ -281,7 +283,7 @@ endfunction
 function! ToggleColor()
     if &t_Co==8
         set t_Co=256
-        colorscheme molokai
+        colorscheme jellybeans
     else
         set t_Co=8
         colorscheme default
