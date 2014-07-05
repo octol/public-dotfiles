@@ -39,6 +39,6 @@ macro index,pager A "<pipe-message>abook --add-email<return>" "add the sender ad
 
 # Colors
 color index brightyellow default ~N         # New
-color index green black ~P                  # To me (personal)
+#color index green black ~P                  # To me (personal)
 #source ~/workspace/vombatidae-mutt/vombatidae.mutt
 
