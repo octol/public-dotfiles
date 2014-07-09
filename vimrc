@@ -37,6 +37,8 @@ if has("autocmd")
     "Plugin 'ervandew/supertab'
     "Plugin 'airblade/vim-gitgutter'
     "Plugin 'Shougo/neocomplete.vim'
+    "Plugin 'bronson/vim-trailing-whitespace'
+    Plugin 'ntpeters/vim-better-whitespace'
 
     " Language specific
     Plugin 'a.vim'
@@ -46,7 +48,7 @@ if has("autocmd")
     Plugin 'vim-jp/cpp-vim'
     Plugin 'octol/vim-cpp-enhanced-highlight'
     Plugin 'wting/rust.vim'
-    
+
     " Themes
     Plugin 'tomasr/molokai'
     Plugin 'octol/vombatidae.vim'
@@ -116,6 +118,8 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+set tags=./tags;/,tags;/
+
 " ---------------------------------------------------------------------------
 " Macros and keybindings
 " ---------------------------------------------------------------------------
@@ -137,7 +141,7 @@ set background=dark
 " Language specific
 "  Note, cino=g0 indents the public/private keywords in C++ classes.
 "  sw=shiftwidth, et=expandtab, sts=softtabstop, ts=tabstop
-" --------------------------------------------------------------------------- 
+" ---------------------------------------------------------------------------
 let c_no_curly_error=1
 "let g:xml_syntax_folding=1
 "let sh_fold_enabled=1
@@ -148,7 +152,7 @@ if has("autocmd")
     au BufNewFile,BufRead *.Config set filetype=xml
     au BufNewFile,BufRead *.aspx set filetype=html
 
-    au FileType tex set sw=4 ts=4 noet tw=76 
+    au FileType tex set sw=4 ts=4 noet tw=76
     au FileType tex map <F2> :w<cr><leader>ll
     au FileType tex imap <F2> <ESC>:w<cr><leader>ll
     au FileType xhtml set sw=2 sts=2 et
@@ -157,7 +161,7 @@ if has("autocmd")
     au FileType python set sw=4 sts=4 et
     au FileType fortran set sw=3 sts=3 et
     au FileType text setlocal tw=78
-    au FileType cpp set sw=4 sts=4 et cino=g0 tw=76 
+    au FileType cpp set sw=4 sts=4 et cino=g0 tw=76
     au FileType delphi set ignorecase
     au FileType xml setlocal foldmethod=syntax sw=2 sts=2 et foldlevel=99
     au FileType sql set sw=4 sts=4 et
@@ -165,8 +169,8 @@ if has("autocmd")
     " Highlight characters over column 80
     "au BufWinEnter *.{m,tex,c,cpp,h} let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
     "au BufWinEnter *.{m,tex,c,cpp,h} let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-   
-    " Don't ignore trailing whitespace 
+
+    " Don't ignore trailing whitespace
     "highlight WhiteSpaceEOL ctermbg=white guibg=red
     "au BufWinEnter *.{c,cpp,cxx,h,hpp,mk,patch} match WhiteSpaceEOL /\s\+$/
 endif
@@ -253,7 +257,7 @@ if has("gui_running")
     set guioptions-=T	" remove icons
     set guioptions-=r   " remove right scrollbar
     set guioptions-=L   " remove left scrollbar
-elseif &t_Co == 256 
+elseif &t_Co == 256
     " If we have 256 colors in the current terminal, set some nice theme
     silent! colorscheme jellybeans
 end
@@ -282,7 +286,7 @@ function! MyDiff()
         let cmd = $VIMRUNTIME . '\diff'
     endif
     silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction 
+endfunction
 
 function! ToggleColor()
     if &t_Co==8
