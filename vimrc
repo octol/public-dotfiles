@@ -30,7 +30,6 @@ if has("autocmd")
     "Plugin 'nerdcommenter'
     Plugin 'Tagbar'
     Plugin 'bling/vim-airline'
-    Plugin 'Valloric/YouCompleteMe'
     Plugin 'rking/ag.vim'
     "Plugin 'mileszs/ack.vim'
     "Plugin 'tpope/vim-fugitive'
@@ -39,15 +38,19 @@ if has("autocmd")
     "Plugin 'Shougo/neocomplete.vim'
     "Plugin 'bronson/vim-trailing-whitespace'
     Plugin 'ntpeters/vim-better-whitespace'
+    if v:version > 703 || (v:version == 703 && has('patch584'))
+        Plugin 'Valloric/YouCompleteMe'
+    endif
 
     " Language specific
     Plugin 'a.vim'
-    Plugin 'othree/html5-syntax.vim'
+    Plugin 'othree/html5.vim'
     Plugin 'hdima/python-syntax'
     Plugin 'pangloss/vim-javascript'
     Plugin 'vim-jp/cpp-vim'
     Plugin 'octol/vim-cpp-enhanced-highlight'
     Plugin 'wting/rust.vim'
+    Plugin 'tpope/vim-markdown'
 
     " Themes
     Plugin 'tomasr/molokai'
