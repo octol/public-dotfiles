@@ -37,7 +37,8 @@ if has("autocmd")
     "Plugin 'airblade/vim-gitgutter'
     "Plugin 'Shougo/neocomplete.vim'
     "Plugin 'bronson/vim-trailing-whitespace'
-    Plugin 'ntpeters/vim-better-whitespace'
+    "Plugin 'ntpeters/vim-better-whitespace'
+    Plugin 'junkblocker/patchreview-vim'
     if v:version > 703 || (v:version == 703 && has('patch584'))
         Plugin 'Valloric/YouCompleteMe'
     endif
@@ -85,7 +86,7 @@ set ignorecase
 set hidden                  " background buffers can be unsaved
 set autochdir
 set novisualbell
-set laststatus=0
+set laststatus=2
 set wildmode=longest,list,full
 set wildmenu
 set wildignore=*.o,*~,*.pyc,*.pyo,*.so
@@ -204,6 +205,7 @@ map <F3> :TagbarToggle<CR>
 " ---------------------------------------------------------------------------
 let g:ycm_extra_conf_globlist = ['~/devel/*','~/workspace/*']
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
+set completeopt-=preview
 
 " ---------------------------------------------------------------------------
 " Latex-suite
@@ -240,6 +242,11 @@ let g:acp_enableAtStartup = 0               " Disable AutoComplPop
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 "let g:neocomplete#sources#syntax#min_syntax_length = 3
+
+" ---------------------------------------------------------------------------
+" vim-better-whitespace
+" ---------------------------------------------------------------------------
+let g:better_whitespace_filetypes_blacklist=['*']
 
 " ---------------------------------------------------------------------------
 " GUI specific settings
