@@ -203,7 +203,7 @@ map <F3> :TagbarToggle<CR>
 " ---------------------------------------------------------------------------
 " YouCompleteMe
 " ---------------------------------------------------------------------------
-let g:ycm_extra_conf_globlist = ['~/devel/*','~/workspace/*']
+let g:ycm_extra_conf_globlist = ['~/workspace/*']
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 set completeopt-=preview
 
@@ -242,11 +242,6 @@ let g:acp_enableAtStartup = 0               " Disable AutoComplPop
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 "let g:neocomplete#sources#syntax#min_syntax_length = 3
-
-" ---------------------------------------------------------------------------
-" vim-better-whitespace
-" ---------------------------------------------------------------------------
-let g:better_whitespace_filetypes_blacklist=['*']
 
 " ---------------------------------------------------------------------------
 " GUI specific settings
