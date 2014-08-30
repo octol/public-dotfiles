@@ -19,6 +19,12 @@ set sort=threads 	# default sort messages by thread
 set xterm_set_titles=yes
 set include             # include original message in reply
 
+# toggle index display in pager
+macro pager ,@inds "<enter-command> set pager_index_lines=5; macro pager I ,@indh 'hide index'<enter>"
+macro pager ,@indh "<enter-command> set pager_index_lines=0; macro pager I ,@inds 'show index'<enter>"
+#macro pager I ,@indh "hide index"
+macro pager I ,@inds "show index"
+
 # Headers to show / ignore
 unignore user-agent: x-agent: x-mailer: # show user agent / mailer
 unignore organization organisation x-mailer: x-newsreader:
@@ -36,6 +42,9 @@ source $alias_file
 set query_command = "abook --mutt-query '%s'"
 macro generic,index,pager \ca "<shell-escape>abook<return>" "launch abook"
 macro index,pager A "<pipe-message>abook --add-email<return>" "add the sender address to abook"
+
+# Mark all messages read
+macro index M "T~N\n;WN" "Mark all new messages as read"
 
 # Colors
 color index brightyellow default ~N         # New
