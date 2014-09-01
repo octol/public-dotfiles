@@ -16,6 +16,7 @@ set mark_old=no		# when set to no we dont make distiction between new and old ne
 unset markers		# unset plus markers for wrapped lines
 set mime_forward	# make forwards as mime attachments
 set sort=threads 	# default sort messages by thread
+set sort_aux=last-date-received
 set xterm_set_titles=yes
 set include             # include original message in reply
 
@@ -37,7 +38,7 @@ set ignore_linear_white_space
 # Address book
 set alias_file= ~/.mutt/aliases
 set sort_alias= alias
-set reverse_alias=yes
+set reverse_alias=yes   # Show full name in index
 source $alias_file
 set query_command = "abook --mutt-query '%s'"
 macro generic,index,pager \ca "<shell-escape>abook<return>" "launch abook"
