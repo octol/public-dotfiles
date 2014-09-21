@@ -232,8 +232,8 @@ let g:ctrlp_root_markers = ['.ctrlp']
 " ---------------------------------------------------------------------------
 " clang-format
 " ---------------------------------------------------------------------------
-map <C-K> :pyf /usr/share/vim/addons/syntax/clang-format-3.5.py<CR>
-imap <C-K> <ESC>:pyf /usr/share/vim/addons/syntax/clang-format-3.5.py<CR>i
+map <C-K> :pyf /usr/share/vim/addons/syntax/clang-format-3.6.py<CR>
+imap <C-K> <ESC>:pyf /usr/share/vim/addons/syntax/clang-format-3.6.py<CR>i
 
 " ---------------------------------------------------------------------------
 " NeoComplete
@@ -244,17 +244,23 @@ let g:neocomplete#enable_smart_case = 1
 "let g:neocomplete#sources#syntax#min_syntax_length = 3
 
 " ---------------------------------------------------------------------------
+" vim-cpp-enhanced-hightlight
+" ---------------------------------------------------------------------------
+let g:cpp_experimental_template_highlight = 1
+"let g:cpp_class_scope_highlight = 1
+
+" ---------------------------------------------------------------------------
 " GUI specific settings
 " ---------------------------------------------------------------------------
 if has("gui_running")
     if has("gui_gtk2")
-        silent! colorscheme jellybeans
+        silent! colorscheme molokai
         silent! set guifont=Droid\ Sans\ Mono\ 11
         set guioptions-=m   " remove menubar
         set laststatus=2
         let g:airline#extensions#tabline#enabled = 1
     elseif has("gui_win32")
-        silent! colorscheme jellybeans
+        silent! colorscheme molokai
         silent! set guifont=Consolas:h11
         set lines=40 columns=120
         set diffexpr=MyDiff()
@@ -264,7 +270,7 @@ if has("gui_running")
     set guioptions-=L   " remove left scrollbar
 elseif &t_Co == 256
     " If we have 256 colors in the current terminal, set some nice theme
-    silent! colorscheme jellybeans
+    silent! colorscheme molokai
 end
 
 " --------------------------------------------------------------------------
@@ -296,7 +302,7 @@ endfunction
 function! ToggleColor()
     if &t_Co==8
         set t_Co=256
-        colorscheme jellybeans
+        colorscheme molokai
     else
         set t_Co=8
         colorscheme default
