@@ -113,7 +113,7 @@ if !exists("syntax_on")
     syntax on
 endif
 if has('mouse')
-    set mouse=a
+    "set mouse=a
 endif
 set modeline            " so vim reads inline options in files
 
@@ -165,7 +165,7 @@ if has("autocmd")
     au FileType python set sw=4 sts=4 et
     au FileType fortran set sw=3 sts=3 et
     au FileType text setlocal tw=78
-    au FileType cpp set sw=4 sts=4 et cino=g0 tw=76
+    au FileType cpp set sw=4 sts=4 et cino=g0 tw=90
     au FileType delphi set ignorecase
     au FileType xml setlocal foldmethod=syntax sw=2 sts=2 et foldlevel=99
     au FileType sql set sw=4 sts=4 et

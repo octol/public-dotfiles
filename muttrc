@@ -21,7 +21,6 @@ alternates "user2@host|user3@host"
 set imap_user="$USER"
 source "gpg --quiet --batch --decrypt $HOME/.mutt/pass.gpg |"
 set imap_pass=$my_pw
-set smtp_pass=$my_pw
 
 # Connection
 set ssl_starttls=yes
@@ -47,6 +46,7 @@ save-hook '.*' imaps://imapserver/INBOX
 # ------------------------------------------------------------------------------
 
 set smtp_url="smtps://$USER@smtpserver/"
+set smtp_pass=$my_pw
 
 # ------------------------------------------------------------------------------
 #  Hooks
