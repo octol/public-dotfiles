@@ -30,6 +30,7 @@ myManageHook = composeAll
     , className =? "Pidgin" --> doFloat
     , className =? "Pidgin" --> doShift "im"
     , className =? "Firefox" --> doShift "web"
+    , className =? "Iceweasel" --> doShift "web"
     , className =? "Dogecoin-qt" --> doFloat
     , className =? "Display.im6" --> doCenterFloat
     , className =? "Virt-manager" --> doFloat
@@ -37,6 +38,7 @@ myManageHook = composeAll
     , className =? "Vncviewer" --> doFloat
     , className =? "VirtualBox" --> doFloat
     , className =? "Octave" --> doFloat
+    , className =? "Vpnui" --> doFloat
     ]
 
 main = do
@@ -51,13 +53,17 @@ main = do
                         , ppTitle = xmobarColor "green" "" . shorten 50
                         }
         , borderWidth           = 1
-        , terminal              = "xterm"
+        , terminal              = "urxvt"
         , focusedBorderColor    = "#ff7700"
         , normalBorderColor     = "#464646"
         , workspaces            = myWorkSpaces
         , modMask               = myMod
         {-, startupHook           = setWMName "LG3D"-}
         }
+        `additionalKeys`
+        [
+        ((mod4Mask, xK_F12), spawn "xscreensaver-command -l")
+        ]
 
 -- windows key
 myMod = mod4Mask
@@ -117,5 +123,6 @@ myTabConfig = defaultTheme { inactiveBorderColor        = "#464646"
 
 -- workspaces
 {-myWorkSpaces = ["1","2","3","4","5","6","im","mail","web"]-}
-myWorkSpaces = ["1","2","3","4","5","6","7","im","web"]
+{-myWorkSpaces = ["1","2","3","4","5","6","7","im","web"]-}
+myWorkSpaces = ["1","2","3","4","5","6","7","mail","web"]
 
