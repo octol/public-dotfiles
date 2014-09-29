@@ -14,7 +14,7 @@ trayer --edge top --align right --SetDockType true --SetPartialStrut true \
 [ -f "$HOME/.wallpaper" ] && (. $HOME/.wallpaper)
  
 # Fire up apps
-[ -x /usr/bin/xfsettingsd ]  && (xfsettingsd &)
+#[ -x /usr/bin/xfsettingsd ]  && (xfsettingsd &)
 [ -x /usr/bin/xscreensaver ] && (xscreensaver -no-splash &)
 [ -x /usr/bin/redshift-gtk ] && (redshift-gtk &)
 [ -x /usr/bin/nm-applet ]    && (nm-applet --sm-disable &)

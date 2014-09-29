@@ -1,7 +1,7 @@
 # this goes in your ~/.gtkrc-2.0 file
 
 style "vimfix" {
-  bg[NORMAL] = "#fdf6e3" # this matches my gvim theme 'Normal' bg color.
+  bg[NORMAL] = "#272822" # this matches my gvim theme 'Normal' bg color.
 }
 widget "vim-main-window.*GtkForm" style "vimfix"
 

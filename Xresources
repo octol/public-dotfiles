@@ -1,12 +1,12 @@
 ! fonts ----------------------------------------------------------------------
 
-Xft.dpi:96 
-Xft.antialias: true
-Xft.hinting: true
-Xft.hintstyle: hintslight
-Xft.rgba: rgb
-Xft.lcdfilter: lcddefault
-Xft.autohint: true
+!Xft.dpi:96 
+!Xft.antialias: 1
+!Xft.hinting: 1
+!Xft.hintstyle: hintslight
+!Xft.rgba: rgb
+!Xft.lcdfilter: lcddefault
+!Xft.autohint: 1
 
 ! xterm ----------------------------------------------------------------------
 
@@ -51,7 +51,9 @@ XTerm*foreground: #F3F3F3
 ! Lighter blue
 XTerm*color4: RoyalBlue
 XTerm*color12: RoyalBlue
-
+! Even lighter blue
+!XTerm*color4:                 #3465A4
+!XTerm*color12:                #729FCF
 
 ! URxvt ----------------------------------------------------------------------
 
@@ -92,25 +94,25 @@ URxvt*visualBell:                     true
 ! URxvt*pointerBlank:                   boolean
 ! URxvt*background:                     color
 URxvt*background: #1C1C1C
+!URxvt*background: #000000
 ! URxvt*foreground:                     color
 URxvt*foreground: #F3F3F3
-! URxvt*color0:                         color
-! URxvt*color1:                         color
-! URxvt*color2:                         color
-! URxvt*color3:                         color
-! URxvt*color4:                         color
-URxvt*color4: RoyalBlue
-! URxvt*color5:                         color
-! URxvt*color6:                         color
-! URxvt*color7:                         color
-! URxvt*color8:                         color
-! URxvt*color9:                         color
-! URxvt*color10:                        color
-! URxvt*color11:                        color
-URxvt*color12: RoyalBlue
-! URxvt*color13:                        color
-! URxvt*color14:                        color
-! URxvt*color15:                        color
+URxvt*color0:                         #000000
+URxvt*color1:                         #AA0000
+URxvt*color2:                         #00AA00
+URxvt*color3:                         #AA5500
+URxvt*color4:                         #7373FF
+URxvt*color5:                         #AA00AA
+URxvt*color6:                         #00AAAA
+URxvt*color7:                         #FFFFFF
+URxvt*color8:                         #555555
+URxvt*color9:                         #FF5555
+URxvt*color10:                         #55FF55
+URxvt*color11:                        #FFFF55
+URxvt*color12:                        #9C9CFF
+URxvt*color13:                        #FF55FF
+URxvt*color14:                        #55FFFF
+URxvt*color15:                        #FFFFFF
 ! URxvt*colorBD:                        color
 ! URxvt*colorIT:                        color
 ! URxvt*colorUL:                        color
@@ -128,8 +130,13 @@ URxvt*color12: RoyalBlue
 ! URxvt*path:                           search path
 ! URxvt*backgroundPixmap:               file[;geom]
 ! URxvt*iconFile:                       file
-URxvt*font: xft:Droid Sans Mono:size=13:hinting=true
-URxvt*boldfont: xft:Droid Sans Mono:bold:size=13:hinting=true
+!URxvt*font: xft:Droid Sans Mono:size=13
+!URxvt*boldfont: xft:Droid Sans Mono:bold:size=13
+!URxvt*font: xft:Liberation Mono:size=12
+!URxvt*font: xft:Inconsolata:size=13
+!URxvt*font: xft:Monospace:size=11
+URxvt*font: xft:DejaVu Sans Mono:size=12
+!URxvt*font: xft:Terminus:size=14
 ! URxvt*italicFont:                     fontname
 ! URxvt*boldItalicFont:                 fontname
 ! URxvt*intensityStyles:                boolean
@@ -150,7 +157,7 @@ URxvt*saveLines:                      9999
 ! URxvt*internalBorder:                 number
 ! URxvt*borderLess:                     boolean
 ! URxvt*lineSpace:                      number
-URxvt.letterSpace: -2
+URxvt*letterSpace: -2
 ! URxvt*skipBuiltinGlyphs:              boolean
 ! URxvt*pointerBlankDelay:              number
 ! URxvt*backspacekey:                   string

@@ -299,7 +299,10 @@ globalkeys = awful.util.table.join(
                   mypromptbox[mouse.screen].widget,
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
-              end)
+              end),
+
+    -- Own customization
+    awful.key({ modkey }, "F12", function () awful.util.spawn("xscreensaver-command -l") end)
 )
 
 clientkeys = awful.util.table.join(
