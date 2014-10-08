@@ -10,7 +10,8 @@ Xft.lcdfilter: lcddefault
 
 ! xterm ----------------------------------------------------------------------
 
-XTerm*faceName: Droid Sans Mono:size=13
+!XTerm*faceName: Droid Sans Mono:size=11
+XTerm*font: 10x20
 XTerm*saveLines: 32767
 XTerm*visualBell: true
 XTerm*bellSuppressTime: 2000
@@ -40,20 +41,20 @@ XTerm*wideFont: -misc-fixed-medium-r-normal-ja-18-120-100-100-c-180-iso10646-1
 !! Colors
 !XTerm*background: #242424
 ! standard
-XTerm*background: #1C1C1C
+!XTerm*background: #1C1C1C
 ! slightly darker
 !XTerm*background: #0F0F0F
 ! black
-!XTerm*background: #000000
+XTerm*background: #000000
 !XTerm*foreground: #C0C0C0
 XTerm*foreground: #F3F3F3
 
 ! Lighter blue
-XTerm*color4: RoyalBlue
-XTerm*color12: RoyalBlue
+!XTerm*color4: RoyalBlue
+!XTerm*color12: RoyalBlue
 ! Even lighter blue
-!XTerm*color4:                 #3465A4
-!XTerm*color12:                #729FCF
+XTerm*color4:                 #3465A4
+XTerm*color12:                #729FCF
 
 ! URxvt ----------------------------------------------------------------------
 
@@ -93,8 +94,8 @@ URxvt*visualBell:                     true
 ! URxvt*cursorBlink:                    boolean
 ! URxvt*pointerBlank:                   boolean
 ! URxvt*background:                     color
-URxvt*background: #1C1C1C
-!URxvt*background: #000000
+!URxvt*background: #1C1C1C
+URxvt*background: #000000
 ! URxvt*foreground:                     color
 URxvt*foreground: #F3F3F3
 URxvt*color0:                         #000000
@@ -107,7 +108,7 @@ URxvt*color6:                         #00AAAA
 URxvt*color7:                         #FFFFFF
 URxvt*color8:                         #555555
 URxvt*color9:                         #FF5555
-URxvt*color10:                         #55FF55
+URxvt*color10:                        #55FF55
 URxvt*color11:                        #FFFF55
 URxvt*color12:                        #9C9CFF
 URxvt*color13:                        #FF55FF
@@ -130,13 +131,21 @@ URxvt*color15:                        #FFFFFF
 ! URxvt*path:                           search path
 ! URxvt*backgroundPixmap:               file[;geom]
 ! URxvt*iconFile:                       file
-!URxvt*font: xft:Droid Sans Mono:size=13
-!URxvt*boldfont: xft:Droid Sans Mono:bold:size=13
+!URxvt*font: xft:Droid Sans Mono:size=11
+!URxvt*boldFont: xft:Droid Sans Mono:bold:size=11
 !URxvt*font: xft:Liberation Mono:size=12
 !URxvt*font: xft:Inconsolata:size=13
 !URxvt*font: xft:Monospace:size=11
-URxvt*font: xft:DejaVu Sans Mono:size=12
+!URxvt*font: xft:DejaVu Sans Mono:size=12
 !URxvt*font: xft:Terminus:size=14
+!URxvt*font: Terminus:size=14
+URxvt*font: 10x20
+URxvt*boldFont: 10x20
+!URxvt*font: -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-*
+!URxvt*boldFont: -*-terminus-bold-*-*-*-18-*-*-*-*-*-*-*
+!URxvt*font: -zevv-peep-medium-r-normal-*-20-*-*-*-*-*-iso8859-1
+!URxvt*boldFont: -zevv-peep-medium-r-normal-*-20-*-*-*-*-*-iso8859-1
+!URxvt*letterSpace: -2
 ! URxvt*italicFont:                     fontname
 ! URxvt*boldItalicFont:                 fontname
 ! URxvt*intensityStyles:                boolean
@@ -157,7 +166,6 @@ URxvt*saveLines:                      9999
 ! URxvt*internalBorder:                 number
 ! URxvt*borderLess:                     boolean
 ! URxvt*lineSpace:                      number
-URxvt*letterSpace: -2
 ! URxvt*skipBuiltinGlyphs:              boolean
 ! URxvt*pointerBlankDelay:              number
 ! URxvt*backspacekey:                   string
