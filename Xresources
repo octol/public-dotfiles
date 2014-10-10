@@ -95,6 +95,7 @@ URxvt*visualBell:                     true
 ! URxvt*pointerBlank:                   boolean
 ! URxvt*background:                     color
 !URxvt*background: #1C1C1C
+!URxvt*background: #0F0F0F
 URxvt*background: #000000
 ! URxvt*foreground:                     color
 URxvt*foreground: #F3F3F3
