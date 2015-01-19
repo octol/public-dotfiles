@@ -72,6 +72,7 @@ endif
 " Global editing settings
 " ---------------------------------------------------------------------------
 set clipboard=unnamed       " use X11 clipboard always
+"set clipboard=autoselect,exclude:cons\|linux " default
 "set textwidth=0            " 0 is the defaults, 72 linux kern, 79 python
 "let g:loaded_matchparen = 1 " no loading of matchparen plugin (can be slow)
 set showcmd                 " display incomplete commands
