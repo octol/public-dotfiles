@@ -37,7 +37,7 @@ if has("autocmd")
     "Plugin 'airblade/vim-gitgutter'
     "Plugin 'Shougo/neocomplete.vim'
     "Plugin 'bronson/vim-trailing-whitespace'
-    "Plugin 'ntpeters/vim-better-whitespace'
+    Plugin 'ntpeters/vim-better-whitespace'
     Plugin 'junkblocker/patchreview-vim'
     if v:version > 703 || (v:version == 703 && has('patch584'))
         Plugin 'Valloric/YouCompleteMe'
@@ -157,7 +157,7 @@ if has("autocmd")
     au BufNewFile,BufRead *.Config set filetype=xml
     au BufNewFile,BufRead *.aspx set filetype=html
 
-    au FileType tex set sw=4 ts=4 noet tw=76
+    au FileType tex set sw=4 sts=4 et
     au FileType tex map <F2> :w<cr><leader>ll
     au FileType tex imap <F2> <ESC>:w<cr><leader>ll
     au FileType xhtml set sw=2 sts=2 et
@@ -251,12 +251,18 @@ let g:cpp_experimental_template_highlight = 1
 "let g:cpp_class_scope_highlight = 1
 
 " ---------------------------------------------------------------------------
+" vim-better-whitespace
+" ---------------------------------------------------------------------------
+let g:better_whitespace_filetypes_blacklist=['mail', 'tex']
+
+" ---------------------------------------------------------------------------
 " GUI specific settings
 " ---------------------------------------------------------------------------
 if has("gui_running")
     if has("gui_gtk2")
         silent! colorscheme molokai
         silent! set guifont=Droid\ Sans\ Mono\ 11
+        "silent! set guifont=Liberation\ Mono\ 13
         set guioptions-=m   " remove menubar
         set laststatus=2
         let g:airline#extensions#tabline#enabled = 1
