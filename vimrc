@@ -50,6 +50,7 @@ if has("autocmd")
     Plugin 'pangloss/vim-javascript'
     Plugin 'vim-jp/cpp-vim'
     Plugin 'octol/vim-cpp-enhanced-highlight'
+    "Plugin 'mizuchi/STL-Syntax'
     Plugin 'wting/rust.vim'
     Plugin 'tpope/vim-markdown'
 
