@@ -9,58 +9,68 @@ set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 
 " ---------------------------------------------------------------------------
-" Vundle
+" NeoVundle
 "  Setup plugins
-"  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+"  git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 " ---------------------------------------------------------------------------
-if has("autocmd")
-    filetype off
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
 
-    " General
-    Plugin 'gmarik/vundle'
-    Plugin 'vimoutliner/vimoutliner'
-    Plugin 'gnupg.vim'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'scrooloose/nerdcommenter'
-    "Plugin 'scrooloose/syntastic'
-    Plugin 'kien/ctrlp.vim'
-    Plugin 'bufexplorer.zip'
-    "Plugin 'nerdcommenter'
-    Plugin 'Tagbar'
-    Plugin 'bling/vim-airline'
-    Plugin 'rking/ag.vim'
-    "Plugin 'mileszs/ack.vim'
-    "Plugin 'tpope/vim-fugitive'
-    "Plugin 'ervandew/supertab'
-    "Plugin 'airblade/vim-gitgutter'
-    "Plugin 'Shougo/neocomplete.vim'
-    "Plugin 'bronson/vim-trailing-whitespace'
-    Plugin 'ntpeters/vim-better-whitespace'
-    Plugin 'junkblocker/patchreview-vim'
-    if v:version > 703 || (v:version == 703 && has('patch584'))
-        Plugin 'Valloric/YouCompleteMe'
-    endif
+"filetype off
+"set rtp+=~/.vim/bundle/vundle/
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+"call vundle#rc()
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
 
-    " Language specific
-    Plugin 'a.vim'
-    Plugin 'othree/html5.vim'
-    Plugin 'hdima/python-syntax'
-    Plugin 'pangloss/vim-javascript'
-    Plugin 'vim-jp/cpp-vim'
-    Plugin 'octol/vim-cpp-enhanced-highlight'
-    "Plugin 'mizuchi/STL-Syntax'
-    Plugin 'wting/rust.vim'
-    Plugin 'tpope/vim-markdown'
-
-    " Themes
-    Plugin 'tomasr/molokai'
-    Plugin 'octol/vombatidae.vim'
-    Plugin 'chriskempson/base16-vim'
-    Plugin 'xoria256.vim'
-    Plugin 'nanotech/jellybeans.vim'
+" General
+"NeoBundle 'gmarik/vundle'
+NeoBundle 'vimoutliner/vimoutliner'
+NeoBundle 'gnupg.vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdcommenter'
+"NeoBundle 'scrooloose/syntastic'
+NeoBundleLazy 'scrooloose/syntastic', { 'autoload' : { 'filetypes' : 'rust'}}
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'bufexplorer.zip'
+"NeoBundle 'nerdcommenter'
+NeoBundle 'Tagbar'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'rking/ag.vim'
+"NeoBundle 'mileszs/ack.vim'
+"NeoBundle 'tpope/vim-fugitive'
+"NeoBundle 'ervandew/supertab'
+"NeoBundle 'airblade/vim-gitgutter'
+"NeoBundle 'Shougo/neocomplete.vim'
+"NeoBundle 'bronson/vim-trailing-whitespace'
+NeoBundle 'ntpeters/vim-better-whitespace'
+NeoBundle 'junkblocker/patchreview-vim'
+if v:version > 703 || (v:version == 703 && has('patch584'))
+    NeoBundle 'Valloric/YouCompleteMe', { 'autoload' : { 'filetypes' : ['rust','c','cpp']}}
 endif
+
+" Language specific
+NeoBundle 'a.vim'
+NeoBundle 'othree/html5.vim'
+NeoBundle 'hdima/python-syntax'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'vim-jp/cpp-vim'
+"NeoBundle 'octol/vim-cpp-enhanced-highlight'
+"NeoBundle 'mizuchi/STL-Syntax'
+"NeoBundle 'wting/rust.vim'
+NeoBundle 'rust-lang/rust.vim'
+NeoBundleLazy 'phildawes/racer', { 'autoload' : { 'filetypes' : 'rust' }}
+NeoBundle 'tpope/vim-markdown'
+NeoBundleLazy 'bbchung/clighter', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
+"NeoBundle 'octol/clighter'
+"NeoBundle 'jeaye/color_coded'
+
+" Themes
+NeoBundle 'tomasr/molokai'
+NeoBundle 'octol/vombatidae.vim'
+NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'xoria256.vim'
+NeoBundle 'nanotech/jellybeans.vim'
+
+call neobundle#end()
 
 " ---------------------------------------------------------------------------
 " Configuration specific to mswin
@@ -254,7 +264,73 @@ let g:cpp_experimental_template_highlight = 1
 " ---------------------------------------------------------------------------
 " vim-better-whitespace
 " ---------------------------------------------------------------------------
-let g:better_whitespace_filetypes_blacklist=['mail', 'tex']
+let g:better_whitespace_filetypes_blacklist=['mail', 'tex', 'text']
+
+" ---------------------------------------------------------------------------
+" clighter
+" ---------------------------------------------------------------------------
+"let g:clighter_compile_args = [
+"            \   "-I/usr/local/include/libsdlc-0.5.4",
+"            \   "-I/usr/local/lib/libsdlc-0.5.4/include"
+"            \   ]
+let g:clighter_libclang_file = '/usr/lib/llvm-3.6/lib/libclang.so.1'
+let g:clighter_highlight_blacklist = [
+            \   'cligherInclusionDirective',
+            \   ]
+
+" Free functions
+hi link clighterDeclRefExprCall Function
+hi link clighterFunctionDecl Function
+
+" Enums
+hi link clighterEnumDecl Identifier
+hi link clighterEnumConstantDecl Constant
+hi link clighterDeclRefExprEnum Constant
+
+hi link clighterMacroInstantiation Constant
+hi link clighterPrepro PreProc
+
+" Member variable and method calls
+hi link clighterMemberRefExprCall Function
+
+" Not working
+hi link clighterMemberRefExprVar Error
+
+" namespace { ... }
+hi link clighterNamespace Constant
+hi link clighterNamespaceRef Constant
+
+hi link clighterOccurrences IncSearch
+
+" Templated types
+hi link clighterTemplateRef Type
+
+" References to templated types
+hi link clighterTypeRef Type
+
+" The 'T' in template <class T>
+hi link clighterTemplateTypeParameter Type
+
+" class/struct declarations
+hi link clighterClassDecl None
+hi link clighterStructDecl None
+
+" 'using name = ...' statements
+hi link clighterDecl None
+
+" Class member variable declarations
+hi link clighterFieldDecl None
+
+" Function parameters, including the template types
+hi link clighterParmDecl None
+
+" Lambda campture variables, using std::name statements
+hi link clighterRef None
+
+hi link clighterUnionDecl None
+
+" Local variables
+hi link clighterVarDecl None
 
 " ---------------------------------------------------------------------------
 " GUI specific settings
@@ -317,4 +393,3 @@ function! ToggleColor()
         set background=dark
     endif
 endfunction
-
