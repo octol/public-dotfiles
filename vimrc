@@ -44,7 +44,7 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'ntpeters/vim-better-whitespace'
 NeoBundle 'junkblocker/patchreview-vim'
 if v:version > 703 || (v:version == 703 && has('patch584'))
-    NeoBundle 'Valloric/YouCompleteMe', { 'autoload' : { 'filetypes' : ['rust','c','cpp']}}
+    NeoBundleLazy 'Valloric/YouCompleteMe', { 'autoload' : { 'filetypes' : ['rust','c','cpp']}}
 endif
 
 " Language specific
@@ -53,13 +53,13 @@ NeoBundle 'othree/html5.vim'
 NeoBundle 'hdima/python-syntax'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'vim-jp/cpp-vim'
-"NeoBundle 'octol/vim-cpp-enhanced-highlight'
+NeoBundle 'octol/vim-cpp-enhanced-highlight'
 "NeoBundle 'mizuchi/STL-Syntax'
 "NeoBundle 'wting/rust.vim'
 NeoBundle 'rust-lang/rust.vim'
 NeoBundleLazy 'phildawes/racer', { 'autoload' : { 'filetypes' : 'rust' }}
 NeoBundle 'tpope/vim-markdown'
-NeoBundleLazy 'bbchung/clighter', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
+"NeoBundleLazy 'bbchung/clighter', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
 "NeoBundle 'octol/clighter'
 "NeoBundle 'jeaye/color_coded'
 
