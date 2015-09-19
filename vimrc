@@ -14,10 +14,7 @@ set ruler		" show the cursor position all the time
 "  git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 " ---------------------------------------------------------------------------
 
-"filetype off
-"set rtp+=~/.vim/bundle/vundle/
 set runtimepath+=~/.vim/bundle/neobundle.vim/
-"call vundle#rc()
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -36,11 +33,8 @@ NeoBundle 'Tagbar'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'rking/ag.vim'
 "NeoBundle 'mileszs/ack.vim'
-"NeoBundle 'tpope/vim-fugitive'
-"NeoBundle 'ervandew/supertab'
+NeoBundle 'tpope/vim-fugitive'
 "NeoBundle 'airblade/vim-gitgutter'
-"NeoBundle 'Shougo/neocomplete.vim'
-"NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'ntpeters/vim-better-whitespace'
 NeoBundle 'junkblocker/patchreview-vim'
 if v:version > 703 || (v:version == 703 && has('patch584'))
@@ -112,6 +106,7 @@ set wildignore=*.o,*~,*.pyc,*.pyo,*.so
 set expandtab           " use spaces, not tabs
 set shiftwidth=4        " indents of 4, e.g. < commands use this
 set softtabstop=4
+set shiftround          " round indent to nearest shiftwidth multiple
 
 " ---------------------------------------------------------------------------
 " Operational settings
@@ -181,6 +176,7 @@ if has("autocmd")
     au FileType delphi set ignorecase
     au FileType xml setlocal foldmethod=syntax sw=2 sts=2 et foldlevel=99
     au FileType sql set sw=4 sts=4 et
+    au FileType haskell set sw=2 sts=2 et
 
     " Highlight characters over column 80
     "au BufWinEnter *.{m,tex,c,cpp,h} let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
@@ -231,10 +227,14 @@ let g:Tex_ViewRule_pdf = 'evince'
 "let g:airline#extensions#tabline#enabled = 0
 "let g:airline#extensions#syntastic#enabled = 1
 
+" When patched fonts not available
 let g:airline_left_sep = ''
 "let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ' '
 "let g:airline_right_alt_sep = ''
+
+" Only used when patched fonts available
+"let g:airline_powerline_fonts = 1
 
 " ---------------------------------------------------------------------------
 " CtrlP
@@ -246,14 +246,6 @@ let g:ctrlp_root_markers = ['.ctrlp']
 " ---------------------------------------------------------------------------
 map <C-K> :pyf /usr/share/vim/addons/syntax/clang-format-3.6.py<CR>
 imap <C-K> <ESC>:pyf /usr/share/vim/addons/syntax/clang-format-3.6.py<CR>i
-
-" ---------------------------------------------------------------------------
-" NeoComplete
-" ---------------------------------------------------------------------------
-let g:acp_enableAtStartup = 0               " Disable AutoComplPop
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-"let g:neocomplete#sources#syntax#min_syntax_length = 3
 
 " ---------------------------------------------------------------------------
 " vim-cpp-enhanced-hightlight
@@ -393,3 +385,33 @@ function! ToggleColor()
         set background=dark
     endif
 endfunction
+
+" --------------------------------------------------------------------------
+" hindent
+" (for now this needs to be last)
+" --------------------------------------------------------------------------
+
+if exists("g:loaded_hindent") || !executable("hindent")
+    finish
+endif
+let g:loaded_hindent = 1
+
+if !exists("g:hindent_style")
+    "let g:hindent_style = "fundamental"
+    let g:hindent_style = "gibiansky"
+endif
+
+if has("autocmd")
+  autocmd FileType haskell setlocal formatexpr=FormatHaskell()
+endif
+
+function! FormatHaskell()
+    if !empty(v:char)
+        return 1
+    else
+        let l:filter = "hindent --style " . g:hindent_style
+        let l:command = v:lnum.','.(v:lnum+v:count-1).'!'.l:filter
+        execute l:command
+    endif
+endfunction
+
