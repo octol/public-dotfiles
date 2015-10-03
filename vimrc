@@ -19,45 +19,67 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " General
-"NeoBundle 'gmarik/vundle'
+" -------
 NeoBundle 'vimoutliner/vimoutliner'
 NeoBundle 'gnupg.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/nerdcommenter'
-"NeoBundle 'scrooloose/syntastic'
-NeoBundleLazy 'scrooloose/syntastic', { 'autoload' : { 'filetypes' : 'rust'}}
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'bufexplorer.zip'
-"NeoBundle 'nerdcommenter'
-NeoBundle 'Tagbar'
+NeoBundle 'jlanzarotta/bufexplorer'
+NeoBundle 'majutsushi/tagbar'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'rking/ag.vim'
-"NeoBundle 'mileszs/ack.vim'
 NeoBundle 'tpope/vim-fugitive'
-"NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'ntpeters/vim-better-whitespace'
 NeoBundle 'junkblocker/patchreview-vim'
-if v:version > 703 || (v:version == 703 && has('patch584'))
-    NeoBundleLazy 'Valloric/YouCompleteMe', { 'autoload' : { 'filetypes' : ['rust','c','cpp']}}
-endif
+NeoBundle 'Shougo/vimproc.vim', { 'build' : { 'linux' : 'make' }}
 
 " Language specific
-NeoBundle 'a.vim'
-NeoBundle 'othree/html5.vim'
-NeoBundle 'hdima/python-syntax'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'vim-jp/cpp-vim'
-NeoBundle 'octol/vim-cpp-enhanced-highlight'
-"NeoBundle 'mizuchi/STL-Syntax'
-"NeoBundle 'wting/rust.vim'
-NeoBundle 'rust-lang/rust.vim'
-NeoBundleLazy 'phildawes/racer', { 'autoload' : { 'filetypes' : 'rust' }}
-NeoBundle 'tpope/vim-markdown'
+" -----------------
+NeoBundleLazy 'scrooloose/syntastic', { 'autoload' : { 'filetypes' : ['rust','haskell']}}
+if v:version > 703 || (v:version == 703 && has('patch584'))
+    NeoBundleLazy 'Valloric/YouCompleteMe', {
+        \ 'autoload' : { 'filetypes' : ['rust','c','cpp','haskell'] } }
+endif
+
+" C/C++
+NeoBundleLazy 'a.vim', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
+NeoBundleLazy 'vim-jp/cpp-vim', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
+NeoBundleLazy 'octol/vim-cpp-enhanced-highlight', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
+"NeoBundleLazy 'mizuchi/STL-Syntax', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
 "NeoBundleLazy 'bbchung/clighter', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
-"NeoBundle 'octol/clighter'
-"NeoBundle 'jeaye/color_coded'
+"NeoBundleLazy 'octol/clighter', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
+"NeoBundleLazy 'jeaye/color_coded', {
+"      \ 'build': {
+"      \   'unix': 'cmake . && make && make install',
+"      \ },
+"      \ 'autoload' : { 'filetypes' : ['c', 'cpp', 'objc', 'objcpp'] },
+"      \ 'build_commands' : ['cmake', 'make']
+"  \}
+
+" Rust
+NeoBundleLazy 'rust-lang/rust.vim', { 'autoload' : { 'filetypes' : 'rust' }}
+NeoBundleLazy 'phildawes/racer', { 'autoload' : { 'filetypes' : 'rust' }}
+
+" Haskell
+NeoBundleLazy 'eagletmt/ghcmod-vim', { 'autoload' : { 'filetypes' : 'haskell' }}
+NeoBundleLazy 'travitch/hasksyn', { 'autoload' : { 'filetypes' : 'haskell' }}
+NeoBundleLazy 'eagletmt/neco-ghc', { 'autoload' : { 'filetypes' : 'haskell' }}
+"NeoBundleLazy 'dag/vim2hs', { 'autoload' : { 'filetypes' : 'haskell' }}
+"NeoBundleLazy 'lukerandall/haskellmode-vim', { 'autoload' : { 'filetypes' : 'haskell' }}
+"NeoBundleLazy 'bitc/vim-hdevtools', { 'autoload' : { 'filetypes' : 'haskell' }}
+
+" Web
+NeoBundleLazy 'othree/html5.vim', { 'autoload' : { 'filetypes' : 'html' }}
+NeoBundleLazy 'pangloss/vim-javascript', { 'autoload' : { 'filetypes' : 'javascript' }}
+
+" Misc
+NeoBundleLazy 'tpope/vim-markdown', { 'autoload' : { 'filetypes' : 'markdown' }}
+NeoBundleLazy 'hdima/python-syntax', { 'autoload' : { 'filetypes' : 'python' }}
 
 " Themes
+" ------
 NeoBundle 'tomasr/molokai'
 NeoBundle 'octol/vombatidae.vim'
 NeoBundle 'chriskempson/base16-vim'
@@ -134,11 +156,10 @@ set tags=./tags;/,tags;/
 " ---------------------------------------------------------------------------
 " Macros and keybindings
 " ---------------------------------------------------------------------------
+map <F4> :<C-U>call ToggleColor()<CR>
 " Inserts date
-inoremap <F6> <C-R>=strftime("%a, %d %b %Y %H:%M:%S %z")<CR>
-set pastetoggle=<F5>
-map <F7> :<C-U>call ToggleColor()<CR>
-inoremap <F8> <C-r>=substitute(substitute(system("uuidgen"), '-', '_', 'g'), '.$', '', 'g')<CR>
+inoremap <F5> <C-R>=strftime("%a, %d %b %Y %H:%M:%S %z")<CR>
+"set pastetoggle=<F5>
 
 " ---------------------------------------------------------------------------
 " Color settings
@@ -163,20 +184,23 @@ if has("autocmd")
     au BufNewFile,BufRead *.Config set filetype=xml
     au BufNewFile,BufRead *.aspx set filetype=html
 
-    au FileType tex set sw=4 sts=4 et
-    au FileType tex map <F2> :w<cr><leader>ll
-    au FileType tex imap <F2> <ESC>:w<cr><leader>ll
-    au FileType xhtml set sw=2 sts=2 et
+    au FileType c set sw=4 sts=4 et cino=g0 tw=80
+    au FileType cpp set sw=4 sts=4 et cino=g0 tw=90
+    au FileType c,cpp inoremap <F6>
+        \ <C-r>=substitute(substitute(system("uuidgen"), '-', '_', 'g'), '.$', '', 'g')<CR>
+    au FileType delphi set ignorecase
+    au FileType fortran set sw=3 sts=3 et
+    au FileType haskell set sw=2 sts=2 et
     au FileType html set sw=2 sts=2 et
     au FileType htmldjango set sw=2 sts=2 et
     au FileType python set sw=4 sts=4 et
-    au FileType fortran set sw=3 sts=3 et
-    au FileType text setlocal tw=78
-    au FileType cpp set sw=4 sts=4 et cino=g0 tw=90
-    au FileType delphi set ignorecase
-    au FileType xml setlocal foldmethod=syntax sw=2 sts=2 et foldlevel=99
     au FileType sql set sw=4 sts=4 et
-    au FileType haskell set sw=2 sts=2 et
+    au FileType tex imap <F2> <ESC>:w<cr><leader>ll
+    au FileType tex map <F2> :w<cr><leader>ll
+    au FileType tex set sw=4 sts=4 et
+    au FileType text setlocal tw=78
+    au FileType xhtml set sw=2 sts=2 et
+    au FileType xml setlocal foldmethod=syntax sw=2 sts=2 et foldlevel=99
 
     " Highlight characters over column 80
     "au BufWinEnter *.{m,tex,c,cpp,h} let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
@@ -214,12 +238,33 @@ map <F3> :TagbarToggle<CR>
 let g:ycm_extra_conf_globlist = ['~/workspace/*']
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 set completeopt-=preview
+let g:ycm_semantic_triggers = {'haskell' : ['.']}
+
+" ---------------------------------------------------------------------------
+" vim2hs
+" ---------------------------------------------------------------------------
+
+"let g:haskell_conceal_wide = 1
+
+" disable all conceals, including the simple ones like
+" lambda and composition
+"let g:haskell_conceal              = 0
+
+" disable concealing of "enumerations": commatized lists like
+" deriving clauses and LANGUAGE pragmas,
+" otherwise collapsed into a single ellipsis
+"let g:haskell_conceal_enumerations = 0
 
 " ---------------------------------------------------------------------------
 " Latex-suite
 " ---------------------------------------------------------------------------
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_ViewRule_pdf = 'evince'
+
+" ---------------------------------------------------------------------------
+" Syntastic
+" ---------------------------------------------------------------------------
+let g:syntastic_always_populate_loc_list = 1
 
 " ---------------------------------------------------------------------------
 " Airline
