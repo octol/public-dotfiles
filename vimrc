@@ -49,7 +49,6 @@ NeoBundleLazy 'vim-jp/cpp-vim', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
 NeoBundleLazy 'octol/vim-cpp-enhanced-highlight', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
 "NeoBundleLazy 'mizuchi/STL-Syntax', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
 "NeoBundleLazy 'bbchung/clighter', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
-"NeoBundleLazy 'octol/clighter', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
 "NeoBundleLazy 'jeaye/color_coded', {
 "      \ 'build': {
 "      \   'unix': 'cmake . && make && make install',
@@ -66,6 +65,7 @@ NeoBundleLazy 'phildawes/racer', { 'autoload' : { 'filetypes' : 'rust' }}
 NeoBundleLazy 'eagletmt/ghcmod-vim', { 'autoload' : { 'filetypes' : 'haskell' }}
 NeoBundleLazy 'travitch/hasksyn', { 'autoload' : { 'filetypes' : 'haskell' }}
 NeoBundleLazy 'eagletmt/neco-ghc', { 'autoload' : { 'filetypes' : 'haskell' }}
+NeoBundleLazy 'octol/vim-hindent', { 'autoload' : { 'filetypes' : 'haskell' }}
 "NeoBundleLazy 'dag/vim2hs', { 'autoload' : { 'filetypes' : 'haskell' }}
 "NeoBundleLazy 'lukerandall/haskellmode-vim', { 'autoload' : { 'filetypes' : 'haskell' }}
 "NeoBundleLazy 'bitc/vim-hdevtools', { 'autoload' : { 'filetypes' : 'haskell' }}
@@ -118,6 +118,7 @@ set laststatus=2
 set wildmode=longest,list,full
 set wildmenu
 set wildignore=*.o,*~,*.pyc,*.pyo,*.so
+set foldmethod=indent
 
 " ---------------------------------------------------------------------------
 " Tabs
@@ -285,6 +286,8 @@ let g:airline_right_sep = ' '
 " CtrlP
 " ---------------------------------------------------------------------------
 let g:ctrlp_root_markers = ['.ctrlp']
+" Call out to Ag for performance
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " ---------------------------------------------------------------------------
 " clang-format
@@ -302,6 +305,11 @@ let g:cpp_experimental_template_highlight = 1
 " vim-better-whitespace
 " ---------------------------------------------------------------------------
 let g:better_whitespace_filetypes_blacklist=['mail', 'tex', 'text']
+
+" ---------------------------------------------------------------------------
+" Python
+" ---------------------------------------------------------------------------
+let python_highlight_all = 1
 
 " ---------------------------------------------------------------------------
 " clighter
@@ -370,6 +378,11 @@ hi link clighterUnionDecl None
 hi link clighterVarDecl None
 
 " ---------------------------------------------------------------------------
+" vim-hindent
+" ---------------------------------------------------------------------------
+let g:hindent_style = "gibiansky"
+
+" ---------------------------------------------------------------------------
 " GUI specific settings
 " ---------------------------------------------------------------------------
 if has("gui_running")
@@ -430,33 +443,3 @@ function! ToggleColor()
         set background=dark
     endif
 endfunction
-
-" --------------------------------------------------------------------------
-" hindent
-" (for now this needs to be last)
-" --------------------------------------------------------------------------
-
-if exists("g:loaded_hindent") || !executable("hindent")
-    finish
-endif
-let g:loaded_hindent = 1
-
-if !exists("g:hindent_style")
-    "let g:hindent_style = "fundamental"
-    let g:hindent_style = "gibiansky"
-endif
-
-if has("autocmd")
-  autocmd FileType haskell setlocal formatexpr=FormatHaskell()
-endif
-
-function! FormatHaskell()
-    if !empty(v:char)
-        return 1
-    else
-        let l:filter = "hindent --style " . g:hindent_style
-        let l:command = v:lnum.','.(v:lnum+v:count-1).'!'.l:filter
-        execute l:command
-    endif
-endfunction
-
