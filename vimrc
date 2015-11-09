@@ -27,17 +27,18 @@ NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'jlanzarotta/bufexplorer'
 NeoBundle 'majutsushi/tagbar'
-NeoBundle 'bling/vim-airline'
+NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'ntpeters/vim-better-whitespace'
 NeoBundle 'junkblocker/patchreview-vim'
+NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'Shougo/vimproc.vim', { 'build' : { 'linux' : 'make' }}
 
 " Language specific
 " -----------------
-NeoBundleLazy 'scrooloose/syntastic', { 'autoload' : { 'filetypes' : ['rust','haskell']}}
+NeoBundleLazy 'scrooloose/syntastic', { 'autoload' : { 'filetypes' : ['rust']}}
 if v:version > 703 || (v:version == 703 && has('patch584'))
     NeoBundleLazy 'Valloric/YouCompleteMe', {
         \ 'autoload' : { 'filetypes' : ['rust','c','cpp','haskell'] } }
@@ -112,7 +113,7 @@ set smartcase
 set ignorecase
 
 set hidden                  " background buffers can be unsaved
-set autochdir
+"set autochdir
 set novisualbell
 set laststatus=2
 set wildmode=longest,list,full
@@ -176,9 +177,6 @@ set background=dark
 "  sw=shiftwidth, et=expandtab, sts=softtabstop, ts=tabstop
 " ---------------------------------------------------------------------------
 let c_no_curly_error=1
-"let g:xml_syntax_folding=1
-"let sh_fold_enabled=1
-"set foldmethod=syntax
 
 if has("autocmd")
     au BufNewFile,BufRead *.plt set filetype=gnuplot
@@ -192,6 +190,9 @@ if has("autocmd")
     au FileType delphi set ignorecase
     au FileType fortran set sw=3 sts=3 et
     au FileType haskell set sw=2 sts=2 et
+    au FileType haskell map <F6> :GhcModCheckAsync<CR>
+    au FileType haskell map <F7> :GhcModType<CR>
+    au FileType haskell map <S-F7> :GhcModTypeClear<CR>
     au FileType html set sw=2 sts=2 et
     au FileType htmldjango set sw=2 sts=2 et
     au FileType python set sw=4 sts=4 et
@@ -202,25 +203,7 @@ if has("autocmd")
     au FileType text setlocal tw=78
     au FileType xhtml set sw=2 sts=2 et
     au FileType xml setlocal foldmethod=syntax sw=2 sts=2 et foldlevel=99
-
-    " Highlight characters over column 80
-    "au BufWinEnter *.{m,tex,c,cpp,h} let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
-    "au BufWinEnter *.{m,tex,c,cpp,h} let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-
-    " Don't ignore trailing whitespace
-    "highlight WhiteSpaceEOL ctermbg=white guibg=red
-    "au BufWinEnter *.{c,cpp,cxx,h,hpp,mk,patch} match WhiteSpaceEOL /\s\+$/
 endif
-
-" --------------------------------------------------------------------------
-" Spelling
-"  Overide the colors for spelling, so that we see them. This is a workaround
-"  for some themes.
-" --------------------------------------------------------------------------
-"hi SpellBad term=reverse ctermfg=white ctermbg=darkred guifg=#ffffff guibg=#7f0000 gui=underline
-"hi SpellCap guifg=#ffffff guibg=#7f007f
-"hi SpellRare guifg=#ffffff guibg=#00007f gui=underline
-"hi SpellLocal term=reverse ctermfg=black ctermbg=darkgreen guifg=#ffffff guibg=#7f0000 gui=underline
 
 " --------------------------------------------------------------------------
 " NERDTree plugin
@@ -266,6 +249,11 @@ let g:Tex_ViewRule_pdf = 'evince'
 " Syntastic
 " ---------------------------------------------------------------------------
 let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_mode_map = {
+    \ 'mode': 'passive',
+    \ 'active_filetypes': [],
+    \ 'passive_filetypes': []
+    \ }
 
 " ---------------------------------------------------------------------------
 " Airline
