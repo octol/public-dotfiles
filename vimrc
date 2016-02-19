@@ -50,6 +50,7 @@ NeoBundleLazy 'vim-jp/cpp-vim', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
 NeoBundleLazy 'octol/vim-cpp-enhanced-highlight', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
 "NeoBundleLazy 'mizuchi/STL-Syntax', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
 "NeoBundleLazy 'bbchung/clighter', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
+"NeoBundle 'rdnetto/YCM-Generator'
 "NeoBundleLazy 'jeaye/color_coded', {
 "      \ 'build': {
 "      \   'unix': 'cmake . && make && make install',
@@ -64,7 +65,7 @@ NeoBundleLazy 'phildawes/racer', { 'autoload' : { 'filetypes' : 'rust' }}
 
 " Haskell
 NeoBundleLazy 'eagletmt/ghcmod-vim', { 'autoload' : { 'filetypes' : 'haskell' }}
-NeoBundleLazy 'travitch/hasksyn', { 'autoload' : { 'filetypes' : 'haskell' }}
+"NeoBundleLazy 'travitch/hasksyn', { 'autoload' : { 'filetypes' : 'haskell' }}
 NeoBundleLazy 'eagletmt/neco-ghc', { 'autoload' : { 'filetypes' : 'haskell' }}
 NeoBundleLazy 'octol/vim-hindent', { 'autoload' : { 'filetypes' : 'haskell' }}
 "NeoBundleLazy 'dag/vim2hs', { 'autoload' : { 'filetypes' : 'haskell' }}
@@ -228,6 +229,7 @@ let g:ycm_semantic_triggers = {'haskell' : ['.']}
 " vim2hs
 " ---------------------------------------------------------------------------
 
+" Replace '::' and '-->' with fancy characters.
 "let g:haskell_conceal_wide = 1
 
 " disable all conceals, including the simple ones like
@@ -280,8 +282,8 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 " ---------------------------------------------------------------------------
 " clang-format
 " ---------------------------------------------------------------------------
-map <C-K> :pyf /usr/share/vim/addons/syntax/clang-format-3.6.py<CR>
-imap <C-K> <ESC>:pyf /usr/share/vim/addons/syntax/clang-format-3.6.py<CR>i
+map <C-K> :pyf /usr/share/vim/addons/syntax/clang-format-3.8.py<CR>
+imap <C-K> <ESC>:pyf /usr/share/vim/addons/syntax/clang-format-3.8.py<CR>i
 
 " ---------------------------------------------------------------------------
 " vim-cpp-enhanced-hightlight
