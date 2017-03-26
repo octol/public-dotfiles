@@ -33,7 +33,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'ntpeters/vim-better-whitespace'
 NeoBundle 'junkblocker/patchreview-vim'
-NeoBundle 'airblade/vim-gitgutter'
+"NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'Shougo/vimproc.vim', { 'build' : { 'linux' : 'make' }}
 
 " Language specific
@@ -68,7 +68,7 @@ NeoBundleLazy 'eagletmt/ghcmod-vim', { 'autoload' : { 'filetypes' : 'haskell' }}
 "NeoBundleLazy 'travitch/hasksyn', { 'autoload' : { 'filetypes' : 'haskell' }}
 NeoBundleLazy 'eagletmt/neco-ghc', { 'autoload' : { 'filetypes' : 'haskell' }}
 NeoBundleLazy 'octol/vim-hindent', { 'autoload' : { 'filetypes' : 'haskell' }}
-"NeoBundleLazy 'dag/vim2hs', { 'autoload' : { 'filetypes' : 'haskell' }}
+NeoBundleLazy 'dag/vim2hs', { 'autoload' : { 'filetypes' : 'haskell' }}
 "NeoBundleLazy 'lukerandall/haskellmode-vim', { 'autoload' : { 'filetypes' : 'haskell' }}
 "NeoBundleLazy 'bitc/vim-hdevtools', { 'autoload' : { 'filetypes' : 'haskell' }}
 
@@ -282,13 +282,14 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 " ---------------------------------------------------------------------------
 " clang-format
 " ---------------------------------------------------------------------------
-map <C-K> :pyf /usr/share/vim/addons/syntax/clang-format-3.8.py<CR>
-imap <C-K> <ESC>:pyf /usr/share/vim/addons/syntax/clang-format-3.8.py<CR>i
+map <C-K> :pyf /usr/share/vim/addons/syntax/clang-format-4.0.py<CR>
+imap <C-K> <ESC>:pyf /usr/share/vim/addons/syntax/clang-format-4.0.py<CR>i
 
 " ---------------------------------------------------------------------------
 " vim-cpp-enhanced-hightlight
 " ---------------------------------------------------------------------------
-let g:cpp_experimental_template_highlight = 1
+"let g:cpp_experimental_template_highlight = 1
+let g:cpp_experimental_simple_template_highlight = 1
 "let g:cpp_class_scope_highlight = 1
 
 " ---------------------------------------------------------------------------
@@ -376,10 +377,10 @@ let g:hindent_style = "gibiansky"
 " GUI specific settings
 " ---------------------------------------------------------------------------
 if has("gui_running")
-    if has("gui_gtk2")
+    if has("gui_gtk3")
         silent! colorscheme molokai
-        silent! set guifont=Droid\ Sans\ Mono\ 11
-        "silent! set guifont=Liberation\ Mono\ 13
+        "silent! set guifont=Droid\ Sans\ Mono\ 11
+        silent! set guifont=Liberation\ Mono\ 13
         set guioptions-=m   " remove menubar
         set laststatus=2
         let g:airline#extensions#tabline#enabled = 1
