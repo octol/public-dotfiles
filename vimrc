@@ -24,7 +24,7 @@ NeoBundle 'vimoutliner/vimoutliner'
 NeoBundle 'gnupg.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'jlanzarotta/bufexplorer'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'itchyny/lightline.vim'
@@ -114,13 +114,13 @@ set smartcase
 set ignorecase
 
 set hidden                  " background buffers can be unsaved
-"set autochdir
+set autochdir
 set novisualbell
 set laststatus=2
 set wildmode=longest,list,full
 set wildmenu
 set wildignore=*.o,*~,*.pyc,*.pyo,*.so
-set foldmethod=indent
+"set foldmethod=syntax
 
 " ---------------------------------------------------------------------------
 " Tabs
@@ -186,8 +186,8 @@ if has("autocmd")
 
     au FileType c set sw=4 sts=4 et cino=g0 tw=80
     au FileType cpp set sw=4 sts=4 et cino=g0 tw=90
-    au FileType c,cpp inoremap <F6>
-        \ <C-r>=substitute(substitute(system("uuidgen"), '-', '_', 'g'), '.$', '', 'g')<CR>
+    au FileType c,cpp map <F6> :YcmForceCompileAndDiagnostics<CR>
+    "au FileType c,cpp set foldmethod=syntax
     au FileType delphi set ignorecase
     au FileType fortran set sw=3 sts=3 et
     au FileType haskell set sw=2 sts=2 et
@@ -277,7 +277,7 @@ let g:airline_right_sep = ' '
 " ---------------------------------------------------------------------------
 let g:ctrlp_root_markers = ['.ctrlp']
 " Call out to Ag for performance
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+"let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " ---------------------------------------------------------------------------
 " clang-format
