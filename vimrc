@@ -282,8 +282,8 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 " ---------------------------------------------------------------------------
 " clang-format
 " ---------------------------------------------------------------------------
-map <C-K> :pyf /usr/share/vim/addons/syntax/clang-format-4.0.py<CR>
-imap <C-K> <ESC>:pyf /usr/share/vim/addons/syntax/clang-format-4.0.py<CR>i
+map <C-K> :py3f /usr/share/vim/addons/syntax/clang-format-4.0.py<CR>
+imap <C-K> <ESC>:py3f /usr/share/vim/addons/syntax/clang-format-4.0.py<CR>i
 
 " ---------------------------------------------------------------------------
 " vim-cpp-enhanced-hightlight
