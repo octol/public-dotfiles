@@ -45,9 +45,11 @@ if v:version > 703 || (v:version == 703 && has('patch584'))
 endif
 
 " C/C++
+NeoBundle 'pboettch/vim-cmake-syntax'
 NeoBundleLazy 'a.vim', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
 NeoBundleLazy 'vim-jp/cpp-vim', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
 NeoBundleLazy 'octol/vim-cpp-enhanced-highlight', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
+NeoBundleLazy 'lyuts/vim-rtags', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
 "NeoBundleLazy 'mizuchi/STL-Syntax', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
 "NeoBundleLazy 'bbchung/clighter', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
 "NeoBundle 'rdnetto/YCM-Generator'
@@ -204,6 +206,7 @@ if has("autocmd")
     au FileType text setlocal tw=78
     au FileType xhtml set sw=2 sts=2 et
     au FileType xml setlocal foldmethod=syntax sw=2 sts=2 et foldlevel=99
+    au FileType cmake set sw=2 sts=2 et
 endif
 
 " --------------------------------------------------------------------------
@@ -381,6 +384,7 @@ if has("gui_running")
         silent! colorscheme molokai
         "silent! set guifont=Droid\ Sans\ Mono\ 11
         silent! set guifont=Liberation\ Mono\ 13
+        "silent! set guifont=Liberation\ Mono\ 11
         set guioptions-=m   " remove menubar
         set laststatus=2
         let g:airline#extensions#tabline#enabled = 1
@@ -396,6 +400,9 @@ if has("gui_running")
 elseif &t_Co == 256
     " If we have 256 colors in the current terminal, set some nice theme
     silent! colorscheme molokai
+    " Disable Background Color Erase (BCE) so that color schemes
+    " render properly when inside 256-color tmux and GNU screen.
+    "set t_ut=
 end
 
 " --------------------------------------------------------------------------
