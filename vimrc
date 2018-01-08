@@ -50,16 +50,6 @@ NeoBundleLazy 'a.vim', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
 NeoBundleLazy 'vim-jp/cpp-vim', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
 NeoBundleLazy 'octol/vim-cpp-enhanced-highlight', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
 NeoBundleLazy 'lyuts/vim-rtags', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
-"NeoBundleLazy 'mizuchi/STL-Syntax', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
-"NeoBundleLazy 'bbchung/clighter', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
-"NeoBundle 'rdnetto/YCM-Generator'
-"NeoBundleLazy 'jeaye/color_coded', {
-"      \ 'build': {
-"      \   'unix': 'cmake . && make && make install',
-"      \ },
-"      \ 'autoload' : { 'filetypes' : ['c', 'cpp', 'objc', 'objcpp'] },
-"      \ 'build_commands' : ['cmake', 'make']
-"  \}
 
 " Rust
 NeoBundleLazy 'rust-lang/rust.vim', { 'autoload' : { 'filetypes' : 'rust' }}
@@ -306,81 +296,20 @@ let g:better_whitespace_filetypes_blacklist=['mail', 'tex', 'text']
 let python_highlight_all = 1
 
 " ---------------------------------------------------------------------------
-" clighter
-" ---------------------------------------------------------------------------
-"let g:clighter_compile_args = [
-"            \   "-I/usr/local/include/libsdlc-0.5.4",
-"            \   "-I/usr/local/lib/libsdlc-0.5.4/include"
-"            \   ]
-let g:clighter_libclang_file = '/usr/lib/llvm-3.6/lib/libclang.so.1'
-let g:clighter_highlight_blacklist = [
-            \   'cligherInclusionDirective',
-            \   ]
-
-" Free functions
-hi link clighterDeclRefExprCall Function
-hi link clighterFunctionDecl Function
-
-" Enums
-hi link clighterEnumDecl Identifier
-hi link clighterEnumConstantDecl Constant
-hi link clighterDeclRefExprEnum Constant
-
-hi link clighterMacroInstantiation Constant
-hi link clighterPrepro PreProc
-
-" Member variable and method calls
-hi link clighterMemberRefExprCall Function
-
-" Not working
-hi link clighterMemberRefExprVar Error
-
-" namespace { ... }
-hi link clighterNamespace Constant
-hi link clighterNamespaceRef Constant
-
-hi link clighterOccurrences IncSearch
-
-" Templated types
-hi link clighterTemplateRef Type
-
-" References to templated types
-hi link clighterTypeRef Type
-
-" The 'T' in template <class T>
-hi link clighterTemplateTypeParameter Type
-
-" class/struct declarations
-hi link clighterClassDecl None
-hi link clighterStructDecl None
-
-" 'using name = ...' statements
-hi link clighterDecl None
-
-" Class member variable declarations
-hi link clighterFieldDecl None
-
-" Function parameters, including the template types
-hi link clighterParmDecl None
-
-" Lambda campture variables, using std::name statements
-hi link clighterRef None
-
-hi link clighterUnionDecl None
-
-" Local variables
-hi link clighterVarDecl None
-
-" ---------------------------------------------------------------------------
 " vim-hindent
 " ---------------------------------------------------------------------------
 let g:hindent_style = "gibiansky"
 
 " ---------------------------------------------------------------------------
+" Fortran
+" ---------------------------------------------------------------------------
+let fortran_free_source = 1
+
+" ---------------------------------------------------------------------------
 " GUI specific settings
 " ---------------------------------------------------------------------------
 if has("gui_running")
-    if has("gui_gtk3")
+    if has("gui_gtk2") || has("gui_gtk3")
         silent! colorscheme molokai
         "silent! set guifont=Droid\ Sans\ Mono\ 11
         silent! set guifont=Liberation\ Mono\ 13
