@@ -1,6 +1,6 @@
 # vi:ft=muttrc
 # Mutt settings specific for account
-# 
+#
 
 # Pull in the common settings
 source ~/.mutt/muttrc.common
@@ -31,7 +31,7 @@ set ssl_force_tls=yes
 # ------------------------------------------------------------------------------
 
 set spoolfile="imaps://imapserver/INBOX"
-set folder="imaps://imapserver" 
+set folder="imaps://imapserver"
 set record="=Sent"
 set postponed="=Drafts"
 mailboxes imaps://imapserver/INBOX

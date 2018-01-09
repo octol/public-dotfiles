@@ -41,7 +41,7 @@ trayer \
 
 # Fix Java applications
 [ -x /usr/bin/wmname ] && (wmname LG3D)
- 
+
 # Start WM
 exec xmonad
 #dbus-launch --exit-with-session xmonad
