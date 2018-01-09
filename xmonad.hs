@@ -17,7 +17,7 @@ import XMonad.Util.EZConfig(additionalKeys)
 import Data.Ratio ((%))
 import System.IO
 
-myManageHook = composeAll 
+myManageHook = composeAll
     [ className =? "famFrame" --> doFloat
     , className =? "com-mathworks-util-PostVMInit" --> doFloat
     , className =? "frame" --> doFloat
@@ -39,19 +39,19 @@ myManageHook = composeAll
     , className =? "VirtualBox" --> doFloat
     , className =? "Octave" --> doFloat
     , className =? "Vpnui" --> doFloat
+    , className =? "Xfce4-notifyd" --> doIgnore
     ]
 
 main = do
-    xmproc <- spawnPipe "/usr/bin/xmobar $HOME/.xmonad/xmobarrc"
-    xmonad $ defaultConfig
-        { manageHook = manageDocks <+> myManageHook 
+    xmonad =<< statusBar "xmobar" xmobarPP toggleStrutsKey myConfig
+
+toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
+
+myConfig = defaultConfig
+        { manageHook = manageDocks <+> myManageHook
                                    <+> manageHook defaultConfig
         {-, layoutHook = avoidStruts $ layoutHook defaultConfig-}
         , layoutHook = myLayout
-        , logHook = dynamicLogWithPP $ xmobarPP 
-                        { ppOutput = hPutStrLn xmproc
-                        , ppTitle = xmobarColor "green" "" . shorten 50
-                        }
         , borderWidth           = 1
         , terminal              = "urxvt"
         , focusedBorderColor    = "#ff7700"
@@ -69,9 +69,9 @@ main = do
 myMod = mod4Mask
 
 -- configure the layout
-myLayout = 
+myLayout =
         onWorkspace "im" ((avoidStruts $ myChat) ||| (smartBorders $ myTall)) $
-        onWorkspace "web" (smartBorders $ (myTall ||| myMirrorTall ||| myTab ||| Full)) $
+        {-onWorkspace "web" (smartBorders $ (myTall ||| myMirrorTall ||| myTab ||| Full)) $-}
             (smartBorders (myTall ||| myMirrorTall ||| myTab ||| Full))
                 where
                     myTab = avoidStruts $ tabbed shrinkText myTabConfig

@@ -17,7 +17,8 @@ bindkey "^[[1;3C" next
 bindkey "^[[1;3D" prev
 
 # term
-term xterm-256color
+#term xterm-256color
+#term screen-256color
 
 # terminfo and termcap for nice 256 color terminal
 attrcolor b ".I"    # allow bold colors - necessary for some reason

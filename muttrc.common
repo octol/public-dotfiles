@@ -2,7 +2,7 @@
 # Mutt settings common for all accounts and configurations.
 
 # ------------------------------------------------------------------------------
-#  General settings 
+#  General settings
 # ------------------------------------------------------------------------------
 
 # set defaults
@@ -14,7 +14,9 @@ set allow_8bit
 set print_command="muttprint"
 set mark_old=no		# when set to no we dont make distiction between new and old new
 unset markers		# unset plus markers for wrapped lines
-set mime_forward	# make forwards as mime attachments
+#set mime_forward	# make forwards as mime attachments
+set forward_format="Fwd: %s" # subject line for forwarded messages
+set forward_quote       # indent forwarded message
 set sort=threads 	# default sort messages by thread
 set sort_aux=last-date-received
 set xterm_set_titles=yes

@@ -1,23 +1,33 @@
 #!/bin/bash
- 
+
 # Load resources
 xrdb -merge .Xresources
 
 # Set up an icon tray
-trayer --edge top --align right --SetDockType true --SetPartialStrut true \
- --expand true --width 10 --transparent true --tint 0x000000 --height 16 --alpha 0 &
+trayer \
+    --edge top \
+    --align right \
+    --SetDockType true \
+    --SetPartialStrut true \
+    --expand true \
+    --width 10 \
+    --transparent true \
+    --tint 0x000000 \
+    --height 16 \
+    --alpha 0 &
 
 # Cursor
 #xsetroot -cursor_name left_ptr
- 
+
 # Set the background
 [ -f "$HOME/.wallpaper" ] && (. $HOME/.wallpaper)
- 
+
 # Fire up apps
 #[ -x /usr/bin/xfsettingsd ]  && (xfsettingsd &)
+#[ -x /usr/bin/gnome-settings-daemon ]  && (gnome-settings-daemon &)
 [ -x /usr/bin/xscreensaver ] && (xscreensaver -no-splash &)
 [ -x /usr/bin/redshift-gtk ] && (redshift-gtk &)
-[ -x /usr/bin/nm-applet ]    && (nm-applet --sm-disable &)
+#[ -x /usr/bin/nm-applet ]    && (nm-applet --sm-disable &)
 
 # SSH and GPG agent
 #eval $(gnome-keyring-daemon --start)

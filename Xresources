@@ -1,6 +1,6 @@
 ! fonts ----------------------------------------------------------------------
 
-Xft.dpi:96 
+Xft.dpi:96
 Xft.antialias: 1
 Xft.hinting: 1
 Xft.hintstyle: hintslight
@@ -10,14 +10,24 @@ Xft.lcdfilter: lcddefault
 
 ! xterm ----------------------------------------------------------------------
 
-!XTerm*faceName: Droid Sans Mono:size=11
-XTerm*font: 10x20
 XTerm*saveLines: 32767
 XTerm*visualBell: true
 XTerm*bellSuppressTime: 2000
 XTerm*scrollBar: false
 !XTerm*termName: xterm-256color
 XTerm*wideFont: -misc-fixed-medium-r-normal-ja-18-120-100-100-c-180-iso10646-1
+!XTerm*faceName: Droid Sans Mono:size=11
+!XTerm*faceName: Tamsyn:size=13
+!XTerm*font: 10x20
+
+! Tamzen fonts for use with Powerline
+XTerm*font  : -*-tamzenforpowerline-medium-*-*-*-16-*-*-*-*-*-*-*
+XTerm*font1 : -*-tamzenforpowerline-medium-*-*-*-9-*-*-*-*-*-*-*
+XTerm*font2 : -*-tamzenforpowerline-medium-*-*-*-12-*-*-*-*-*-*-*
+XTerm*font3 : -*-tamzenforpowerline-medium-*-*-*-13-*-*-*-*-*-*-*
+XTerm*font4 : -*-tamzenforpowerline-medium-*-*-*-15-*-*-*-*-*-*-*
+XTerm*font5 : -*-tamzenforpowerline-medium-*-*-*-16-*-*-*-*-*-*-*
+XTerm*font6 : -*-tamzenforpowerline-medium-*-*-*-20-*-*-*-*-*-*-*
 
 !! Color (tango)
 !XTerm*reverseVideo: true
@@ -58,7 +68,7 @@ XTerm*color12:                #729FCF
 
 ! URxvt ----------------------------------------------------------------------
 
-! URxvt*termName:                       string
+URxvt*termName:                       xterm
 ! URxvt*geometry:                       geometry
 ! URxvt*chdir:                          string
 ! URxvt*reverseVideo:                   true
