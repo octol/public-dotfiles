@@ -9,85 +9,55 @@ set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 
 " ---------------------------------------------------------------------------
-" NeoVundle
-"  Setup plugins
-"  git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+" Plugins
 " ---------------------------------------------------------------------------
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-set runtimepath+=~/.vim/bundle/neobundle.vim/
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 
 " General
 " -------
-NeoBundle 'vimoutliner/vimoutliner'
-NeoBundle 'gnupg.vim'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'jlanzarotta/bufexplorer'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'ntpeters/vim-better-whitespace'
-NeoBundle 'junkblocker/patchreview-vim'
-"NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'Shougo/vimproc.vim', { 'build' : { 'linux' : 'make' }}
-
-" Language specific
-" -----------------
-NeoBundleLazy 'scrooloose/syntastic', { 'autoload' : { 'filetypes' : ['rust']}}
-if v:version > 703 || (v:version == 703 && has('patch584'))
-    NeoBundleLazy 'Valloric/YouCompleteMe', {
-        \ 'autoload' : { 'filetypes' : ['rust','c','cpp','haskell'] } }
-endif
+Plug 'vimoutliner/vimoutliner'
+Plug 'jamessan/vim-gnupg'
+Plug 'scrooloose/nerdcommenter'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " C/C++
-NeoBundle 'pboettch/vim-cmake-syntax'
-NeoBundleLazy 'a.vim', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
-NeoBundleLazy 'vim-jp/cpp-vim', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
-NeoBundleLazy 'octol/vim-cpp-enhanced-highlight', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
-NeoBundleLazy 'lyuts/vim-rtags', { 'autoload' : { 'filetypes' : ['c','cpp'] }}
+Plug 'pboettch/vim-cmake-syntax', { 'for': 'cmake' }
+Plug 'vim-scripts/a.vim', { 'for' : ['c', 'cpp'] }
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for' : ['c','cpp'] }
 
 " Rust
-NeoBundleLazy 'rust-lang/rust.vim', { 'autoload' : { 'filetypes' : 'rust' }}
-NeoBundleLazy 'phildawes/racer', { 'autoload' : { 'filetypes' : 'rust' }}
+Plug 'rust-lang/rust.vim'
 
-" Haskell
-NeoBundleLazy 'eagletmt/ghcmod-vim', { 'autoload' : { 'filetypes' : 'haskell' }}
-"NeoBundleLazy 'travitch/hasksyn', { 'autoload' : { 'filetypes' : 'haskell' }}
-NeoBundleLazy 'eagletmt/neco-ghc', { 'autoload' : { 'filetypes' : 'haskell' }}
-NeoBundleLazy 'octol/vim-hindent', { 'autoload' : { 'filetypes' : 'haskell' }}
-NeoBundleLazy 'dag/vim2hs', { 'autoload' : { 'filetypes' : 'haskell' }}
-"NeoBundleLazy 'lukerandall/haskellmode-vim', { 'autoload' : { 'filetypes' : 'haskell' }}
-"NeoBundleLazy 'bitc/vim-hdevtools', { 'autoload' : { 'filetypes' : 'haskell' }}
-
-" Web
-NeoBundleLazy 'othree/html5.vim', { 'autoload' : { 'filetypes' : 'html' }}
-NeoBundleLazy 'pangloss/vim-javascript', { 'autoload' : { 'filetypes' : 'javascript' }}
-
-" Misc
-NeoBundleLazy 'tpope/vim-markdown', { 'autoload' : { 'filetypes' : 'markdown' }}
-NeoBundleLazy 'hdima/python-syntax', { 'autoload' : { 'filetypes' : 'python' }}
+" LSP
+" -----------------
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 " Themes
 " ------
-NeoBundle 'tomasr/molokai'
-NeoBundle 'octol/vombatidae.vim'
-NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'xoria256.vim'
-NeoBundle 'nanotech/jellybeans.vim'
+Plug 'tomasr/molokai'
+Plug 'octol/vombatidae.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'nanotech/jellybeans.vim'
 
-call neobundle#end()
-
-" ---------------------------------------------------------------------------
-" Configuration specific to mswin
-" ---------------------------------------------------------------------------
-"if has("win32")
-"    behave mswin
-"endif
+" Initialize plugin system
+call plug#end()
 
 " ---------------------------------------------------------------------------
 " Global editing settings
@@ -112,7 +82,6 @@ set laststatus=2
 set wildmode=longest,list,full
 set wildmenu
 set wildignore=*.o,*~,*.pyc,*.pyo,*.so
-"set foldmethod=syntax
 
 " ---------------------------------------------------------------------------
 " Tabs
@@ -171,68 +140,67 @@ set background=dark
 " ---------------------------------------------------------------------------
 let c_no_curly_error=1
 
-if has("autocmd")
-    au BufNewFile,BufRead *.plt set filetype=gnuplot
-    au BufNewFile,BufRead *.Config set filetype=xml
-    au BufNewFile,BufRead *.aspx set filetype=html
+au BufNewFile,BufRead *.plt set filetype=gnuplot
+au BufNewFile,BufRead *.Config set filetype=xml
+au BufNewFile,BufRead *.aspx set filetype=html
 
-    au FileType c set sw=4 sts=4 et cino=g0 tw=80
-    au FileType cpp set sw=4 sts=4 et cino=g0 tw=90
-    au FileType c,cpp map <F6> :YcmForceCompileAndDiagnostics<CR>
-    "au FileType c,cpp set foldmethod=syntax
-    au FileType delphi set ignorecase
-    au FileType fortran set sw=3 sts=3 et
-    au FileType haskell set sw=2 sts=2 et
-    au FileType haskell map <F6> :GhcModCheckAsync<CR>
-    au FileType haskell map <F7> :GhcModType<CR>
-    au FileType haskell map <S-F7> :GhcModTypeClear<CR>
-    au FileType html set sw=2 sts=2 et
-    au FileType htmldjango set sw=2 sts=2 et
-    au FileType python set sw=4 sts=4 et
-    au FileType sql set sw=4 sts=4 et
-    au FileType tex imap <F2> <ESC>:w<cr><leader>ll
-    au FileType tex map <F2> :w<cr><leader>ll
-    au FileType tex set sw=4 sts=4 et
-    au FileType text setlocal tw=78
-    au FileType xhtml set sw=2 sts=2 et
-    au FileType xml setlocal foldmethod=syntax sw=2 sts=2 et foldlevel=99
-    au FileType cmake set sw=2 sts=2 et
+au FileType c set sw=4 sts=4 et cino=g0 tw=80
+au FileType cpp set sw=4 sts=4 et cino=g0 tw=90
+au FileType fortran set sw=3 sts=3 et
+au FileType haskell set sw=2 sts=2 et
+au FileType haskell map <F6> :GhcModCheckAsync<CR>
+au FileType haskell map <F7> :GhcModType<CR>
+au FileType haskell map <S-F7> :GhcModTypeClear<CR>
+au FileType html set sw=2 sts=2 et
+au FileType htmldjango set sw=2 sts=2 et
+au FileType python set sw=4 sts=4 et
+au FileType sql set sw=4 sts=4 et
+au FileType tex imap <F2> <ESC>:w<cr><leader>ll
+au FileType tex map <F2> :w<cr><leader>ll
+au FileType tex set sw=4 sts=4 et
+au FileType text setlocal tw=78
+au FileType xhtml set sw=2 sts=2 et
+au FileType xml setlocal foldmethod=syntax sw=2 sts=2 et foldlevel=99
+au FileType cmake set sw=2 sts=2 et
+
+" ---------------------------------------------------------------------------
+" vim-lsp
+" ---------------------------------------------------------------------------
+
+if executable('clangd-7')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd-7',
+        \ 'cmd': {server_info->['clangd-7']},
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
 endif
 
-" --------------------------------------------------------------------------
-" NERDTree plugin
-" --------------------------------------------------------------------------
-let NERDTreeIgnore=['\.lo$','\.o$','\.gcda$','\.gcno$']
-map <F2> :NERDTreeToggle<CR>
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+        \ 'whitelist': ['rust'],
+        \ })
 
-" --------------------------------------------------------------------------
-" Tagbar plugin
-" --------------------------------------------------------------------------
-map <F3> :TagbarToggle<CR>
+endif
 
-" ---------------------------------------------------------------------------
-" YouCompleteMe
-" ---------------------------------------------------------------------------
-let g:ycm_extra_conf_globlist = ['~/workspace/*']
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-set completeopt-=preview
-let g:ycm_semantic_triggers = {'haskell' : ['.']}
+au BufRead,BufNewFile * setlocal signcolumn=yes
 
-" ---------------------------------------------------------------------------
-" vim2hs
-" ---------------------------------------------------------------------------
+let g:lsp_signs_enabled = 1           " enable signs
+let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
-" Replace '::' and '-->' with fancy characters.
-"let g:haskell_conceal_wide = 1
+" Autocomplete
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
-" disable all conceals, including the simple ones like
-" lambda and composition
-"let g:haskell_conceal              = 0
+" Force refresh completion
+imap <F8> <Plug>(asyncomplete_force_refresh)
 
-" disable concealing of "enumerations": commatized lists like
-" deriving clauses and LANGUAGE pragmas,
-" otherwise collapsed into a single ellipsis
-"let g:haskell_conceal_enumerations = 0
+" Keybindings
+map <F7> :LspHover<CR>
+map <S-F7> :pclose<CR>
+nnoremap <leader>jd :LspDefinition<CR>
 
 " ---------------------------------------------------------------------------
 " Latex-suite
@@ -241,42 +209,10 @@ let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_ViewRule_pdf = 'evince'
 
 " ---------------------------------------------------------------------------
-" Syntastic
-" ---------------------------------------------------------------------------
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_mode_map = {
-    \ 'mode': 'passive',
-    \ 'active_filetypes': [],
-    \ 'passive_filetypes': []
-    \ }
-
-" ---------------------------------------------------------------------------
-" Airline
-" ---------------------------------------------------------------------------
-"let g:airline#extensions#tabline#enabled = 0
-"let g:airline#extensions#syntastic#enabled = 1
-
-" When patched fonts not available
-let g:airline_left_sep = ''
-"let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ' '
-"let g:airline_right_alt_sep = ''
-
-" Only used when patched fonts available
-"let g:airline_powerline_fonts = 1
-
-" ---------------------------------------------------------------------------
-" CtrlP
-" ---------------------------------------------------------------------------
-let g:ctrlp_root_markers = ['.ctrlp']
-" Call out to Ag for performance
-"let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-" ---------------------------------------------------------------------------
 " clang-format
 " ---------------------------------------------------------------------------
-map <C-K> :py3f /usr/share/vim/addons/syntax/clang-format-4.0.py<CR>
-imap <C-K> <ESC>:py3f /usr/share/vim/addons/syntax/clang-format-4.0.py<CR>i
+map <C-K> :py3f /usr/share/vim/addons/syntax/clang-format-6.0.py<CR>
+imap <C-K> <ESC>:py3f /usr/share/vim/addons/syntax/clang-format-6.0.py<CR>i
 
 " ---------------------------------------------------------------------------
 " vim-cpp-enhanced-hightlight
@@ -289,16 +225,6 @@ let g:cpp_experimental_simple_template_highlight = 1
 " vim-better-whitespace
 " ---------------------------------------------------------------------------
 let g:better_whitespace_filetypes_blacklist=['mail', 'tex', 'text']
-
-" ---------------------------------------------------------------------------
-" Python
-" ---------------------------------------------------------------------------
-let python_highlight_all = 1
-
-" ---------------------------------------------------------------------------
-" vim-hindent
-" ---------------------------------------------------------------------------
-let g:hindent_style = "gibiansky"
 
 " ---------------------------------------------------------------------------
 " Fortran
@@ -315,8 +241,6 @@ if has("gui_running")
         silent! set guifont=Liberation\ Mono\ 13
         "silent! set guifont=Liberation\ Mono\ 11
         set guioptions-=m   " remove menubar
-        set laststatus=2
-        let g:airline#extensions#tabline#enabled = 1
     elseif has("gui_win32")
         silent! colorscheme molokai
         silent! set guifont=Consolas:h11
