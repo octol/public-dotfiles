@@ -39,8 +39,8 @@ if !has("compatible")
     Plug 'vim-airline/vim-airline-themes'
     Plug 'tpope/vim-fugitive'
     Plug 'ntpeters/vim-better-whitespace'
-    "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    "Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
     Plug 'mtdl9/vim-log-highlighting'
     Plug 'mhinz/vim-grepper'
     "Plug 'airblade/vim-gitgutter'
