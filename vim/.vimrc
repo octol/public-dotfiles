@@ -16,28 +16,15 @@ let mapleader=','
 " Plugins
 " ---------------------------------------------------------------------------
 if !has("compatible")
-    if has("nvim")
-        if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-            silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-            autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-        endif
-    else
-        if empty(glob('~/.vim/autoload/plug.vim'))
-            silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-            autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-        endif
+    if empty(glob('~/.vim/autoload/plug.vim'))
+        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+            \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
 
     " Specify a directory for plugins
-    " - For Neovim: ~/.local/share/nvim/plugged
     " - Avoid using standard Vim directory names like 'plugin'
-    if has("nvim")
-        call plug#begin('~/.local/share/nvim/plugged')
-    else
-        call plug#begin('~/.vim/plugged')
-    endif
+    call plug#begin('~/.vim/plugged')
 
     " General
     " -------
@@ -61,7 +48,6 @@ if !has("compatible")
     Plug 'tpope/vim-speeddating'
     "Plug 'plasticboy/vim-markdown'
     Plug 'tpope/vim-markdown'
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
     Plug 'editorconfig/editorconfig-vim'
     Plug 'inkarkat/diff-fold.vim'
     Plug 'cespare/vim-toml', { 'branch': 'main' }
@@ -78,54 +64,6 @@ if !has("compatible")
     " Fish shell
     Plug 'Stautob/vim-fish'
 
-    " LSP
-    " -----------------
-    if has("nvim")
-        " Collection of common configurations for the Nvim LSP client
-        Plug 'neovim/nvim-lspconfig'
-
-        " Completion framework
-        Plug 'hrsh7th/nvim-cmp'
-        " LSP completion source for nvim-cmp
-        Plug 'hrsh7th/cmp-nvim-lsp'
-        " cmp Snippet completion
-        Plug 'hrsh7th/cmp-vsnip'
-        " cmp Path completion
-        Plug 'hrsh7th/cmp-path'
-        Plug 'hrsh7th/cmp-buffer'
-
-        " To enable more of the features of rust-analyzer, such as inlay hints and more!
-        Plug 'simrat39/rust-tools.nvim'
-
-        " Snippet engine
-        Plug 'hrsh7th/vim-vsnip'
-
-        " Fuzzy finder
-        " Optional
-        Plug 'nvim-lua/popup.nvim'
-        Plug 'nvim-lua/plenary.nvim'
-        Plug 'nvim-telescope/telescope.nvim'
-        Plug 'nvim-telescope/telescope-ui-select.nvim'
-
-        " Debugging (needs plenary from above as well)
-        Plug 'mfussenegger/nvim-dap'
-
-        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-
-        "Plug 'kyazdani42/nvim-tree.lua'
-
-        Plug 'kyazdani42/nvim-web-devicons'
-        Plug 'folke/trouble.nvim'
-
-        Plug 'folke/lsp-colors.nvim'
-
-    else
-        Plug 'prabirshrestha/async.vim'
-        Plug 'prabirshrestha/vim-lsp'
-        Plug 'prabirshrestha/asyncomplete.vim'
-        Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    endif
-
     " Themes
     " ------
     Plug 'tomasr/molokai'
@@ -133,9 +71,7 @@ if !has("compatible")
     Plug 'chriskempson/base16-vim'
     Plug 'nanotech/jellybeans.vim'
     "Plug 'dracula/vim', { 'as': 'dracula' }
-    Plug 'Mofiqul/dracula.nvim'
     Plug 'arzg/vim-colors-xcode'
-    Plug 'shaunsingh/nord.nvim'
 
     " Initialize plugin system
     call plug#end()
@@ -273,207 +209,6 @@ au FileType cmake set sw=2 sts=2 et
 "au FileType rust nnoremap <silent> <C-K> :RustFmt<CR>
 "au FileType rust set noexpandtab tabstop=4 shiftwidth=4
 
-if has("nvim")
-    " menuone: popup even when there's only one match
-    " noinsert: Do not insert text until a selection is made
-    " noselect: Do not select, force user to select one from the menu
-    set completeopt=menuone,noinsert,noselect
-
-    " Avoid showing extra messages when using completion
-    set shortmess+=c
-
-    " Configure LSP through rust-tools.nvim plugin.
-    " rust-tools will configure and enable certain LSP features for us.
-    " See https://github.com/simrat39/rust-tools.nvim#configuration
-lua <<EOF
-    local nvim_lsp = require'lspconfig'
-
-    local opts = {
-        tools = { -- rust-tools options
-            autoSetHints = true,
-        },
-
-        -- all the opts to send to nvim-lspconfig
-        -- these override the defaults set by rust-tools.nvim
-        -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
-        server = {
-            settings = {
-                -- to enable rust-analyzer settings visit:
-                -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-                ["rust-analyzer"] = {
-                    -- enable clippy on save
-                    checkOnSave = {
-                        command = "clippy",
-                        overrideCommand = {
-                            'cargo',
-                            'clippy',
-                            '--message-format=json',
-                            '--workspace',
-                            '--all-targets',
-                            '--all-features',
-                            '--',
-                            '-Wrust_2018_idioms',
-                            '-Wmissing_debug_implementations',
-                            '-Wclippy::pedantic',
-                            '-Aclippy::missing_errors_doc',
-                            '-Aclippy::missing_panics_doc',
-                            '-Aclippy::no_effect_underscore_binding',
-                            '-Aclippy::must_use_candidate',
-                            '-Aclippy::module_name_repetitions',
-                            '-Aclippy::items_after_statements',
-                            '-Aclippy::semicolon-if-nothing-returned'
-                        }
-                    },
-                }
-            }
-        },
-    }
-
-    require('rust-tools').setup(opts)
-EOF
-
-    " Setup Completion
-    " See https://github.com/hrsh7th/nvim-cmp#basic-configuration
-lua <<EOF
-    local cmp = require'cmp'
-    cmp.setup({
-        -- Enable LSP snippets
-        snippet = {
-            expand = function(args)
-                vim.fn["vsnip#anonymous"](args.body)
-            end,
-        },
-        mapping = {
-            ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-            ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-            ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-            ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-            ['<C-e>'] = cmp.mapping({
-                i = cmp.mapping.abort(),
-                c = cmp.mapping.close(),
-            }),
-            ['<CR>'] = cmp.mapping.confirm({
-                select = false,
-            }),
-            -- Additional next_item
-            ['<C-p>'] = cmp.mapping.select_prev_item(),
-            ['<C-n>'] = cmp.mapping.select_next_item(),
-            -- Add tab support
-            ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-            ['<Tab>'] = cmp.mapping.select_next_item(),
-        },
-
-        -- Installed sources
-        sources = cmp.config.sources({
-            { name = 'nvim_lsp' },
-            { name = 'vsnip' }, -- For vsnip users.
-            -- { name = 'luasnip' }, -- For luasnip users.
-            -- { name = 'ultisnips' }, -- For ultisnips users.
-            -- { name = 'snippy' }, -- For snippy users.
-        }, {
-            { name = 'buffer' },
-        })
-    })
-EOF
-
-    " Code navigation shortcuts
-    "nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-    nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-    "nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-    nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-    "nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-    "nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-    "nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-    "nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-    "nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-
-    "nnoremap <silent> gR     <cmd>lua vim.lsp.buf.rename()<CR>
-    nnoremap <silent> <leader>rn     <cmd>lua vim.lsp.buf.rename()<CR>
-
-    nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
-    nnoremap <silent> gA    <cmd>lua vim.lsp.buf.range_code_action()<CR>
-
-    nnoremap <silent> <c-]> <cmd>Telescope lsp_definitions<cr>
-    nnoremap <silent> gD <cmd>Telescope lsp_implementations<cr>
-    nnoremap <silent> 1gD <cmd>Telescope lsp_type_definitions<cr>
-    nnoremap <silent> gr <cmd>Telescope lsp_references<cr>
-    nnoremap <silent> g0 <cmd> Telescope lsp_document_symbols<cr>
-    "nnoremap <silent> gW <cmd>Telescope lsp_workspace_symbols<cr>
-    nnoremap <silent> gW <cmd>Telescope lsp_dynamic_workspace_symbols<cr>
-    nnoremap <silent> gd <cmd>Telescope lsp_definitions<cr>
-
-    "nnoremap <silent> ga <cmd>Telescope lsp_code_actions<cr>
-    "nnoremap <silent> gA <cmd>Telescope lsp_range_code_actions<cr>
-
-    " Set updatetime for CursorHold
-    " 3000ms of no cursor movement to trigger CursorHold
-    set updatetime=3000
-    " Show diagnostic popup on cursor hold
-    autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
-
-    " Goto previous/next diagnostic warning/error
-    nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
-    nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
-
-    "nnoremap BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
-    au FileType rust map <C-K> <cmd>lua vim.lsp.buf.formatting()<CR>
-
-    " have a fixed column for the diagnostics to appear in
-    " this removes the jitter when warnings/errors flow in
-    autocmd FileType rust set signcolumn=yes
-
-lua <<EOF
-    require'nvim-treesitter.configs'.setup {
-        -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-        ensure_installed = "all",
-
-        -- Install languages synchronously (only applied to `ensure_installed`)
-        sync_install = false,
-
-        -- List of parsers to ignore installing
-        ignore_install = { "javascript" },
-
-        highlight = {
-            -- `false` will disable the whole extension
-            enable = true,
-
-            -- list of language that will be disabled
-            disable = { "c" },
-
-            -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-            -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-            -- Using this option may slow down your editor, and you may see some duplicate highlights.
-            -- Instead of true it can also be a list of languages
-            additional_vim_regex_highlighting = false,
-        },
-    }
-EOF
-
-lua << EOF
-  require("trouble").setup {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-  }
-EOF
-
-lua <<EOF
-    require("telescope").setup {
-        extensions = {
-            ["ui-select"] = {
-                require("telescope.themes").get_dropdown {
-                    -- even more opts
-                }
-            }
-        }
-    }
-    -- To get ui-select loaded and working with telescope, you need to call
-    -- load_extension, somewhere after setup function:
-    require("telescope").load_extension("ui-select")
-EOF
-
-endif
-
 " ---------------------------------------------------------------------------
 " Nerdtree plugin
 " ---------------------------------------------------------------------------
@@ -565,17 +300,6 @@ let g:vim_markdown_toml_frontmatter = 1  " for TOML format
 let g:vim_markdown_json_frontmatter = 1  " for JSON format
 
 " ---------------------------------------------------------------------------
-" trouble
-" ---------------------------------------------------------------------------
-
-nnoremap <leader>xx <cmd>TroubleToggle<cr>
-nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
-nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
-nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
-nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
-nnoremap gR <cmd>TroubleToggle lsp_references<cr>
-
-" ---------------------------------------------------------------------------
 " GUI specific settings
 " ---------------------------------------------------------------------------
 if has("gui_running")
@@ -596,8 +320,7 @@ if has("gui_running")
     set guioptions-=L   " remove left scrollbar
 elseif &t_Co == 256
     " If we have 256 colors in the current terminal, set some nice theme
-    "silent! colorscheme molokai
-    silent! colorscheme dracula
+    silent! colorscheme molokai
     " Disable Background Color Erase (BCE) so that color schemes
     " render properly when inside 256-color tmux and GNU screen.
     "set t_ut=
@@ -608,47 +331,13 @@ end
 " --------------------------------------------------------------------------
 " Helper functions
 " --------------------------------------------------------------------------
-function! MyDiff()
-    let opt = '-a --binary '
-    if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-    if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-    let arg1 = v:fname_in
-    if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-    let arg2 = v:fname_new
-    if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-    let arg3 = v:fname_out
-    if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-    if $VIMRUNTIME =~ ' '
-        if &sh =~ '\<cmd'
-            let cmd = '""' . $VIMRUNTIME . '\diff"'
-            let eq = '""'
-        else
-            let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-        endif
-    else
-        let cmd = $VIMRUNTIME . '\diff'
-    endif
-    silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
-
 function! ToggleColor()
-    if has("nvim")
-        if !exists("g:colors_name")
-            set t_Co=256
-            colorscheme molokai
-        else
-            set t_Co=8
-            colorscheme default
-            set background=dark
-        endif
+    if &t_Co==8
+        set t_Co=256
+        colorscheme molokai
     else
-        if &t_Co==8
-            set t_Co=256
-            colorscheme molokai
-        else
-            set t_Co=8
-            colorscheme default
-            set background=dark
-        endif
+        set t_Co=8
+        colorscheme default
+        set background=dark
     endif
 endfunction
