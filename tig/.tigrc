@@ -1,0 +1,4 @@
+set main-view = line-number:no,interval=5 id:no date:relative-compact author:abbreviated commit-title:yes,graph,refs,overflow=no
+set line-graphics = utf-8
+set log-options = --show-signature
+set diff-options = --show-signature

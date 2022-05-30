@@ -1,0 +1,26 @@
+[user]
+	name = Jon Häggblad
+	email = jon.haggblad@gmail.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[push]
+	default = simple
+[merge]
+	tool = vimdiff
+[alias]
+	lg = log --oneline --graph --decorate
+	sort-branches = branch --sort=committerdate
+	sort-branches-all = branch -a --sort=committerdate
+[pull]
+	ff = only
+[core]
+	pager = delta --dark
+	editor = nvim
+[delta]
+	side-by-side = true
+[fetch]
+	parallel = 0
+[init]
+	defaultBranch = master
