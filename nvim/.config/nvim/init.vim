@@ -16,28 +16,16 @@ let mapleader=','
 " Plugins
 " ---------------------------------------------------------------------------
 if !has("compatible")
-    if has("nvim")
-        if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-            silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-            autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-        endif
-    else
-        if empty(glob('~/.vim/autoload/plug.vim'))
-            silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-            autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-        endif
+    if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+        silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+            \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
 
     " Specify a directory for plugins
     " - For Neovim: ~/.local/share/nvim/plugged
     " - Avoid using standard Vim directory names like 'plugin'
-    if has("nvim")
-        call plug#begin('~/.local/share/nvim/plugged')
-    else
-        call plug#begin('~/.vim/plugged')
-    endif
+    call plug#begin('~/.local/share/nvim/plugged')
 
     " General
     " -------
@@ -80,51 +68,44 @@ if !has("compatible")
 
     " LSP
     " -----------------
-    if has("nvim")
-        " Collection of common configurations for the Nvim LSP client
-        Plug 'neovim/nvim-lspconfig'
+    " Collection of common configurations for the Nvim LSP client
+    Plug 'neovim/nvim-lspconfig'
 
-        " Completion framework
-        Plug 'hrsh7th/nvim-cmp'
-        " LSP completion source for nvim-cmp
-        Plug 'hrsh7th/cmp-nvim-lsp'
-        " cmp Snippet completion
-        Plug 'hrsh7th/cmp-vsnip'
-        " cmp Path completion
-        Plug 'hrsh7th/cmp-path'
-        Plug 'hrsh7th/cmp-buffer'
+    " Completion framework
+    Plug 'hrsh7th/nvim-cmp'
+    " LSP completion source for nvim-cmp
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    " cmp Snippet completion
+    Plug 'hrsh7th/cmp-vsnip'
+    " cmp Path completion
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-buffer'
 
-        " To enable more of the features of rust-analyzer, such as inlay hints and more!
-        Plug 'simrat39/rust-tools.nvim'
+    " To enable more of the features of rust-analyzer, such as inlay hints and more!
+    Plug 'simrat39/rust-tools.nvim'
 
-        " Snippet engine
-        Plug 'hrsh7th/vim-vsnip'
+    " Snippet engine
+    Plug 'hrsh7th/vim-vsnip'
 
-        " Fuzzy finder
-        " Optional
-        Plug 'nvim-lua/popup.nvim'
-        Plug 'nvim-lua/plenary.nvim'
-        Plug 'nvim-telescope/telescope.nvim'
-        Plug 'nvim-telescope/telescope-ui-select.nvim'
+    " Fuzzy finder
+    " Optional
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-ui-select.nvim'
 
-        " Debugging (needs plenary from above as well)
-        Plug 'mfussenegger/nvim-dap'
+    " Debugging (needs plenary from above as well)
+    Plug 'mfussenegger/nvim-dap'
 
-        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
-        "Plug 'kyazdani42/nvim-tree.lua'
+    "Plug 'kyazdani42/nvim-tree.lua'
 
-        Plug 'kyazdani42/nvim-web-devicons'
-        Plug 'folke/trouble.nvim'
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'folke/trouble.nvim'
 
-        Plug 'folke/lsp-colors.nvim'
+    Plug 'folke/lsp-colors.nvim'
 
-    else
-        Plug 'prabirshrestha/async.vim'
-        Plug 'prabirshrestha/vim-lsp'
-        Plug 'prabirshrestha/asyncomplete.vim'
-        Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    endif
 
     " Themes
     " ------
@@ -273,18 +254,17 @@ au FileType cmake set sw=2 sts=2 et
 "au FileType rust nnoremap <silent> <C-K> :RustFmt<CR>
 "au FileType rust set noexpandtab tabstop=4 shiftwidth=4
 
-if has("nvim")
-    " menuone: popup even when there's only one match
-    " noinsert: Do not insert text until a selection is made
-    " noselect: Do not select, force user to select one from the menu
-    set completeopt=menuone,noinsert,noselect
+" menuone: popup even when there's only one match
+" noinsert: Do not insert text until a selection is made
+" noselect: Do not select, force user to select one from the menu
+set completeopt=menuone,noinsert,noselect
 
-    " Avoid showing extra messages when using completion
-    set shortmess+=c
+" Avoid showing extra messages when using completion
+set shortmess+=c
 
-    " Configure LSP through rust-tools.nvim plugin.
-    " rust-tools will configure and enable certain LSP features for us.
-    " See https://github.com/simrat39/rust-tools.nvim#configuration
+" Configure LSP through rust-tools.nvim plugin.
+" rust-tools will configure and enable certain LSP features for us.
+" See https://github.com/simrat39/rust-tools.nvim#configuration
 lua <<EOF
     local nvim_lsp = require'lspconfig'
 
@@ -376,51 +356,51 @@ lua <<EOF
     })
 EOF
 
-    " Code navigation shortcuts
-    "nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-    nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-    "nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-    nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-    "nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-    "nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-    "nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-    "nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-    "nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+" Code navigation shortcuts
+"nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+"nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+"nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+"nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+"nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+"nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+"nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 
-    "nnoremap <silent> gR     <cmd>lua vim.lsp.buf.rename()<CR>
-    nnoremap <silent> <leader>rn     <cmd>lua vim.lsp.buf.rename()<CR>
+"nnoremap <silent> gR     <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <leader>rn     <cmd>lua vim.lsp.buf.rename()<CR>
 
-    nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
-    nnoremap <silent> gA    <cmd>lua vim.lsp.buf.range_code_action()<CR>
+nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> gA    <cmd>lua vim.lsp.buf.range_code_action()<CR>
 
-    nnoremap <silent> <c-]> <cmd>Telescope lsp_definitions<cr>
-    nnoremap <silent> gD <cmd>Telescope lsp_implementations<cr>
-    nnoremap <silent> 1gD <cmd>Telescope lsp_type_definitions<cr>
-    nnoremap <silent> gr <cmd>Telescope lsp_references<cr>
-    nnoremap <silent> g0 <cmd> Telescope lsp_document_symbols<cr>
-    "nnoremap <silent> gW <cmd>Telescope lsp_workspace_symbols<cr>
-    nnoremap <silent> gW <cmd>Telescope lsp_dynamic_workspace_symbols<cr>
-    nnoremap <silent> gd <cmd>Telescope lsp_definitions<cr>
+nnoremap <silent> <c-]> <cmd>Telescope lsp_definitions<cr>
+nnoremap <silent> gD <cmd>Telescope lsp_implementations<cr>
+nnoremap <silent> 1gD <cmd>Telescope lsp_type_definitions<cr>
+nnoremap <silent> gr <cmd>Telescope lsp_references<cr>
+nnoremap <silent> g0 <cmd> Telescope lsp_document_symbols<cr>
+"nnoremap <silent> gW <cmd>Telescope lsp_workspace_symbols<cr>
+nnoremap <silent> gW <cmd>Telescope lsp_dynamic_workspace_symbols<cr>
+nnoremap <silent> gd <cmd>Telescope lsp_definitions<cr>
 
-    "nnoremap <silent> ga <cmd>Telescope lsp_code_actions<cr>
-    "nnoremap <silent> gA <cmd>Telescope lsp_range_code_actions<cr>
+"nnoremap <silent> ga <cmd>Telescope lsp_code_actions<cr>
+"nnoremap <silent> gA <cmd>Telescope lsp_range_code_actions<cr>
 
-    " Set updatetime for CursorHold
-    " 3000ms of no cursor movement to trigger CursorHold
-    set updatetime=3000
-    " Show diagnostic popup on cursor hold
-    autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+" Set updatetime for CursorHold
+" 3000ms of no cursor movement to trigger CursorHold
+set updatetime=3000
+" Show diagnostic popup on cursor hold
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
-    " Goto previous/next diagnostic warning/error
-    nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
-    nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
+" Goto previous/next diagnostic warning/error
+nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
+nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
 
-    "nnoremap BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
-    au FileType rust map <C-K> <cmd>lua vim.lsp.buf.formatting()<CR>
+"nnoremap BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
+au FileType rust map <C-K> <cmd>lua vim.lsp.buf.formatting()<CR>
 
-    " have a fixed column for the diagnostics to appear in
-    " this removes the jitter when warnings/errors flow in
-    autocmd FileType rust set signcolumn=yes
+" have a fixed column for the diagnostics to appear in
+" this removes the jitter when warnings/errors flow in
+autocmd FileType rust set signcolumn=yes
 
 lua <<EOF
     require'nvim-treesitter.configs'.setup {
@@ -471,8 +451,6 @@ lua <<EOF
     -- load_extension, somewhere after setup function:
     require("telescope").load_extension("ui-select")
 EOF
-
-endif
 
 " ---------------------------------------------------------------------------
 " Nerdtree plugin
@@ -578,23 +556,7 @@ nnoremap gR <cmd>TroubleToggle lsp_references<cr>
 " ---------------------------------------------------------------------------
 " GUI specific settings
 " ---------------------------------------------------------------------------
-if has("gui_running")
-    if has("gui_gtk2") || has("gui_gtk3")
-        silent! colorscheme molokai
-        "silent! set guifont=Droid\ Sans\ Mono\ 11
-        silent! set guifont=Liberation\ Mono\ 13
-        "silent! set guifont=Liberation\ Mono\ 11
-        set guioptions-=m   " remove menubar
-    elseif has("gui_win32")
-        silent! colorscheme molokai
-        silent! set guifont=Consolas:h11
-        set lines=40 columns=120
-        set diffexpr=MyDiff()
-    endif
-    set guioptions-=T   " remove icons
-    set guioptions-=r   " remove right scrollbar
-    set guioptions-=L   " remove left scrollbar
-elseif &t_Co == 256
+if &t_Co == 256
     " If we have 256 colors in the current terminal, set some nice theme
     "silent! colorscheme molokai
     silent! colorscheme dracula
@@ -608,47 +570,13 @@ end
 " --------------------------------------------------------------------------
 " Helper functions
 " --------------------------------------------------------------------------
-function! MyDiff()
-    let opt = '-a --binary '
-    if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-    if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-    let arg1 = v:fname_in
-    if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-    let arg2 = v:fname_new
-    if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-    let arg3 = v:fname_out
-    if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-    if $VIMRUNTIME =~ ' '
-        if &sh =~ '\<cmd'
-            let cmd = '""' . $VIMRUNTIME . '\diff"'
-            let eq = '""'
-        else
-            let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-        endif
-    else
-        let cmd = $VIMRUNTIME . '\diff'
-    endif
-    silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
-
 function! ToggleColor()
-    if has("nvim")
-        if !exists("g:colors_name")
-            set t_Co=256
-            colorscheme molokai
-        else
-            set t_Co=8
-            colorscheme default
-            set background=dark
-        endif
+    if !exists("g:colors_name")
+        set t_Co=256
+        colorscheme molokai
     else
-        if &t_Co==8
-            set t_Co=256
-            colorscheme molokai
-        else
-            set t_Co=8
-            colorscheme default
-            set background=dark
-        endif
+        set t_Co=8
+        colorscheme default
+        set background=dark
     endif
 endfunction
