@@ -22,3 +22,5 @@ set -gx PATH /usr/lib/ccache $PATH
 #    set (gnome-keyring-daemon --start | string split "=")
 #    export SSH_AUTH_SOCK
 #end
+
+alias fixssh="eval (tmux show-environment SSH_AUTH_SOCK | sed 's/=/ /' | sed 's/^/set /')"
