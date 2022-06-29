@@ -295,7 +295,6 @@ lua <<EOF
                             '--all-features',
                             '--',
                             '-Wrust_2018_idioms',
-                            '-Wmissing_debug_implementations',
                             '-Wclippy::pedantic',
                             '-Aclippy::missing_errors_doc',
                             '-Aclippy::missing_panics_doc',
@@ -303,7 +302,9 @@ lua <<EOF
                             '-Aclippy::must_use_candidate',
                             '-Aclippy::module_name_repetitions',
                             '-Aclippy::items_after_statements',
-                            '-Aclippy::semicolon-if-nothing-returned'
+                            '-Aclippy::semicolon-if-nothing-returned',
+                            '-Aclippy::wildcard-imports',
+                            '-Aclippy::default-trait-access'
                         }
                     },
                 }
