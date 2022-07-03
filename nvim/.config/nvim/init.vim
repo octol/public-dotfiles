@@ -15,114 +15,11 @@ let mapleader=','
 " ---------------------------------------------------------------------------
 " Plugins
 " ---------------------------------------------------------------------------
-if !has("compatible")
-    if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-        silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-            \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-    endif
 
-    " Specify a directory for plugins
-    " - For Neovim: ~/.local/share/nvim/plugged
-    " - Avoid using standard Vim directory names like 'plugin'
-    call plug#begin('~/.local/share/nvim/plugged')
+lua require('plugins')
 
-    " General
-    " -------
-    Plug 'vimoutliner/vimoutliner'
-    Plug 'jamessan/vim-gnupg'
-    Plug 'scrooloose/nerdcommenter'
-    Plug 'scrooloose/nerdtree'
-    Plug 'jlanzarotta/bufexplorer'
-    Plug 'majutsushi/tagbar'
-    "Plug 'itchyny/lightline.vim'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'tpope/vim-fugitive'
-    Plug 'ntpeters/vim-better-whitespace'
-    "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    "Plug 'junegunn/fzf.vim'
-    Plug 'mtdl9/vim-log-highlighting'
-    Plug 'mhinz/vim-grepper'
-    "Plug 'airblade/vim-gitgutter'
-    Plug 'jceb/vim-orgmode'
-    Plug 'tpope/vim-speeddating'
-    "Plug 'plasticboy/vim-markdown'
-    Plug 'tpope/vim-markdown'
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
-    Plug 'editorconfig/editorconfig-vim'
-    Plug 'inkarkat/diff-fold.vim'
-    Plug 'cespare/vim-toml', { 'branch': 'main' }
-
-    " C/C++
-    Plug 'pboettch/vim-cmake-syntax', { 'for': 'cmake' }
-    Plug 'vim-scripts/a.vim', { 'for' : ['c', 'cpp'] }
-    Plug 'octol/vim-cpp-enhanced-highlight', { 'for' : ['c','cpp'] }
-
-    " Rust
-    Plug 'rust-lang/rust.vim'
-    "Plug 'arzg/vim-rust-syntax-ext'
-
-    " Fish shell
-    Plug 'Stautob/vim-fish'
-
-    " LSP
-    " -----------------
-    " Collection of common configurations for the Nvim LSP client
-    Plug 'neovim/nvim-lspconfig'
-
-    " Completion framework
-    Plug 'hrsh7th/nvim-cmp'
-    " LSP completion source for nvim-cmp
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    " cmp Snippet completion
-    Plug 'hrsh7th/cmp-vsnip'
-    " cmp Path completion
-    Plug 'hrsh7th/cmp-path'
-    Plug 'hrsh7th/cmp-buffer'
-
-    " To enable more of the features of rust-analyzer, such as inlay hints and more!
-    Plug 'simrat39/rust-tools.nvim'
-
-    " Snippet engine
-    Plug 'hrsh7th/vim-vsnip'
-
-    " Fuzzy finder
-    " Optional
-    Plug 'nvim-lua/popup.nvim'
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim'
-    Plug 'nvim-telescope/telescope-ui-select.nvim'
-
-    " Debugging (needs plenary from above as well)
-    Plug 'mfussenegger/nvim-dap'
-
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-
-    "Plug 'kyazdani42/nvim-tree.lua'
-
-    Plug 'kyazdani42/nvim-web-devicons'
-    Plug 'folke/trouble.nvim'
-
-    Plug 'folke/lsp-colors.nvim'
-
-    Plug 'saecki/crates.nvim'
-
-
-    " Themes
-    " ------
-    Plug 'tomasr/molokai'
-    Plug 'octol/vombatidae.vim'
-    Plug 'chriskempson/base16-vim'
-    Plug 'nanotech/jellybeans.vim'
-    "Plug 'dracula/vim', { 'as': 'dracula' }
-    Plug 'Mofiqul/dracula.nvim'
-    Plug 'arzg/vim-colors-xcode'
-    Plug 'shaunsingh/nord.nvim'
-
-    " Initialize plugin system
-    call plug#end()
-endif
+" To avoid slowdowns on fish shell
+set shell=/bin/bash
 
 " ---------------------------------------------------------------------------
 " Global editing settings
@@ -489,12 +386,6 @@ xmap <leader>c<space> <plug>NERDCommenterToggle
 map <F2> :NERDTreeToggle<CR>
 nnoremap <leader>tt :NERDTreeToggle<CR>
 nnoremap <leader>tf :NERDTreeFind<CR>
-
-" ---------------------------------------------------------------------------
-" Tagbar plugin
-" ---------------------------------------------------------------------------
-map <F3> :TagbarToggle<CR>
-let g:tagbar_sort = 0
 
 " ---------------------------------------------------------------------------
 " Latex-suite
