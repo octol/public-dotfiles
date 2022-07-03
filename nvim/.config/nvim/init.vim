@@ -330,14 +330,6 @@ lua <<EOF
     }
 EOF
 
-lua << EOF
-  require("trouble").setup {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-  }
-EOF
-
 lua <<EOF
     require("telescope").setup {
         extensions = {
@@ -352,8 +344,6 @@ lua <<EOF
     -- load_extension, somewhere after setup function:
     require("telescope").load_extension("ui-select")
 EOF
-
-lua require('crates').setup()
 
 nnoremap <silent> <leader>ct :lua require('crates').toggle()<cr>
 nnoremap <silent> <leader>cr :lua require('crates').reload()<cr>
