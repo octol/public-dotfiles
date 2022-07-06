@@ -19,7 +19,15 @@ return require('packer').startup(function()
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true },
         config = function()
-            require('lualine').setup()
+            require('lualine').setup {
+                sections = {
+                    lualine_b = {'diff', 'diagnostics'},
+                    lualine_c = {{'filename', path = 1}},
+                },
+                inactive_sections = {
+                    lualine_c = {{'filename', path = 1}},
+                }
+            }
         end
     }
 
@@ -89,7 +97,7 @@ return require('packer').startup(function()
     -- Themes
     use 'tomasr/molokai'
     use 'octol/vombatidae.vim'
-    use 'chriskempson/base16-vim'
+    --use 'chriskempson/base16-vim'
     use 'nanotech/jellybeans.vim'
     --use {'dracula/vim', as = 'dracula'}
     use 'Mofiqul/dracula.nvim'
