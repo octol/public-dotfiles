@@ -8,10 +8,17 @@ return require('packer').startup(function()
     use 'preservim/nerdtree'
     use 'jlanzarotta/bufexplorer'
 
-    use 'tpope/vim-fugitive'
     use 'ntpeters/vim-better-whitespace'
     use 'mtdl9/vim-log-highlighting'
     use 'editorconfig/editorconfig-vim'
+
+    use 'tpope/vim-fugitive'
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require('gitsigns').setup()
+        end
+    }
 
     use 'kyazdani42/nvim-web-devicons'
 
