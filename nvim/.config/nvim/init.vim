@@ -494,3 +494,5 @@ function! ToggleColor()
         set background=dark
     endif
 endfunction
+
+:command! -nargs=1 -range=% Filter %y z|tabnew|0put=@z|%!grep -n '<args>'

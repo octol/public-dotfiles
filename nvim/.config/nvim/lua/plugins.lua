@@ -12,6 +12,8 @@ return require('packer').startup(function()
     use 'mtdl9/vim-log-highlighting'
     use 'editorconfig/editorconfig-vim'
 
+    use 'andreshazard/vim-logreview'
+
     use 'tpope/vim-fugitive'
     use {
         'lewis6991/gitsigns.nvim',
@@ -37,6 +39,9 @@ return require('packer').startup(function()
             }
         end
     }
+
+    -- Markdown
+    use {"ellisonleao/glow.nvim"}
 
     -- C++
     use {'vim-scripts/a.vim', ft = {'c', 'cpp'}}
