@@ -304,6 +304,24 @@ au FileType rust map <C-K> <cmd>lua vim.lsp.buf.formatting()<CR>
 autocmd FileType rust set signcolumn=yes
 
 lua <<EOF
+  vim.g.copilot_no_tab_map = true
+  vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+
+  vim.g.copilot_filetypes = {
+    ["*"] = false,
+    ["javascript"] = true,
+    ["typescript"] = true,
+    ["lua"] = false,
+    ["rust"] = true,
+    ["c"] = true,
+    ["c#"] = true,
+    ["c++"] = true,
+    ["go"] = true,
+    ["python"] = true,
+  }
+EOF
+
+lua <<EOF
     require'nvim-treesitter.configs'.setup {
         -- One of "all", "maintained" (parsers with maintainers), or a list of languages
         ensure_installed = "all",
