@@ -304,6 +304,7 @@ au FileType rust map <C-K> <cmd>lua vim.lsp.buf.formatting()<CR>
 autocmd FileType rust set signcolumn=yes
 
 lua <<EOF
+  -- copilot has tab clash
   vim.g.copilot_no_tab_map = true
   vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 

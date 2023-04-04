@@ -53,6 +53,7 @@ return require('packer').startup(function()
     -- LSP
     use 'neovim/nvim-lspconfig'
 
+    -- Copilot
     use 'github/copilot.vim'
 
     -- Completion
