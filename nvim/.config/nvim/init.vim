@@ -181,28 +181,8 @@ lua <<EOF
                 -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
                 ["rust-analyzer"] = {
                     -- enable clippy on save
-                    checkOnSave = {
+                    check = {
                         command = "clippy",
-                        overrideCommand = {
-                            'cargo',
-                            'clippy',
-                            '--message-format=json',
-                            '--workspace',
-                            '--all-targets',
-                            '--all-features',
-                            '--',
-                            '-Wrust_2018_idioms',
-                            '-Wclippy::pedantic',
-                            '-Aclippy::missing_errors_doc',
-                            '-Aclippy::missing_panics_doc',
-                            '-Aclippy::no_effect_underscore_binding',
-                            '-Aclippy::must_use_candidate',
-                            '-Aclippy::module_name_repetitions',
-                            '-Aclippy::items_after_statements',
-                            '-Aclippy::semicolon-if-nothing-returned',
-                            '-Aclippy::wildcard-imports',
-                            '-Aclippy::default-trait-access'
-                        }
                     },
                 }
             }
