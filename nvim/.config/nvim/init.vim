@@ -168,9 +168,13 @@ lua <<EOF
     local nvim_lsp = require'lspconfig'
 
     local opts = {
-        tools = { -- rust-tools options
-            autoSetHints = true,
-        },
+        --tools = { -- rust-tools options
+        --    autoSetHints = true,
+        --},
+
+        --runnables = {
+        --    use_telescope = true,
+        --},
 
         -- all the opts to send to nvim-lspconfig
         -- these override the defaults set by rust-tools.nvim
@@ -222,6 +226,10 @@ lua <<EOF
             ['<S-Tab>'] = cmp.mapping.select_prev_item(),
             ['<Tab>'] = cmp.mapping.select_next_item(),
         },
+        --window = {
+        --    completion = cmp.config.window.bordered(),
+        --    documentation = cmp.config.window.bordered(),
+        --},
 
         -- Installed sources
         sources = cmp.config.sources({
@@ -236,6 +244,29 @@ lua <<EOF
         })
     })
 EOF
+
+lua <<EOF
+vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    update_in_insert = true,
+    underline = true,
+    severity_sort = false,
+    float = {
+        border = 'rounded',
+        source = 'always',
+        header = '',
+        prefix = '',
+    },
+})
+EOF
+
+"lua <<EOF
+"vim.cmd([[
+"set signcolumn=yes
+"autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+"]])
+"EOF
 
 " Code navigation shortcuts
 "nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
@@ -276,8 +307,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
 nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
 
-"nnoremap BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
-au FileType rust map <C-K> <cmd>lua vim.lsp.buf.formatting()<CR>
+au FileType rust map <C-K> <cmd>lua vim.lsp.buf.format { async = true }<CR>
 
 " have a fixed column for the diagnostics to appear in
 " this removes the jitter when warnings/errors flow in

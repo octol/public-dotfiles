@@ -53,6 +53,14 @@ return require('packer').startup(function()
     -- LSP
     use 'neovim/nvim-lspconfig'
 
+      -- Visualize lsp progress
+    use {
+        "j-hui/fidget.nvim",
+        config = function()
+        require("fidget").setup()
+        end
+    }
+
     -- Copilot
     use 'github/copilot.vim'
 
