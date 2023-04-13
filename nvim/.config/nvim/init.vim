@@ -1,32 +1,30 @@
 " ---------------------------------------------------------------------------
 " Operational settings
 " ---------------------------------------------------------------------------
-if has("autocmd")
-    filetype on
-    filetype plugin on  " load settings for specific modes
-    filetype indent on  " load indent settings for specific modes
-endif
-if !exists("syntax_on")
-    syntax on
-endif
-if has('mouse')
-    set mouse=a
-endif
-set modeline            " so vim reads inline options in files
+"filetype on
+"filetype plugin on  " load settings for specific modes
+"filetype indent on  " load indent settings for specific modes
+"if !exists("syntax_on")
+"    syntax on
+"endif
+"if has('mouse')
+"    set mouse=a
+"endif
+"set modeline            " so vim reads inline options in files
 
 " Jump to last position when opening a file
-if has("autocmd")
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+"if has("autocmd")
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+"endif
 
-set tags=./tags;/,tags;/
-set directory=~/tmp,/var/tmp,/tmp
+"set tags=./tags;/,tags;/
+"set directory=~/tmp,/var/tmp,/tmp
 
-let g:netrw_banner = 0
-let g:netrw_liststyle= 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 15
+"let g:netrw_banner = 0
+"let g:netrw_liststyle= 3
+"let g:netrw_browse_split = 4
+"let g:netrw_altv = 1
+"let g:netrw_winsize = 15
 
 " Use tab for autocompletion
 "inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -34,7 +32,7 @@ let g:netrw_winsize = 15
 " ---------------------------------------------------------------------------
 " Macros and keybindings
 " ---------------------------------------------------------------------------
-map <F4> :<C-U>call ToggleColor()<CR>
+"map <F4> :<C-U>call ToggleColor()<CR>
 " Inserts date
 inoremap <F5> <C-R>=strftime("%a, %d %b %Y %H:%M:%S %z")<CR>
 "set pastetoggle=<F5>
@@ -45,7 +43,7 @@ inoremap <F5> <C-R>=strftime("%a, %d %b %Y %H:%M:%S %z")<CR>
 " or
 "   :vimgrep pattern %
 "   :cwin
-:command! -nargs=1 -range=% Filter <line1>,<line2>y z|tabnew|0put=@z|%!grep -n '<q-args>'
+":command! -nargs=1 -range=% Filter <line1>,<line2>y z|tabnew|0put=@z|%!grep -n '<q-args>'
 
 " ---------------------------------------------------------------------------
 " Color settings
@@ -271,7 +269,7 @@ nnoremap gR <cmd>TroubleToggle lsp_references<cr>
 " ---------------------------------------------------------------------------
 " GUI specific settings
 " ---------------------------------------------------------------------------
-if &t_Co == 256
+"if &t_Co == 256
     " If we have 256 colors in the current terminal, set some nice theme
     "silent! colorscheme molokai
     silent! colorscheme dracula
@@ -279,23 +277,23 @@ if &t_Co == 256
     " render properly when inside 256-color tmux and GNU screen.
     "set t_ut=
     " Use 24-bit colors
-    set termguicolors
-end
+    "set termguicolors
+"end
 
-set guifont=FiraCode\ Nerd\ Font:h11
+"set guifont=FiraCode\ Nerd\ Font:h11
 
 " --------------------------------------------------------------------------
 " Helper functions
 " --------------------------------------------------------------------------
-function! ToggleColor()
-    if !exists("g:colors_name")
-        set t_Co=256
-        colorscheme molokai
-    else
-        set t_Co=8
-        colorscheme default
-        set background=dark
-    endif
-endfunction
+"function! ToggleColor()
+"    if !exists("g:colors_name")
+"        set t_Co=256
+"        colorscheme molokai
+"    else
+"        set t_Co=8
+"        colorscheme default
+"        set background=dark
+"    endif
+"endfunction
 
-:command! -nargs=1 -range=% Filter %y z|tabnew|0put=@z|%!grep -n '<args>'
+":command! -nargs=1 -range=% Filter %y z|tabnew|0put=@z|%!grep -n '<args>'
