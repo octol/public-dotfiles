@@ -1,7 +1,3 @@
--- Configure LSP through rust-tools.nvim plugin.
--- rust-tools will configure and enable certain LSP features for us.
--- See https://github.com/simrat39/rust-tools.nvim#configuration
-
 --local nvim_lsp = require('lspconfig')
 
 local opts = {

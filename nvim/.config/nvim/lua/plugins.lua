@@ -11,7 +11,6 @@ return require('packer').startup(function()
         end
     }
 
-
     -- Completion
     use 'hrsh7th/nvim-cmp'
     use({
@@ -26,10 +25,6 @@ return require('packer').startup(function()
     -- Snippet
     use 'hrsh7th/vim-vsnip'
     use 'hrsh7th/vim-vsnip-integ'
-
-    -- Rust
-    use 'rust-lang/rust.vim'
-    use 'simrat39/rust-tools.nvim'
 
     -- General
     use 'vimoutliner/vimoutliner'
@@ -70,18 +65,6 @@ return require('packer').startup(function()
         end
     }
 
-    -- Markdown
-    use {"ellisonleao/glow.nvim"}
-
-    -- C++
-    use {'vim-scripts/a.vim', ft = {'c', 'cpp'}}
-    use {'octol/vim-cpp-enhanced-highlight', ft = {'c','cpp'}}
-
-    -- Rust
-
-    -- Copilot
-    --use 'github/copilot.vim'
-
     -- Basic lua components
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
@@ -110,10 +93,16 @@ return require('packer').startup(function()
         end
     }
 
+    -- Copilot
+    --use 'github/copilot.vim'
+
     -- LSP diagnostics highlight groups for color schemes that don't yet
     -- support the Neovim 0.5 builtin lsp client.
     use 'folke/lsp-colors.nvim'
 
+    -- Rust
+    use 'rust-lang/rust.vim'
+    use 'simrat39/rust-tools.nvim'
     use {
         'saecki/crates.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
@@ -121,6 +110,14 @@ return require('packer').startup(function()
             require('crates').setup()
         end,
     }
+
+
+    -- Markdown
+    use {"ellisonleao/glow.nvim"}
+
+    -- C++
+    use {'vim-scripts/a.vim', ft = {'c', 'cpp'}}
+    use {'octol/vim-cpp-enhanced-highlight', ft = {'c','cpp'}}
 
     -- Themes
     use 'tomasr/molokai'
