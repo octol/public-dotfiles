@@ -1,8 +1,9 @@
 -----------------------------------------------------------------------------
 -- System default settings
---  These are lifted from debian defaults (debian.vim). Set these explicitly in
---  case we are on a different platform.
+--  These are lifted from debian defaults (debian.vim). Set these explicitly
+--  in case we are on a different platform.
 -----------------------------------------------------------------------------
+
 vim.g.nocompatible = true     -- use Vim defaults instead of 100% vi compatibility
 vim.opt.backspace = 'indent,eol,start'  -- more powerful backspacing
 vim.opt.history = 50          -- keep 50 lines of command line history
@@ -18,6 +19,7 @@ vim.opt.shell = '/bin/bash'
 -----------------------------------------------------------------------------
 -- Global editing settings
 -----------------------------------------------------------------------------
+
 vim.opt.clipboard='unnamed'       -- use X11 clipboard always
 --vim.opt.textwidth = 0            " 0 is the defaults, 72 linux kern, 79 python
 vim.opt.showcmd = true                 -- display incomplete commands
@@ -46,8 +48,18 @@ vim.opt.linebreak = true               -- soft-wrap only at certain characters
 --  softtabstop. Tabstop should be kept at 8.
 --  When using hard tabs (^T) then we set tabstop and shiftwidth
 -----------------------------------------------------------------------------
+
 vim.opt.expandtab = true      -- use spaces, not tabs
 vim.opt.shiftwidth = 4        -- indents of 4, e.g. < commands use this
 vim.opt.softtabstop = 4
 vim.opt.shiftround = true     -- round indent to nearest shiftwidth multiple
 
+-----------------------------------------------------------------------------
+-- Operational settings
+-----------------------------------------------------------------------------
+
+-- Jump to last position when opening a file
+-- TODO: translate from vimscript
+--au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+vim.cmd.colorscheme("dracula")

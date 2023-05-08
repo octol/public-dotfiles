@@ -1,77 +1,14 @@
 " ---------------------------------------------------------------------------
-" Operational settings
-" ---------------------------------------------------------------------------
-"filetype on
-"filetype plugin on  " load settings for specific modes
-"filetype indent on  " load indent settings for specific modes
-"if !exists("syntax_on")
-"    syntax on
-"endif
-"if has('mouse')
-"    set mouse=a
-"endif
-"set modeline            " so vim reads inline options in files
-
-" Jump to last position when opening a file
-"if has("autocmd")
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-"endif
-
-"set tags=./tags;/,tags;/
-"set directory=~/tmp,/var/tmp,/tmp
-
-"let g:netrw_banner = 0
-"let g:netrw_liststyle= 3
-"let g:netrw_browse_split = 4
-"let g:netrw_altv = 1
-"let g:netrw_winsize = 15
-
-" Use tab for autocompletion
-"inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" ---------------------------------------------------------------------------
-" Macros and keybindings
-" ---------------------------------------------------------------------------
-"map <F4> :<C-U>call ToggleColor()<CR>
-" Inserts date
-inoremap <F5> <C-R>=strftime("%a, %d %b %Y %H:%M:%S %z")<CR>
-"set pastetoggle=<F5>
-
-" Filter buffer
-" manually its:
-"   %y z|tabnew|0put=@z|%!grep -n
-" or
-"   :vimgrep pattern %
-"   :cwin
-":command! -nargs=1 -range=% Filter <line1>,<line2>y z|tabnew|0put=@z|%!grep -n '<q-args>'
-
-" ---------------------------------------------------------------------------
-" Color settings
-"  Note, it seems t_Co=16 works fine in normal terminal as well.
-"  For screen, some set screen-bce.
-" ---------------------------------------------------------------------------
-" Assume that the terminal background is dark.
-set background=dark
-
-" ---------------------------------------------------------------------------
 " Language specific
 "  Note, cino=g0 indents the public/private keywords in C++ classes.
 "  sw=shiftwidth, et=expandtab, sts=softtabstop, ts=tabstop
 " ---------------------------------------------------------------------------
-let c_no_curly_error=1
-
-au BufNewFile,BufRead *.plt set filetype=gnuplot
-au BufNewFile,BufRead *.Config set filetype=xml
-au BufNewFile,BufRead *.aspx set filetype=html
 
 au FileType c set sw=4 sts=4 et cino=g0 tw=80
 au FileType cpp set sw=4 sts=4 et cino=g0 tw=90
 au FileType c,cpp,rust set showbreak=--------
 au FileType fortran set sw=3 sts=3 et
 au FileType haskell set sw=2 sts=2 et
-au FileType haskell map <F6> :GhcModCheckAsync<CR>
-au FileType haskell map <F7> :GhcModType<CR>
-"au FileType haskell map <S-F7> :GhcModTypeClear<CR>
 au FileType html set sw=2 sts=2 et
 au FileType htmldjango set sw=2 sts=2 et
 au FileType python set sw=4 sts=4 et
@@ -83,8 +20,6 @@ au FileType text setlocal tw=78
 au FileType xhtml set sw=2 sts=2 et
 au FileType xml setlocal foldmethod=syntax sw=2 sts=2 et foldlevel=99
 au FileType cmake set sw=2 sts=2 et
-"au FileType rust nnoremap <silent> <C-K> :RustFmt<CR>
-"au FileType rust set noexpandtab tabstop=4 shiftwidth=4
 
 " menuone: popup even when there's only one match
 " noinsert: Do not insert text until a selection is made
@@ -93,13 +28,6 @@ set completeopt=menuone,noinsert,noselect
 
 " Avoid showing extra messages when using completion
 set shortmess+=c
-
-"lua <<EOF
-"vim.cmd([[
-"set signcolumn=yes
-"autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
-"]])
-"EOF
 
 " Code navigation shortcuts
 "nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
@@ -224,19 +152,6 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " ---------------------------------------------------------------------------
-" airline
-" ---------------------------------------------------------------------------
-let g:airline_powerline_fonts = 1
-"let g:airline#extensions#hunks#enabled = 0
-
-" Remove git branch
-let g:airline_section_b = ''
-" Remove file encoding
-let g:airline_section_y = ''
-" Remove separators for empty sections
-let g:airline_skip_empty_sections = 1
-
-" ---------------------------------------------------------------------------
 " vim-markdown
 " ---------------------------------------------------------------------------
 
@@ -266,34 +181,3 @@ nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
 nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
 nnoremap gR <cmd>TroubleToggle lsp_references<cr>
 
-" ---------------------------------------------------------------------------
-" GUI specific settings
-" ---------------------------------------------------------------------------
-"if &t_Co == 256
-    " If we have 256 colors in the current terminal, set some nice theme
-    "silent! colorscheme molokai
-    silent! colorscheme dracula
-    " Disable Background Color Erase (BCE) so that color schemes
-    " render properly when inside 256-color tmux and GNU screen.
-    "set t_ut=
-    " Use 24-bit colors
-    "set termguicolors
-"end
-
-"set guifont=FiraCode\ Nerd\ Font:h11
-
-" --------------------------------------------------------------------------
-" Helper functions
-" --------------------------------------------------------------------------
-"function! ToggleColor()
-"    if !exists("g:colors_name")
-"        set t_Co=256
-"        colorscheme molokai
-"    else
-"        set t_Co=8
-"        colorscheme default
-"        set background=dark
-"    endif
-"endfunction
-
-":command! -nargs=1 -range=% Filter %y z|tabnew|0put=@z|%!grep -n '<args>'
