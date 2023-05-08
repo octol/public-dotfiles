@@ -31,7 +31,6 @@ vim.opt.scrolloff = 2
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
 
-vim.opt.hidden = true                 -- background buffers can be unsaved
 --vim.opt.novisualbell = true
 vim.opt.laststatus = 2
 vim.opt.wildmode = 'longest,list,full'
@@ -63,3 +62,19 @@ vim.opt.shiftround = true     -- round indent to nearest shiftwidth multiple
 --au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 vim.cmd.colorscheme("dracula")
+
+-- Diagnostics API
+vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    update_in_insert = true,
+    underline = true,
+    severity_sort = false,
+    float = {
+        border = 'rounded',
+        source = 'always',
+        header = '',
+        prefix = '',
+    },
+})
+

@@ -29,22 +29,11 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing extra messages when using completion
 set shortmess+=c
 
-" Code navigation shortcuts
-"nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-"nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-"nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-"nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-"nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-"nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-"nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-
-"nnoremap <silent> gR     <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> <leader>rn     <cmd>lua vim.lsp.buf.rename()<CR>
-
-nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> gA    <cmd>lua vim.lsp.buf.range_code_action()<CR>
+" Set updatetime for CursorHold
+" 3000ms of no cursor movement to trigger CursorHold
+set updatetime=3000
+" Show diagnostic popup on cursor hold
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
 nnoremap <silent> <c-]> <cmd>Telescope lsp_definitions<cr>
 nnoremap <silent> gD <cmd>Telescope lsp_implementations<cr>
@@ -57,12 +46,6 @@ nnoremap <silent> gd <cmd>Telescope lsp_definitions<cr>
 
 "nnoremap <silent> ga <cmd>Telescope lsp_code_actions<cr>
 "nnoremap <silent> gA <cmd>Telescope lsp_range_code_actions<cr>
-
-" Set updatetime for CursorHold
-" 3000ms of no cursor movement to trigger CursorHold
-set updatetime=3000
-" Show diagnostic popup on cursor hold
-autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
 " Goto previous/next diagnostic warning/error
 nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
@@ -129,16 +112,6 @@ let g:cpp_experimental_simple_template_highlight = 1
 " vim-better-whitespace
 " ---------------------------------------------------------------------------
 let g:better_whitespace_filetypes_blacklist=['mail', 'tex', 'text', 'log']
-
-" ---------------------------------------------------------------------------
-" Fortran
-" ---------------------------------------------------------------------------
-let fortran_free_source = 1
-
-" ---------------------------------------------------------------------------
-" vim-fzf
-" ---------------------------------------------------------------------------
-"nnoremap <c-p> :GitFiles<cr>
 
 " ---------------------------------------------------------------------------
 " telescope

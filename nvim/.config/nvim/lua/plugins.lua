@@ -1,6 +1,36 @@
 return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
+    -- LSP
+    use 'neovim/nvim-lspconfig'
+    -- Visualize lsp progress
+    use {
+        "j-hui/fidget.nvim",
+        config = function()
+        require("fidget").setup()
+        end
+    }
+
+
+    -- Completion
+    use 'hrsh7th/nvim-cmp'
+    use({
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-vsnip',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-buffer',
+        after = { "hrsh7th/nvim-cmp" },
+        requires = { "hrsh7th/nvim-cmp" },
+    })
+
+    -- Snippet
+    use 'hrsh7th/vim-vsnip'
+    use 'hrsh7th/vim-vsnip-integ'
+
+    -- Rust
+    use 'rust-lang/rust.vim'
+    use 'simrat39/rust-tools.nvim'
+
     -- General
     use 'vimoutliner/vimoutliner'
     use 'jamessan/vim-gnupg'
@@ -48,40 +78,15 @@ return require('packer').startup(function()
     use {'octol/vim-cpp-enhanced-highlight', ft = {'c','cpp'}}
 
     -- Rust
-    use 'rust-lang/rust.vim'
-
-    -- LSP
-    use 'neovim/nvim-lspconfig'
-
-      -- Visualize lsp progress
-    use {
-        "j-hui/fidget.nvim",
-        config = function()
-        require("fidget").setup()
-        end
-    }
 
     -- Copilot
-    use 'github/copilot.vim'
+    --use 'github/copilot.vim'
 
-    -- Completion
-    use 'hrsh7th/nvim-cmp'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-vsnip'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-buffer'
-
-    -- Extra for rust
-    use 'simrat39/rust-tools.nvim'
-
-    -- Snippet
-    use 'hrsh7th/vim-vsnip'
-    use 'hrsh7th/vim-vsnip-integ'
-
-    -- Basic lua
+    -- Basic lua components
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
 
+    -- Telescope
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-ui-select.nvim'
 
