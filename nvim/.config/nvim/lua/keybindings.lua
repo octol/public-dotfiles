@@ -3,10 +3,10 @@
 -----------------------------------------------------------------------------
 
 -- Inserts date
-vim.keymap.set("i", "F5",
-    "<C-R>=strftime('\\%a, \\%d \\%b \\%Y \\%H:\\%M:\\%S \\%z')",
-    { noremap = true, silent = true }
-)
+--vim.keymap.set("i", "<F5>",
+--    "<C-R>=strftime('\\%a, \\%d \\%b \\%Y \\%H:\\%M:\\%S \\%z')<CR>",
+--    { noremap = true, silent = true }
+--)
 
 -- --------------------------------------------------------------------------
 -- Code navigation

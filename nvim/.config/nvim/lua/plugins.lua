@@ -111,7 +111,6 @@ return require('packer').startup(function()
         end,
     }
 
-
     -- Markdown
     use {"ellisonleao/glow.nvim"}
 

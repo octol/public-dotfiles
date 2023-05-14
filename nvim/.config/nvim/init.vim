@@ -1,3 +1,5 @@
+inoremap <F5> <C-R>=strftime("%a, %d %b %Y %H:%M:%S %z")<CR>
+
 " ---------------------------------------------------------------------------
 " Language specific
 "  Note, cino=g0 indents the public/private keywords in C++ classes.
