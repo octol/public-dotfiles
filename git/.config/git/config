@@ -7,6 +7,7 @@
 	branch = auto
 [push]
 	default = simple
+	autoSetupRemote = true
 [merge]
 	tool = vimdiff
 [alias]
@@ -24,8 +25,6 @@
 	editor = nvim
 [delta]
 	side-by-side = true
-[fetch]
-	parallel = 0
 [init]
 	defaultBranch = master
 [cola]
