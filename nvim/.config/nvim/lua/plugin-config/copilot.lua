@@ -9,7 +9,6 @@ vim.g.copilot_filetypes = {
     ["lua"] = false,
     ["rust"] = true,
     ["c"] = true,
-    ["c#"] = true,
     ["c++"] = true,
     ["go"] = true,
     ["python"] = true,

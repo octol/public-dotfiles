@@ -94,7 +94,7 @@ return require('packer').startup(function()
     }
 
     -- Copilot
-    --use 'github/copilot.vim'
+    use 'github/copilot.vim'
 
     -- LSP diagnostics highlight groups for color schemes that don't yet
     -- support the Neovim 0.5 builtin lsp client.
