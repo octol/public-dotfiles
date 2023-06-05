@@ -32,7 +32,7 @@ vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, keymap_opts)
 --nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
 --nnoremap <silent> gA    <cmd>lua vim.lsp.buf.range_code_action()<CR>
 vim.keymap.set("n", "ga", vim.lsp.buf.code_action, keymap_opts)
-vim.keymap.set("n", "gA", vim.lsp.buf.range_code_action, keymap_opts)
+--vim.keymap.set("n", "gA", vim.lsp.buf.range_code_action, keymap_opts)
 
 -----------------------------------------------------------------------------
 -- Telescope
