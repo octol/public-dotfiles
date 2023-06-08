@@ -33,11 +33,30 @@ vim.opt.shiftround = true     -- round indent to nearest shiftwidth multiple
 -- Operational settings
 -----------------------------------------------------------------------------
 
+-- menuone: popup even when there's only one match
+-- noinsert: Do not insert text until a selection is made
+-- noselect: Do not select, force user to select one from the menu
+vim.o.completeopt = "menuone,noinsert,noselect"
+
+-- Avoid showing extra messages when using completion
+vim.opt.shortmess = vim.opt.shortmess + "c"
+
+-- Set updatetime for CursorHold
+-- 3000ms of no cursor movement to trigger CursorHold
+vim.opt.updatetime = 3000
+
 -- Jump to last position when opening a file
 -- TODO: translate from vimscript
 --au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-vim.cmd.colorscheme("dracula")
+-- Show diagnostic popup on cursor hold
+local diag_float_grp = vim.api.nvim_create_augroup("DiagnosticFloat", { clear = true })
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+   vim.diagnostic.open_float(nil, { focusable = false })
+  end,
+  group = diag_float_grp,
+})
 
 vim.diagnostic.config({
     virtual_text = false,
@@ -53,3 +72,4 @@ vim.diagnostic.config({
     },
 })
 
+vim.cmd.colorscheme("dracula")

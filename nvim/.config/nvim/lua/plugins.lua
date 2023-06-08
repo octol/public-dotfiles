@@ -70,7 +70,10 @@ return require('packer').startup(function()
     use 'nvim-lua/plenary.nvim'
 
     -- Telescope
-    use 'nvim-telescope/telescope.nvim'
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = { {'nvim-lua/plenary.nvim'} }
+    }
     use 'nvim-telescope/telescope-ui-select.nvim'
 
     -- Debugging (needs plenary from above as well)
@@ -116,7 +119,7 @@ return require('packer').startup(function()
 
     -- C++
     use {'vim-scripts/a.vim', ft = {'c', 'cpp'}}
-    use {'octol/vim-cpp-enhanced-highlight', ft = {'c','cpp'}}
+    --use {'octol/vim-cpp-enhanced-highlight', ft = {'c','cpp'}}
 
     -- Themes
     use 'tomasr/molokai'
