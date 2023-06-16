@@ -34,6 +34,8 @@ vim.keymap.set("n", "ga", vim.lsp.buf.code_action, keymap_opts)
 vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, keymap_opts)
 vim.keymap.set("n", "g]", vim.diagnostic.goto_next, keymap_opts)
 
+-- Format
+vim.keymap.set("n", "<c-k>", function() vim.lsp.buf.format { async = true } end, keymap_opts)
 
 -----------------------------------------------------------------------------
 -- Telescope
@@ -96,3 +98,10 @@ vim.keymap.set('n', '<leader>cH', crates.open_homepage, opts)
 vim.keymap.set('n', '<leader>cR', crates.open_repository, opts)
 vim.keymap.set('n', '<leader>cD', crates.open_documentation, opts)
 vim.keymap.set('n', '<leader>cC', crates.open_crates_io, opts)
+
+
+-----------------------------------------------------------------------------
+-- remove trailing whitespace with a keybinding
+-----------------------------------------------------------------------------
+
+vim.keymap.set('n', '<leader>t', require('whitespace-nvim').trim)

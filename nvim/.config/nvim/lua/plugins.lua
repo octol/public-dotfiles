@@ -30,9 +30,15 @@ return require('packer').startup(function()
     -- General
     use 'vimoutliner/vimoutliner'
     use 'jamessan/vim-gnupg'
-    use 'preservim/nerdcommenter'
     use 'preservim/nerdtree'
     use 'jlanzarotta/bufexplorer'
+
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
 
     use 'ntpeters/vim-better-whitespace'
     use 'mtdl9/vim-log-highlighting'
@@ -45,6 +51,26 @@ return require('packer').startup(function()
         'lewis6991/gitsigns.nvim',
         config = function()
             require('gitsigns').setup()
+        end
+    }
+
+    use {
+        'johnfrankmorgan/whitespace.nvim',
+        config = function ()
+            require('whitespace-nvim').setup({
+                -- configuration options and their defaults
+
+                -- `highlight` configures which highlight is used to display
+                -- trailing whitespace
+                highlight = 'DiffDelete',
+
+                -- `ignored_filetypes` configures which filetypes to ignore when
+                -- displaying trailing whitespace
+                ignored_filetypes = { 'TelescopePrompt', 'Trouble', 'help' },
+
+                -- `ignore_terminal` configures whether to ignore terminal buffers
+                ignore_terminal = true,
+            })
         end
     }
 
