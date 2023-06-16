@@ -60,6 +60,18 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 -----------------------------------------------------------------------------
+-- Trouble
+-----------------------------------------------------------------------------
+
+local trouble_opts = { silent = true, noremap = true }
+vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", trouble_opts)
+vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", trouble_opts)
+vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", trouble_opts)
+vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", trouble_opts)
+vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", trouble_opts)
+vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", trouble_opts)
+
+-----------------------------------------------------------------------------
 -- Crates
 -----------------------------------------------------------------------------
 
