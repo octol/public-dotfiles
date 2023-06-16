@@ -8,7 +8,8 @@ inoremap <F5> <C-R>=strftime("%a, %d %b %Y %H:%M:%S %z")<CR>
 
 au FileType c set sw=4 sts=4 et cino=g0 tw=80
 au FileType cpp set sw=4 sts=4 et cino=g0 tw=90
-au FileType c,cpp,rust set showbreak=--------
+"au FileType c,cpp,rust set showbreak=--------
+au FileType c,cpp set showbreak=--------
 au FileType fortran set sw=3 sts=3 et
 au FileType haskell set sw=2 sts=2 et
 au FileType html set sw=2 sts=2 et
@@ -30,7 +31,7 @@ au FileType rust map <C-K> <cmd>lua vim.lsp.buf.format { async = true }<CR>
 
 " have a fixed column for the diagnostics to appear in
 " this removes the jitter when warnings/errors flow in
-autocmd FileType rust set signcolumn=yes
+"autocmd FileType rust set signcolumn=yes
 
 " ---------------------------------------------------------------------------
 " Nerdcommenter plugin
