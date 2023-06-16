@@ -2,11 +2,11 @@
 -- Macros and keybindings
 -----------------------------------------------------------------------------
 
--- Inserts date
---vim.keymap.set("i", "<F5>",
---    "<C-R>=strftime('\\%a, \\%d \\%b \\%Y \\%H:\\%M:\\%S \\%z')<CR>",
---    { noremap = true, silent = true }
---)
+-- remove trailing whitespace with a keybinding
+vim.keymap.set('n', '<leader>t', require('whitespace-nvim').trim)
+
+-- insert date
+vim.keymap.set("n", "<leader>dt", ':r! date "+\\%a, \\%d \\%b \\%Y \\%H:\\%M:\\%S \\%z" <CR>', {noremap = true})
 
 -- --------------------------------------------------------------------------
 -- Code navigation
@@ -100,8 +100,3 @@ vim.keymap.set('n', '<leader>cD', crates.open_documentation, opts)
 vim.keymap.set('n', '<leader>cC', crates.open_crates_io, opts)
 
 
------------------------------------------------------------------------------
--- remove trailing whitespace with a keybinding
------------------------------------------------------------------------------
-
-vim.keymap.set('n', '<leader>t', require('whitespace-nvim').trim)
