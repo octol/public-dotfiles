@@ -34,7 +34,6 @@ return require('packer').startup(function()
     -- General
     use 'vimoutliner/vimoutliner'
     use 'jamessan/vim-gnupg'
-    use 'jlanzarotta/bufexplorer'
     use {
         'nvim-tree/nvim-tree.lua',
         requires = {
