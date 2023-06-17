@@ -32,14 +32,14 @@ return require('packer').startup(function()
     use 'hrsh7th/vim-vsnip-integ'
 
     -- General
-    use 'vimoutliner/vimoutliner'
-    use 'jamessan/vim-gnupg'
     use {
         'nvim-tree/nvim-tree.lua',
         requires = {
             'nvim-tree/nvim-web-devicons', -- optional
         },
     }
+    use 'vimoutliner/vimoutliner'
+    use 'jamessan/vim-gnupg'
     use {
         'numToStr/Comment.nvim',
         config = function()
@@ -125,10 +125,6 @@ return require('packer').startup(function()
 
     -- Markdown
     use {"ellisonleao/glow.nvim"}
-
-    -- C++
-    use {'vim-scripts/a.vim', ft = {'c', 'cpp'}}
-    --use {'octol/vim-cpp-enhanced-highlight', ft = {'c','cpp'}}
 
     -- Themes
     use 'tomasr/molokai'
