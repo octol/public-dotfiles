@@ -96,4 +96,10 @@ vim.keymap.set('n', '<leader>cR', crates.open_repository, opts)
 vim.keymap.set('n', '<leader>cD', crates.open_documentation, opts)
 vim.keymap.set('n', '<leader>cC', crates.open_crates_io, opts)
 
+-----------------------------------------------------------------------------
+-- nvim-tree
+-----------------------------------------------------------------------------
 
+vim.keymap.set('n', '<F2>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>tt', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>tf', ':NvimTreeFindFileToggle<CR>', { noremap = true, silent = true })

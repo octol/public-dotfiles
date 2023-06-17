@@ -1,6 +1,10 @@
 return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
+    -- Basic lua components
+    use 'nvim-lua/popup.nvim'
+    use 'nvim-lua/plenary.nvim'
+
     -- LSP
     use 'neovim/nvim-lspconfig'
     -- Visualize lsp progress
@@ -30,27 +34,23 @@ return require('packer').startup(function()
     -- General
     use 'vimoutliner/vimoutliner'
     use 'jamessan/vim-gnupg'
-    -- use 'preservim/nerdtree'
     use 'jlanzarotta/bufexplorer'
-
     use {
         'nvim-tree/nvim-tree.lua',
         requires = {
             'nvim-tree/nvim-web-devicons', -- optional
         },
     }
-
     use {
         'numToStr/Comment.nvim',
         config = function()
             require('Comment').setup()
         end
     }
-
     use 'ntpeters/vim-better-whitespace'
-    use 'mtdl9/vim-log-highlighting'
     use 'editorconfig/editorconfig-vim'
 
+    use 'mtdl9/vim-log-highlighting'
     use 'andreshazard/vim-logreview'
 
     use 'tpope/vim-fugitive'
@@ -78,10 +78,6 @@ return require('packer').startup(function()
             }
         end
     }
-
-    -- Basic lua components
-    use 'nvim-lua/popup.nvim'
-    use 'nvim-lua/plenary.nvim'
 
     -- Telescope
     use {
