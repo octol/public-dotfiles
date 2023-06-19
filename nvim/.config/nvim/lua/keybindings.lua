@@ -103,3 +103,13 @@ vim.keymap.set('n', '<leader>cC', crates.open_crates_io, opts)
 vim.keymap.set('n', '<F2>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>tt', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>tf', ':NvimTreeFindFile<CR>', { noremap = true, silent = true })
+
+-----------------------------------------------------------------------------
+-- Comment.nvim
+-----------------------------------------------------------------------------
+
+vim.api.nvim_set_keymap("n", "<C-_>", "<Cmd>lua require('Comment.api').toggle.linewise.current()<CR>", {})
+vim.api.nvim_set_keymap("v", "<C-_>", "gc", {})
+vim.api.nvim_set_keymap("n", "<C-/>", "<Cmd>lua require('Comment.api').toggle.linewise.current()<CR>", {})
+vim.api.nvim_set_keymap("v", "<C-/>", "gc", {})
+
