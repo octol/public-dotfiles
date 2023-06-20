@@ -5,6 +5,10 @@ require("telescope").setup {
                 -- even more opts
             }
         }
+    },
+    pickers = {
+        ignore_current_buffer = true,
+        sort_lastused = true,
     }
 }
 -- To get ui-select loaded and working with telescope, you need to call
