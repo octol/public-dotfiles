@@ -7,8 +7,17 @@ require("telescope").setup {
         }
     },
     pickers = {
-        ignore_current_buffer = true,
-        sort_lastused = true,
+        -- ignore_current_buffer = true,
+        -- sort_lastused = true,
+        -- sorting_strategy = "ascending",
+        buffers = {
+            sort_mru = true,
+            mappings = {
+                i = {
+                    ["<C-d>"] = "delete_buffer",
+                },
+            },
+        },
     }
 }
 -- To get ui-select loaded and working with telescope, you need to call
