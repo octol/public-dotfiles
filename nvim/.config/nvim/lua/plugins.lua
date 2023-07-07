@@ -51,6 +51,7 @@ return require('packer').startup(function()
 
     use 'mtdl9/vim-log-highlighting'
     use 'andreshazard/vim-logreview'
+    use 'christoomey/vim-tmux-navigator'
 
     use 'tpope/vim-fugitive'
     use {
