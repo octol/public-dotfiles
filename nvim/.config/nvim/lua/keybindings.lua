@@ -32,7 +32,7 @@ vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, keymap_opts)
 vim.keymap.set("n", "g]", vim.diagnostic.goto_next, keymap_opts)
 
 -- Format
-vim.keymap.set("n", "<c-k>", function() vim.lsp.buf.format { async = true } end, keymap_opts)
+vim.keymap.set("n", "<leader>bf", function() vim.lsp.buf.format { async = true } end, keymap_opts)
 
 -----------------------------------------------------------------------------
 -- Telescope
