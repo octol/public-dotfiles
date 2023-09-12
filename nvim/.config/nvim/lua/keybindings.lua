@@ -2,8 +2,21 @@
 -- Macros and keybindings
 -----------------------------------------------------------------------------
 
--- insert date
-vim.keymap.set("n", "<leader>dt", ':r! date "+\\%a, \\%d \\%b \\%Y \\%H:\\%M:\\%S \\%z" <CR>', {noremap = true})
+-- Insert date
+function insert_command_output(command)
+    local output = vim.fn.system(command)
+    -- Remove the trailing newline character from the output
+    output = output:gsub("\n$", "")
+    vim.api.nvim_put({output}, "c", true, true)
+end
+
+vim.keymap.set(
+    'n',
+    '<leader>dt',
+    [[<cmd>lua insert_command_output("date --rfc-email")<CR>]],
+    { noremap = true, silent = true }
+)
+
 
 -- --------------------------------------------------------------------------
 -- Code navigation
