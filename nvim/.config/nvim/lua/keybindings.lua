@@ -126,3 +126,10 @@ vim.api.nvim_set_keymap("v", "<C-_>", "gc", {})
 vim.api.nvim_set_keymap("n", "<C-/>", "<Cmd>lua require('Comment.api').toggle.linewise.current()<CR>", {})
 vim.api.nvim_set_keymap("v", "<C-/>", "gc", {})
 
+-----------------------------------------------------------------------------
+-- copilot
+-----------------------------------------------------------------------------
+
+-- vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.api.nvim_set_keymap('i', '<leader>j', 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.api.nvim_set_keymap('i', '<C-B>', 'copilot#Accept("<CR>")', { silent = true, expr = true })
