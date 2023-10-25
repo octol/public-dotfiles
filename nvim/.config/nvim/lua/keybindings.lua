@@ -133,3 +133,11 @@ vim.api.nvim_set_keymap("v", "<C-/>", "gc", {})
 -- vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 vim.api.nvim_set_keymap('i', '<leader>j', 'copilot#Accept("<CR>")', { silent = true, expr = true })
 vim.api.nvim_set_keymap('i', '<C-B>', 'copilot#Accept("<CR>")', { silent = true, expr = true })
+
+-----------------------------------------------------------------------------
+-- vim-floatterm
+-----------------------------------------------------------------------------
+
+-- vim.keymap.set('n', "<leader>ft", ":FloatermNew --name=myfloat --height=0.8 --width=0.7 --autoclose=2 fish <CR> ")
+-- vim.keymap.set('n', "t", ":FloatermToggle myfloat<CR>")
+-- vim.keymap.set('t', "<Esc>", "<C-\\><C-n>:q<CR>")

@@ -61,11 +61,11 @@ return require('packer').startup(function()
         end
     }
 
-    use 'kyazdani42/nvim-web-devicons'
+    use 'nvim-tree/nvim-web-devicons'
 
     use {
         'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true },
         config = function()
             require('lualine').setup {
                 sections = {
@@ -74,10 +74,17 @@ return require('packer').startup(function()
                 },
                 inactive_sections = {
                     lualine_c = {{'filename', path = 1}},
-                }
+                },
+                extensions = {'nvim-tree', 'trouble'},
+                -- options = {
+                    -- theme = 'tokyonight',
+                    -- disabled_filetypes = {'NvimTree'},
+                -- },
             }
         end
     }
+
+    use 'voldikss/vim-floaterm'
 
     -- Telescope
     use {
@@ -136,6 +143,14 @@ return require('packer').startup(function()
     use 'Mofiqul/dracula.nvim'
     use 'arzg/vim-colors-xcode'
     use 'shaunsingh/nord.nvim'
+    -- use {
+    --     'ray-x/starry.nvim', 
+    --     setup = function() 
+    --     vim.g.starry_italic_comments = true
+    --     end
+    -- }
+    use { "catppuccin/nvim", as = "catppuccin" }
+    use { "folke/tokyonight.nvim" }
 end)
 
 
