@@ -76,10 +76,10 @@ return require('packer').startup(function()
                     lualine_c = {{'filename', path = 1}},
                 },
                 extensions = {'nvim-tree', 'trouble'},
-                -- options = {
-                    -- theme = 'tokyonight',
-                    -- disabled_filetypes = {'NvimTree'},
-                -- },
+                options = {
+                    section_separators = '',
+                    component_separators = '',
+                },
             }
         end
     }
