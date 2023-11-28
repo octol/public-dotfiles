@@ -132,7 +132,7 @@ return require('packer').startup(function()
     }
 
     -- Markdown
-    use {"ellisonleao/glow.nvim"}
+    use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
 
     -- Themes
     use 'tomasr/molokai'
