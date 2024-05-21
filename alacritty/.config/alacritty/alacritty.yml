@@ -4,30 +4,26 @@ env:
 font:
   normal:
     #family: FiraCode Nerd Font
-    #family: Px437 IBM VGA 8x16
-    #family: Px437_IBM_VGA_8x16 Nerd Font
-    family: MxPlus IBM VGA 8x16
+    # family: MxPlus IBM VGA 8x16
+    family: BerkeleyMono Nerd Font Mono
     style: Regular
 
   bold:
     #family: FiraCode Nerd Font
-    #family: Px437 IBM VGA 8x16
-    #family: Px437_IBM_VGA_8x16 Nerd Font
-    family: MxPlus IBM VGA 8x16
+    # family: MxPlus IBM VGA 8x16
+    family: BerkeleyMono Nerd Font Mono
     style: Bold
 
   italic:
     #family: FiraCode Nerd Font
-    #family: Px437 IBM VGA 8x16
-    #family: Px437_IBM_VGA_8x16 Nerd Font
-    family: MxPlus IBM VGA 8x16
+    # family: MxPlus IBM VGA 8x16
+    family: BerkeleyMono Nerd Font Mono
     style: Italic
 
   bold_italic:
     #family: FiraCode Nerd Font
-    #family: Px437 IBM VGA 8x16
-    #family: Px437_IBM_VGA_8x16 Nerd Font
-    family: MxPlus IBM VGA 8x16
+    # family: MxPlus IBM VGA 8x16
+    family: BerkeleyMono Nerd Font Mono
     style: Bold Italic
 
   size: 11
