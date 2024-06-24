@@ -1,0 +1,23 @@
+import = ["/home/jon/.config/alacritty/dracula-jon.toml"]
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 11
+
+[font.bold]
+family = "BerkeleyMono Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "BerkeleyMono Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "BerkeleyMono Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "BerkeleyMono Nerd Font Mono"
+style = "Regular"
