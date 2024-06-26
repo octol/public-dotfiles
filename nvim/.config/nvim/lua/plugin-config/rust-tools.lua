@@ -27,9 +27,9 @@ local opts = {
                 procMacro = {
                     enable = true,
                 },
-                -- diagnostics = {
-                --     disabled = { "unresolved-import" },
-                -- },
+                diagnostics = {
+                    disabled = { "inactive-code" },
+                },
             }
         }
     },
