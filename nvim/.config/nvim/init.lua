@@ -1,4 +1,1 @@
-require('main')
-require('plugins')
-require('plugin-config')
-require('keybindings')
+require('config.lazy')
