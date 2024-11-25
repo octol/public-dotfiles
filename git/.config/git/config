@@ -9,22 +9,30 @@
 	default = simple
 	autoSetupRemote = true
 [merge]
+	conflictstyle = zdiff3
 	tool = vimdiff
 [alias]
 	lg = log --oneline --graph --decorate
 	sort-branches = branch --sort=committerdate
 	sort-branches-all = branch -a --sort=committerdate
+        sdiff = "!f() { git -c delta.side-by-side=true diff \"$@\"; }; f"
+
 	recent = "!r() { refbranch=$1 count=$2; git for-each-ref --sort=-committerdate refs/heads --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' --color=always --count=${count:-20} | while read line; do branch=$(echo \"$line\" | awk 'BEGIN { FS = \"|\" }; { print $1 }' | tr -d '*'); ahead=$(git rev-list --count \"${refbranch:-origin/master}..${branch}\"); behind=$(git rev-list --count \"${branch}..${refbranch:-origin/master}\"); colorline=$(echo \"$line\" | sed 's/^[^|]*|//'); echo \"$ahead|$behind|$colorline\" | awk -F'|' -vOFS='|' '{$5=substr($5,1,50)}1' ; done | ( echo \"ahead|behind|branch|lastcommit|message|author\\n\" && cat) | column -ts'|';}; r"
+
 	recent-all = "!r() { refbranch=$1 count=$2; git for-each-ref --sort=-committerdate refs/heads --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' --color=always | while read line; do branch=$(echo \"$line\" | awk 'BEGIN { FS = \"|\" }; { print $1 }' | tr -d '*'); ahead=$(git rev-list --count \"${refbranch:-origin/master}..${branch}\"); behind=$(git rev-list --count \"${branch}..${refbranch:-origin/master}\"); colorline=$(echo \"$line\" | sed 's/^[^|]*|//'); echo \"$ahead|$behind|$colorline\" | awk -F'|' -vOFS='|' '{$5=substr($5,1,50)}1' ; done | ( echo \"ahead|behind|branch|lastcommit|message|author\\n\" && cat) | column -ts'|';}; r"
+
 	recent-remote = "!r() { refbranch=$1 count=$2; git for-each-ref --sort=-committerdate --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' --color=always --count=${count:-40} | while read line; do branch=$(echo \"$line\" | awk 'BEGIN { FS = \"|\" }; { print $1 }' | tr -d '*'); ahead=$(git rev-list --count \"${refbranch:-origin/master}..${branch}\"); behind=$(git rev-list --count \"${branch}..${refbranch:-origin/master}\"); colorline=$(echo \"$line\" | sed 's/^[^|]*|//'); echo \"$ahead|$behind|$colorline\" | awk -F'|' -vOFS='|' '{$5=substr($5,1,50)}1' ; done | ( echo \"ahead|behind|branch|lastcommit|message|author\\n\" && cat) | column -ts'|';}; r"
+
 	recent-remote-all = "!r() { refbranch=$1 count=$2; git for-each-ref --sort=-committerdate --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' --color=always | while read line; do branch=$(echo \"$line\" | awk 'BEGIN { FS = \"|\" }; { print $1 }' | tr -d '*'); ahead=$(git rev-list --count \"${refbranch:-origin/master}..${branch}\"); behind=$(git rev-list --count \"${branch}..${refbranch:-origin/master}\"); colorline=$(echo \"$line\" | sed 's/^[^|]*|//'); echo \"$ahead|$behind|$colorline\" | awk -F'|' -vOFS='|' '{$5=substr($5,1,50)}1' ; done | ( echo \"ahead|behind|branch|lastcommit|message|author\\n\" && cat) | column -ts'|';}; r"
 [pull]
 	ff = only
 [core]
-	pager = delta --dark
+	pager = delta
 	editor = nvim
 [delta]
-	side-by-side = true
+	navigate = true
+	; side-by-side = true
+	dark = true
 [init]
 	defaultBranch = master
 [cola]

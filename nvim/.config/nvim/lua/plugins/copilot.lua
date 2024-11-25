@@ -15,6 +15,7 @@ return {
             ["c++"] = true,
             ["go"] = true,
             ["python"] = true,
+            ["proto"] = true,
         }
 
         -- vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
