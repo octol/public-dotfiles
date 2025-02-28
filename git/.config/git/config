@@ -5,6 +5,8 @@
 	diff = auto
 	status = auto
 	branch = auto
+[column]
+	ui = auto
 [push]
 	default = simple
 	autoSetupRemote = true
@@ -32,6 +34,11 @@
 [core]
 	pager = delta
 	editor = nvim
+	fsmonitor = true
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
 [delta]
 	navigate = true
 	; side-by-side = true
@@ -40,3 +47,6 @@
 	defaultBranch = master
 [cola]
 	spellcheck = false
+
+[help]
+	autocorrect = prompt
