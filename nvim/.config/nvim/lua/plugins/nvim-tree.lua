@@ -23,7 +23,7 @@ return {
                 dotfiles = false,
             },
             git = {
-                enable = false,
+                enable = true,
             },
         }
 
