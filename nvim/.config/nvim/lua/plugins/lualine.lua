@@ -24,10 +24,10 @@ return {
                 lualine_c = {{'filename', path = 1}},
             },
             extensions = {'nvim-tree', 'trouble'},
-            options = {
-                section_separators = '',
-                component_separators = '',
-            },
+            -- options = {
+            --     section_separators = '',
+            --     component_separators = '',
+            -- },
         }
     end,
 }

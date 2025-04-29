@@ -164,7 +164,7 @@ require("lazy").setup({
     -- General
     { 'vimoutliner/vimoutliner' },
     { 'jamessan/vim-gnupg' },
-    { 'ntpeters/vim-better-whitespace' },
+    -- { 'ntpeters/vim-better-whitespace' },
     { 'editorconfig/editorconfig-vim' },
 
     -- LSP diagnostics highlight groups for color schemes that don't yet
@@ -185,7 +185,6 @@ require("lazy").setup({
     },
 
     { "j-hui/fidget.nvim", opts = {} },
-    { 'stevearc/dressing.nvim', opts = {} },
 
     { "chrisgrieser/nvim-lsp-endhints", event = "LspAttach", opts = {} },
   },
