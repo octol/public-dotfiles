@@ -1,3 +1,4 @@
+[general]
 import = ["/home/jon/.config/alacritty/dracula-jon.toml"]
 
 [env]
