@@ -8,17 +8,21 @@ TERM = "xterm-256color"
 size = 11
 
 [font.bold]
-family = "BerkeleyMono Nerd Font Mono"
+#family = "BerkeleyMono Nerd Font Mono"
+family = "MxPlus IBM VGA 8x16"
 style = "Bold"
 
 [font.bold_italic]
-family = "BerkeleyMono Nerd Font Mono"
+#family = "BerkeleyMono Nerd Font Mono"
+family = "MxPlus IBM VGA 8x16"
 style = "Bold Italic"
 
 [font.italic]
-family = "BerkeleyMono Nerd Font Mono"
+#family = "BerkeleyMono Nerd Font Mono"
+family = "MxPlus IBM VGA 8x16"
 style = "Italic"
 
 [font.normal]
-family = "BerkeleyMono Nerd Font Mono"
+#family = "BerkeleyMono Nerd Font Mono"
+family = "MxPlus IBM VGA 8x16"
 style = "Regular"
