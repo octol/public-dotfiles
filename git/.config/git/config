@@ -50,4 +50,4 @@
 	spellcheck = false
 
 [help]
-	autocorrect = prompt
+	; autocorrect = prompt
