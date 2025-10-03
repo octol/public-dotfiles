@@ -16,9 +16,9 @@ return {
         explorer = {
           icons = {
             tree = {
-              vertical = " ",
-              middle = " ",
-              last = " ",
+              vertical = "  ",
+              middle = "  ",
+              last = "  ",
             },
           },
         },
@@ -41,7 +41,7 @@ return {
   keys = {
     -- Top Pickers & Explorer
     { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
-    { "<C-p>", function() Snacks.picker.buffers() end, desc = "Smart Find Files" },
+    { "<C-p>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
     { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
     { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
     { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
@@ -149,7 +149,7 @@ return {
     require("snacks").setup(opts)
     local function set_snacks_hl()
       if vim.g.colors_name == "dracula" then
-        -- Dracula has very dark bg for Normal, so use a lighter one for SnacksPickerDir
+        -- Dracula has a very dark bg for Normal, so use a lighter one for SnacksPickerDir
         vim.api.nvim_set_hl(0, "SnacksPickerDir", { link = "SnacksPickerDimmed" })
         return
       end

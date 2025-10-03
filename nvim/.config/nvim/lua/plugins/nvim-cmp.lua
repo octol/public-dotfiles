@@ -6,11 +6,7 @@ return {
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
-    {
-      "L3MON4D3/LuaSnip",
-      version = "v2.*",
-      build = "make install_jsregexp",
-    },
+    { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
   },
   event = "InsertEnter",
   config = function()
@@ -39,6 +35,10 @@ return {
         -- Add tab support
         ["<S-Tab>"] = cmp.mapping.select_prev_item(),
         ["<Tab>"] = cmp.mapping.select_next_item(),
+      },
+      windows = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
       },
 
       -- Installed sources
