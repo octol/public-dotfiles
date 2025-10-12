@@ -8,7 +8,7 @@ local config = wezterm.config_builder()
 --config.default_prog = { "/usr/bin/zsh", "-l" }
 config.initial_cols = 120
 config.initial_rows = 40
-config.font_size = 10
+config.font_size = 11
 config.font = wezterm.font("BerkeleyMono Nerd Font Mono", { weight = "Medium" })
 
 config.bold_brightens_ansi_colors = true
@@ -17,7 +17,7 @@ config.hide_tab_bar_if_only_one_tab = true
 config.enable_scroll_bar = false
 config.window_decorations = "RESIZE"
 
-config.enable_wayland = false
+-- config.enable_wayland = false
 
 -- Set the window background color to #282A36
 config.colors = {
@@ -51,7 +51,7 @@ config.colors = {
 
 local function ctrl_pg(dir)
   return wezterm.action_callback(function(window, pane)
-    local tab_cound = #window:mux_window():tabs()
+    local tab_count = #window:mux_window():tabs()
     if tab_count > 1 then
       window:perform_action(act.ActivateTabRelative(dir), pane)
     else
