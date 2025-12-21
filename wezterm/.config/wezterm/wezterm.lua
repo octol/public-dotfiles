@@ -69,6 +69,7 @@ end
 config.keys = {
   { key = "PageUp", mods = "CTRL", action = ctrl_pg(-1) },
   { key = "PageDown", mods = "CTRL", action = ctrl_pg(1) },
+  { key = "Enter", mods = "ALT", action = wezterm.action.SendString("\x1b\r") },
 }
 
 return config
