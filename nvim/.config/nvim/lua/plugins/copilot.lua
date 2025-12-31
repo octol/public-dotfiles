@@ -36,13 +36,13 @@ return {
       },
       filetypes = {
         rust = true,
-        toml = true,
         lua = true,
         python = true,
         javascript = true,
         typescript = true,
         ["*"] = false,
       },
+      copilot_node_command = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v22.21.1/bin/node",
     })
   end,
 }
