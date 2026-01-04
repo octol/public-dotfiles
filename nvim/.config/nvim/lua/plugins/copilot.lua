@@ -32,9 +32,7 @@ return {
   config = function()
     -- Since system node may be outdated, try to find a node v22+ installation
     -- via nvm. Users can also set COPILOT_NODE_COMMAND to override this.
-    local function node_version(node)
-      return vim.fn.systemlist({ node, "-v" })[1] or ""
-    end
+    local function node_version(node) return vim.fn.systemlist({ node, "-v" })[1] or "" end
 
     local function node_version_ok(node)
       local major = tonumber(node_version(node):match("^v(%d+)"))
@@ -42,17 +40,13 @@ return {
     end
 
     local function find_node22()
-      if vim.fn.executable("node") == 1 and node_version_ok("node") then
-        return "node"
-      end
+      if vim.fn.executable("node") == 1 and node_version_ok("node") then return "node" end
 
       local nvm_dir = vim.env.NVM_DIR or (vim.fn.expand("$HOME") .. "/.nvm")
       local candidates = vim.fn.globpath(nvm_dir .. "/versions/node", "v22*/bin/node", false, true)
       table.sort(candidates)
       local best = candidates[#candidates]
-      if best and node_version_ok(best) then
-        return best
-      end
+      if best and node_version_ok(best) then return best end
     end
 
     local copilot_node = vim.env.COPILOT_NODE_COMMAND or find_node22()
@@ -63,9 +57,7 @@ return {
       local node_path = "n/a"
       if copilot_node then
         node_path = vim.fn.exepath(copilot_node)
-        if node_path == "" then
-          node_path = copilot_node
-        end
+        if node_path == "" then node_path = copilot_node end
       end
       local version = copilot_node and node_version(copilot_node) or "n/a"
       vim.notify(string.format("Copilot node: %s (%s) path=%s", node, version, node_path))
@@ -81,9 +73,7 @@ return {
         python = true,
         javascript = true,
         typescript = true,
-        toml = function()
-          return vim.fn.expand("%:t") == "Cargo.toml"
-        end,
+        toml = function() return vim.fn.expand("%:t") == "Cargo.toml" end,
         ["*"] = false,
       },
       copilot_node_command = copilot_node,
