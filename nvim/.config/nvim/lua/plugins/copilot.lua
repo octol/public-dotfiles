@@ -34,9 +34,23 @@ return {
     -- via nvm. Users can also set COPILOT_NODE_COMMAND to override this.
     local function node_version(node) return vim.fn.systemlist({ node, "-v" })[1] or "" end
 
+    local function parse_node_version(version)
+      local major, minor, patch = version:match("^v(%d+)%.(%d+)%.(%d+)")
+      if not major then return nil end
+      return { major = tonumber(major), minor = tonumber(minor), patch = tonumber(patch) }
+    end
+
+    local function version_gte(lhs, rhs)
+      if lhs.major ~= rhs.major then return lhs.major > rhs.major end
+      if lhs.minor ~= rhs.minor then return lhs.minor > rhs.minor end
+      return lhs.patch >= rhs.patch
+    end
+
+    local min_node_version = { major = 22, minor = 13, patch = 0 }
+
     local function node_version_ok(node)
-      local major = tonumber(node_version(node):match("^v(%d+)"))
-      return major and major >= 22
+      local parsed = parse_node_version(node_version(node))
+      return parsed and version_gte(parsed, min_node_version)
     end
 
     local function find_node22()
@@ -44,9 +58,19 @@ return {
 
       local nvm_dir = vim.env.NVM_DIR or (vim.fn.expand("$HOME") .. "/.nvm")
       local candidates = vim.fn.globpath(nvm_dir .. "/versions/node", "v22*/bin/node", false, true)
-      table.sort(candidates)
-      local best = candidates[#candidates]
-      if best and node_version_ok(best) then return best end
+      local best, best_version
+
+      for _, candidate in ipairs(candidates) do
+        if node_version_ok(candidate) then
+          local parsed = parse_node_version(node_version(candidate))
+          if parsed and (not best_version or version_gte(parsed, best_version)) then
+            best = candidate
+            best_version = parsed
+          end
+        end
+      end
+
+      return best
     end
 
     local copilot_node = vim.env.COPILOT_NODE_COMMAND or find_node22()
