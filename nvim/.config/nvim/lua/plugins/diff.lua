@@ -23,7 +23,7 @@ return {
     end,
   },
   {
-    "esmuellert/vscode-diff.nvim",
+    "esmuellert/codediff.nvim",
     dependencies = { "MunifTanjim/nui.nvim" },
     cmd = "CodeDiff",
   },
