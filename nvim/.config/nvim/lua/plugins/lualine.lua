@@ -14,6 +14,6 @@ return {
     -- inactive_sections = {
     --   lualine_c = { { "filename", path = 1 } },
     -- },
-    extensions = { "nvim-tree", "trouble" },
+    extensions = { "trouble" },
   },
 }

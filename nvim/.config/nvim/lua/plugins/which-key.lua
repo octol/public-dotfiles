@@ -4,5 +4,8 @@ return {
   event = "VeryLazy",
   opts = {
     delay = function(ctx) return ctx.plugin and 0 or 1000 end,
+    spec = {
+      { "<leader>m", group = "Harpoon" },
+    },
   },
 }
