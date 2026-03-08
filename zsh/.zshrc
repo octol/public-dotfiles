@@ -74,7 +74,7 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 zstyle ':omz:plugins:nvm' lazy true
-plugins=(git nvm rust)
+plugins=(git nvm rust zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
