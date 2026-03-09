@@ -36,7 +36,7 @@ return {
         ["<S-Tab>"] = cmp.mapping.select_prev_item(),
         ["<Tab>"] = cmp.mapping.select_next_item(),
       },
-      windows = {
+      window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
       },
