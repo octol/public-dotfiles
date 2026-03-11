@@ -3,7 +3,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.configs").setup({
+      require("nvim-treesitter.config").setup({
         ensure_installed = { "lua", "rust", "toml", "python", "markdown", "vim", "json", "yaml" },
         highlight = {
           enable = true,
