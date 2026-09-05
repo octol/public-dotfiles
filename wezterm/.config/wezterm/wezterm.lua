@@ -22,7 +22,7 @@ config.font_size = 11
 config.font = wezterm.font("BerkeleyMono Nerd Font Mono", { weight = "Medium" })
 config.bold_brightens_ansi_colors = true
 config.warn_about_missing_glyphs = false
---config.harzbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
+--config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
 config.colors = {
   foreground = "#D0CFCC",
