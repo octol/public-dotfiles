@@ -11,6 +11,13 @@ config.enable_scroll_bar = false
 config.window_decorations = "RESIZE"
 --config.enable_wayland = false
 
+config.audible_bell = "Disabled"
+config.visual_bell = {
+  fade_in_duration_ms = 0,
+  fade_out_duration_ms = 0,
+  target = "BackgroundColor",
+}
+
 config.font_size = 11
 config.font = wezterm.font("BerkeleyMono Nerd Font Mono", { weight = "Medium" })
 config.bold_brightens_ansi_colors = true
