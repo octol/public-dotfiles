@@ -37,8 +37,6 @@
 	navigate = true
 	; side-by-side = true
 	dark = true
-[init]
-	defaultBranch = master
 [cola]
 	spellcheck = false
 [help]
