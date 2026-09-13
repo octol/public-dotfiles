@@ -16,7 +16,7 @@ return {
     keys = {
       {
         "<leader>bf",
-        function() require("conform").format({ async = true, lsp_format = fallback }) end,
+        function() require("conform").format({ async = true, lsp_format = "fallback" }) end,
         desc = "Format buffer or range",
         mode = { "n", "v" },
       },

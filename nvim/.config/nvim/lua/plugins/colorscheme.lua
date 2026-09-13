@@ -6,7 +6,7 @@
 --
 -- Replace both with the accent blended ~18% into Normal's background, and set
 -- only the background so syntax colours show through. codediff derives its own
--- line and character highlights from these, and re-derives on ColorScheme, so
+-- line and character highlights from these and re-derives on ColorScheme, so
 -- fixing them here fixes codediff, :diffthis and vimdiff alike.
 local function fix_dracula_diff_hl()
   if vim.g.colors_name ~= "dracula" then return end
@@ -25,7 +25,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      -- The ColorSchene autocmd above does not fire of the colorscheme that
+      -- The ColorScheme autocmd above does not fire for the colorscheme that
       -- is already active when this file loads, so apply it once directly.
       fix_dracula_diff_hl()
     end,
