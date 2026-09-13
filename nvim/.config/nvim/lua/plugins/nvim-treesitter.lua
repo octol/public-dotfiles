@@ -1,27 +1,28 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
+    branch = "main",
+    -- The main branch does not support lazy-loading
+    lazy = false,
+    build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.config").setup({
-        ensure_installed = { "lua", "rust", "toml", "python", "markdown", "vim", "json", "yaml" },
-        highlight = {
-          enable = true,
-          -- disable = { "c" },
+      require("nvim-treesitter").install({
+        "lua",
+        "rust",
+        "toml",
+        "python",
+        "markdown",
+        "markdown_inline",
+        "vim",
+        "json",
+        "yaml",
+      })
 
-          -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-          -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-          -- Using this option may slow down your editor, and you may see some duplicate highlights.
-          -- Instead of true it can also be a list of languages
-          additional_vim_regex_highlighting = false,
-        },
-
-        --context_commentstring = {
-        --    enable = true,
-        --    enable_autocmd = false,
-        --},
+      -- The main branch no longer manages highlighting; Neovim does. Start it
+      -- for any filetype we happen to have a parser for.
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(ev) pcall(vim.treesitter.start, ev.buf) end,
       })
     end,
   },
-  { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
 }

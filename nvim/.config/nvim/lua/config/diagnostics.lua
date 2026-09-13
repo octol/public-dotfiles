@@ -36,4 +36,4 @@ vim.keymap.set("n", "gK", function()
   local to_lines = not vim.diagnostic.config().virtual_lines
   vim.diagnostic.config({ virtual_text = not to_lines, virtual_lines = to_lines })
   vim.notify("Diagnostics: " .. (to_lines and "virtual_lines" or "virtual_text"))
-end, { silent = true, desc = "Toggle diagnostic display" })
+end, { silent = true, desc = "Toggle diagnostics display" })
