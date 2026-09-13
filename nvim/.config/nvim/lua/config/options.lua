@@ -11,7 +11,7 @@ opt.splitright = true
 opt.splitbelow = true
 opt.smartcase = true
 opt.ignorecase = true
-opt.breakindent = true -- indent wrapped lines to preserve indendation
+opt.breakindent = true -- indent wrapped lines to preserve indentation
 opt.linebreak = true -- soft-wrap only at certain characters
 
 -----------------------------------------------------------------------------

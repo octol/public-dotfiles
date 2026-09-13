@@ -15,8 +15,8 @@ end
 -- Insert date
 -----------------------------------------------------------------------------
 
-function insert_command_output(command)
-  local output = vim.fn.system(command)
+local function insert_command_output(command)
+  local output = vim.fn.system(command):gsub("\n$", "")
   vim.api.nvim_put({ output }, "c", true, true)
 end
 
@@ -33,6 +33,6 @@ vim.api.nvim_create_user_command("Tnew", function() os.execute(string.format([[t
 vim.api.nvim_create_user_command("Tvnew", function() os.execute(string.format([[tmux split-window -h -c "%s"]], vim.fn.getcwd())) end, {})
 vim.api.nvim_create_user_command("Tneww", function() os.execute(string.format([[tmux new-window -c "%s"]], vim.fn.getcwd())) end, {})
 
-vim.keymap.set("n", "<leader>ts", "<cmd>Tnew<cr>", { noremap = true, silent = true, desc = "Tmux split (horizontal)" })
-vim.keymap.set("n", "<leader>tv", "<cmd>Tvnew<cr>", { noremap = true, silent = true, desc = "Tmux split (vertical)" })
-vim.keymap.set("n", "<leader>tw", "<cmd>Tneww<cr>", { noremap = true, silent = true, desc = "Tmux new window" })
+vim.keymap.set("n", "<leader>ts", "<cmd>Tnew<cr>", { silent = true, desc = "Tmux split (horizontal)" })
+vim.keymap.set("n", "<leader>tv", "<cmd>Tvnew<cr>", { silent = true, desc = "Tmux split (vertical)" })
+vim.keymap.set("n", "<leader>tw", "<cmd>Tneww<cr>", { silent = true, desc = "Tmux new window" })
