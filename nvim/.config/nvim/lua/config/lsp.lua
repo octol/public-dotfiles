@@ -1,15 +1,15 @@
-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
 -- Language servers
 --
 -- Server configs live in after/lsp/<name>.lua and merge on top of the
 -- definitions nvim-lspconfig ships in lsp/<name>.lua. See :help lsp-config.
 --
--- Rust is handled separatey by rustaceanvim.
-----------------------------------------------------------------------------
+-- Rust is handled separately by rustaceanvim.
+-----------------------------------------------------------------------------
 
 vim.lsp.enable("basedpyright")
 
-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
 -- Buffer-local LSP keymaps
 --
 -- Neovim maps grn/gra/grr/gri/grt/grx/gO globally, and K/<C-]>/gq on attach
@@ -19,7 +19,7 @@ vim.lsp.enable("basedpyright")
 -- These are deliberately buffer-local: gd is the builtin local-declaration
 -- motion and gO is the help-buffer table of contents, so binding them
 -- globally would break both outside LSP buffers.
-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
 
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "Point the default LSP keymaps at the snacks pickers",

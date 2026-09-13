@@ -11,21 +11,31 @@ return {
       end
 
       -- Navigation
-      map("n", "]c", function()
-        if vim.wo.diff then
-          vim.cmd.normal({ "]c", bang = true })
-        else
-          gs.nav_hunk("next")
+      --
+      -- codefiff renders with extmarks rather than Vim's diff mode, so
+      -- 'wo.diff' is false in its panes, and it opens the modified side as a
+      -- real file buffer -- which gitsigns attaches to, overwriting codediff's 
+      -- own ]c/[c. gitsigns only knows about uncommitted changes, so in a view
+      -- of commited diffs it would report "no hunks".
+      --
+      -- Try codediff first: its navigatoin returns false when the current 
+      -- tabpage has no codediff sessions, so this is a no-op elsewhere. Read
+      -- package.loaded instead of require() so ]c never forces codediff to
+      -- load in a ordinary buffer.
+      local function nav_hunk(direction)
+        return function()
+          local codediff = package.loaded["codediff"]
+          if codediff and codediff[direction .. "_hunk"]() then return end
+          if vim.wo.diff then
+            vim.cmd.normal({ direction .. "next" and "]c" or "[c", bang = true })
+          else
+            gs.nav_hunk(direction)
+          end
         end
-      end, "Next Hunk")
+      end
 
-      map("n", "[c", function()
-        if vim.wo.diff then
-          vim.cmd.normal({ "[c", bang = true })
-        else
-          gs.nav_hunk("prev")
-        end
-      end, "Prev Hunk")
+      map("n", "]c", nav_hunk("next"), "Next Hunk")
+      map("n", "[c", nav_hunk("prev"), "Prev Hunk")
 
       -- Actions
       map("n", "<leader>hs", gs.stage_hunk, "Stage Hunk")

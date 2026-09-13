@@ -12,7 +12,7 @@ return {
     ---@type blink.cmp.Config
     opts = {
       keymap = {
-        preset = "default",
+        preset = "super-tab",
         ["<C-y>"] = { "select_and_accept", "fallback" },
       },
       snippets = { preset = "luasnip" },

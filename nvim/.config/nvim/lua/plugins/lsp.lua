@@ -3,7 +3,7 @@ return {
   { "chrisgrieser/nvim-lsp-endhints", event = "LspAttach", opts = {} },
   {
     "mrcjkb/rustaceanvim",
-    version = "^6", -- Recommended
+    version = "^9",
     lazy = false, -- This plugin is already lazy
     init = function()
       vim.g.rustaceanvim = {
