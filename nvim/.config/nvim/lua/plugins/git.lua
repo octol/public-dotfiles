@@ -16,7 +16,7 @@ return {
       -- 'wo.diff' is false in its panes, and it opens the modified side as a
       -- real file buffer -- which gitsigns attaches to, overwriting codediff's
       -- own ]c/[c. gitsigns only knows about uncommitted changes, so in a view
-      -- of commited diffs it would report "No hunks".
+      -- of committed diffs it would report "No hunks".
       --
       -- Try codediff first: its navigation returns false when the current
       -- tabpage has no codediff session, so this is a no-op elsewhere. Read
