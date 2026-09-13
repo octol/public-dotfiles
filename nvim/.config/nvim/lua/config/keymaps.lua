@@ -1,9 +1,15 @@
 -----------------------------------------------------------------------------
--- Goto previous/next diagnostic warning/error
+-- Comments
+--
+-- Neovim provides gc/gcc natively. These add the two byte sequences that
+-- terminals send and for Ctrl-/ on top of it. `remap = true` is required, since
+-- gc and gcc are themselves mappings
 -----------------------------------------------------------------------------
 
-vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, { noremap = true, desc = "Go to previous diagnostic" })
-vim.keymap.set("n", "g]", vim.diagnostic.goto_next, { noremap = true, desc = "Go to next diagnostic" })
+for _,lhs in ipairs({ "<C-_>", "<C-/>" }) do
+  vim.keymap.set("n", lhs, "gcc", { remap = true, desc = "Toggle comment" })
+  vim.keymap.set("x", lhs, "gc", { remap = true, desc = "Toggle comment" })
+end
 
 -----------------------------------------------------------------------------
 -- Insert date
@@ -11,38 +17,27 @@ vim.keymap.set("n", "g]", vim.diagnostic.goto_next, { noremap = true, desc = "Go
 
 function insert_command_output(command)
   local output = vim.fn.system(command)
-  -- Remove the trailing newline character from the output
-  output = output:gsub("\n$", "")
   vim.api.nvim_put({ output }, "c", true, true)
 end
 
-vim.keymap.set("n", "<leader>dt", [[<cmd>lua insert_command_output("date --rfc-email")<CR>]], { noremap = true, silent = true, desc = "Insert date" })
-
------------------------------------------------------------------------------
--- LSP keymaps
------------------------------------------------------------------------------
-
-vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, keymap_opts)
+vim.keymap.set("n", "<leader>dt", [[<cmd>lua insert_command_output("date --rfc-email")<CR>]], { noremap = true, 
+  silent = true, 
+  desc = "Insert date",
+})
 
 -----------------------------------------------------------------------------
 -- Tmux
 -----------------------------------------------------------------------------
 
 vim.api.nvim_create_user_command("Tnew", function()
-  local cwd = vim.fn.getcwd()
-  local tmux_cmd = string.format([[tmux split-window -c "%s"]], cwd)
-  os.execute(tmux_cmd)
+  os.execute(string.format([[tmux split-window -c "%s"]], vim.fn.getcwd()))
 end, {})
 vim.api.nvim_create_user_command("Tvnew", function()
-  local cwd = vim.fn.getcwd()
-  local tmux_cmd = string.format([[tmux split-window -h -c "%s"]], cwd)
-  os.execute(tmux_cmd)
+  os.execute(string.format([[tmux split-window -h -c "%s"]], vim.fn.getcwd()))
 end, {})
 vim.api.nvim_create_user_command("Tneww", function()
-  local cwd = vim.fn.getcwd()
-  local tmux_cmd = string.format([[tmux new-window -c "%s"]], cwd)
-  os.execute(tmux_cmd)
+  os.execute(string.format([[tmux new-window -c "%s"]], vim.fn.getcwd()))
 end, {})
-vim.keymap.set("n", "<leader>ts", ":Tnew<CR>", { noremap = true, silent = true, desc = "Tmux split (horizontal)" })
-vim.keymap.set("n", "<leader>tv", ":Tvnew<CR>", { noremap = true, silent = true, desc = "Tmux split (vertical)" })
-vim.keymap.set("n", "<leader>tw", ":Tneww<CR>", { noremap = true, silent = true, desc = "Tmux new window" })
+vim.keymap.set("n", "<leader>ts", "<cmd>Tnew<cr>", { noremap = true, silent = true, desc = "Tmux split (horizontal)" })
+vim.keymap.set("n", "<leader>tv", "<cmd>Tvnew<cr>", { noremap = true, silent = true, desc = "Tmux split (vertical)" })
+vim.keymap.set("n", "<leader>tw", "<cmd>Tneww<cr>", { noremap = true, silent = true, desc = "Tmux new window" })
