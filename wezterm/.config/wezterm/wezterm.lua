@@ -18,11 +18,15 @@ config.visual_bell = {
   target = "BackgroundColor",
 }
 
-config.font_size = 11
+config.font_size = wezterm.target_triple:find("darwin") and 15 or 11
 config.font = wezterm.font("BerkeleyMono Nerd Font Mono", { weight = "Medium" })
 config.bold_brightens_ansi_colors = true
 config.warn_about_missing_glyphs = false
 --config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
+
+if wezterm.target_triple:find("darwin") then
+  config.front_end = "WebGpu"
+end
 
 config.colors = {
   foreground = "#D0CFCC",

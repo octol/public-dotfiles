@@ -9,6 +9,9 @@
 
 vim.lsp.enable("basedpyright")
 
+-- Enable native inlay hints by default, including in newly opened buffers.
+vim.lsp.inlay_hint.enable(true)
+
 -----------------------------------------------------------------------------
 -- Buffer-local LSP keymaps
 --
